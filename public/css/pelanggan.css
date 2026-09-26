@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(30, 20, 15, 0.55),
+            rgba(30, 20, 15, 0.55)
+        ),
+        url('../images/poto_cafe.jpeg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Tidak boleh ada scroll */
+    overflow: hidden;
+}
+
+
+/* =========================
+   CUSTOMER PAGE
+========================= */
+
+.customer-page {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+}
+
+
+/* =========================
+   CUSTOMER CARD
+========================= */
+
+.customer-card {
+    width: 320px;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    padding: 20px 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.customer-icon {
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 8px;
+
+    border-radius: 50%;
+
+    background: #f5eadf;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.customer-card h1 {
+    color: #3b2416;
+
+    font-size: 21px;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.customer-subtitle {
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+    margin-bottom: 13px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    text-align: left;
+
+    margin-bottom: 9px;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.form-group label {
+    display: block;
+
+    color: #3b2416;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.form-group input {
+    width: 100%;
+
+    height: 37px;
+
+    padding: 0 10px;
+
+    border: 1px solid #d8d1cc;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    color: #333;
+
+    background: #ffffff;
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+
+/* =========================
+   INPUT FOCUS
+========================= */
+
+.form-group input:focus {
+    border-color: #8b5e3c;
+
+    box-shadow:
+        0 0 0 2px rgba(139, 94, 60, 0.10);
+}
+
+
+/* =========================
+   NOMOR MEJA
+========================= */
+
+.form-group select {
+    width: 100%;
+
+    height: 37px;
+
+    padding: 0 10px;
+
+    border: 1px solid #d8d1cc;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    color: #333;
+
+    background: #ffffff;
+
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    border-color: #8b5e3c;
+
+    box-shadow:
+        0 0 0 2px rgba(139, 94, 60, 0.10);
+}
+
+.form-group select option {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 400;
+
+    color: #333;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+    display: block;
+
+    color: #d93025;
+
+    font-size: 10px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.order-button {
+    width: 100%;
+
+    height: 38px;
+
+    margin-top: 2px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #8b5e3c;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.order-button:hover {
+    background: #6f472c;
+}
+
+.order-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.button-arrow {
+    font-size: 15px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.customer-footer {
+    margin-top: 9px;
+
+    color: #999;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   LAPTOP PENDEK
+========================= */
+
+@media (max-height: 750px) {
+
+    .customer-card {
+        padding: 16px 20px;
+    }
+
+    .customer-icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 22px;
+
+        margin-bottom: 5px;
+    }
+
+    .customer-card h1 {
+        font-size: 19px;
+    }
+
+    .customer-subtitle {
+        margin-bottom: 9px;
+    }
+
+    .form-group {
+        margin-bottom: 6px;
+    }
+
+    .form-group label {
+        margin-bottom: 3px;
+    }
+
+    .form-group input {
+        height: 34px;
+    }
+
+    .form-group select {
+        height: 34px;
+    }
+
+    .order-button {
+        height: 35px;
+    }
+
+    .customer-footer {
+        margin-top: 6px;
+    }
+}
+
+
+/* =========================
+   HP
+========================= */
+
+@media (max-width: 480px) {
+
+    .customer-card {
+        width: 310px;
+
+        padding: 16px 18px;
+    }
+}

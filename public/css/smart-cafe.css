@@ -1,0 +1,955 @@
+/* ==========================================================
+   RESET
+========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #34251a;
+    background: #f7f4f0;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.header {
+    height: 78px;
+    width: 100%;
+
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 55px;
+    padding-right: 50px;
+
+    position: relative;
+    z-index: 20;
+
+    border-bottom: 1px solid #e9e3de;
+}
+
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.brand-logo {
+    width: 54px;
+    height: 58px;
+    position: relative;
+}
+
+
+/* UAP KOPI */
+
+.steam {
+    position: absolute;
+
+    top: 0;
+
+    width: 3px;
+    height: 16px;
+
+    border-radius: 50%;
+
+    background: #56351e;
+
+    transform: rotate(10deg);
+}
+
+.steam-1 {
+    left: 17px;
+}
+
+.steam-2 {
+    left: 27px;
+
+    height: 19px;
+
+    transform: rotate(-8deg);
+}
+
+.steam-3 {
+    left: 36px;
+
+    height: 15px;
+
+    transform: rotate(9deg);
+}
+
+
+/* CUP */
+
+.cup {
+    position: absolute;
+
+    left: 6px;
+    top: 19px;
+
+    width: 45px;
+    height: 37px;
+}
+
+
+/* BADAN CANGKIR */
+
+.cup-body {
+    position: absolute;
+
+    left: 3px;
+    top: 0;
+
+    width: 37px;
+    height: 27px;
+
+    background: #56351e;
+
+    border-radius:
+        4px
+        4px
+        18px
+        18px;
+}
+
+
+/* BAGIAN DALAM */
+
+.cup-body::before {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    top: 4px;
+
+    width: 29px;
+    height: 8px;
+
+    background: #f5f1ec;
+
+    border-radius: 50%;
+}
+
+
+/* HANDLE */
+
+.cup-handle {
+    position: absolute;
+
+    right: -2px;
+    top: 5px;
+
+    width: 14px;
+    height: 18px;
+
+    border: 4px solid #56351e;
+
+    border-left: 0;
+
+    border-radius:
+        0
+        11px
+        11px
+        0;
+}
+
+
+/* SAUCER */
+
+.cup-saucer {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 44px;
+    height: 7px;
+
+    background: #56351e;
+
+    border-radius: 50%;
+}
+
+
+/* ==========================================================
+   BRAND TEXT
+========================================================== */
+
+.brand-name {
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: #3d2819;
+
+    line-height: 1.05;
+}
+
+.brand-tagline {
+    font-size: 12px;
+
+    color: #5e554e;
+
+    margin-top: 3px;
+}
+
+
+/* ==========================================================
+   BERANDA
+========================================================== */
+
+.home {
+    height: 55px;
+
+    min-width: 90px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 2px;
+
+    color: #302a25;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    border-bottom:
+        2px solid #6d4c37;
+}
+
+.home-symbol {
+    font-size: 20px;
+
+    color: #543722;
+
+    line-height: 18px;
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero {
+    min-height: calc(100vh - 105px);
+
+    position: relative;
+
+    background: #faf9f7;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,255,255,.84) 0%,
+            rgba(255,255,255,.63) 45%,
+            rgba(255,255,255,.38) 100%
+        );
+}
+
+
+/* ==========================================================
+   HERO CONTAINER
+========================================================== */
+
+.hero-container {
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    padding:
+        30px
+        20px
+        25px;
+}
+
+
+/* ==========================================================
+   WELCOME
+========================================================== */
+
+.welcome-section {
+    text-align: center;
+}
+
+
+/* SELAMAT DATANG */
+
+.welcome-small {
+    font-size: 27px;
+
+    font-weight: 400;
+
+    color: #302117;
+
+    line-height: 1.1;
+}
+
+
+/* SMART CAFE */
+
+.welcome-section h1 {
+    font-size: 44px;
+
+    font-weight: 800;
+
+    line-height: 1.05;
+
+    color: #2b180b;
+
+    margin-top: 2px;
+}
+
+
+/* DESKRIPSI */
+
+.welcome-section p {
+    margin-top: 11px;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+    color: #514d4a;
+}
+
+
+/* ==========================================================
+   ORNAMENT
+========================================================== */
+
+.ornament {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 17px;
+
+    margin-top: 14px;
+
+    margin-bottom: 18px;
+}
+
+.ornament-line {
+    display: block;
+
+    width: 70px;
+
+    height: 2px;
+
+    background: #765335;
+}
+
+.coffee-small {
+    font-size: 20px;
+
+    color: #68401f;
+}
+
+
+/* ==========================================================
+   ACCESS CONTAINER
+========================================================== */
+
+.access-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 13px;
+}
+
+
+/* ==========================================================
+   ACCESS CARD
+========================================================== */
+
+.access-card {
+    min-height: 235px;
+
+    border-radius: 13px;
+
+    padding:
+        19px
+        22px
+        18px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    box-shadow:
+        0 7px 20px
+        rgba(60, 42, 28, .13);
+
+    border:
+        1px solid
+        rgba(255,255,255,.8);
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* ==========================================================
+   PELANGGAN
+========================================================== */
+
+.customer-card {
+    background:
+        rgba(255,252,248,.94);
+}
+
+
+/* ==========================================================
+   KASIR
+========================================================== */
+
+.cashier-card {
+    background:
+        rgba(243,248,255,.94);
+}
+
+
+/* ==========================================================
+   ADMIN
+========================================================== */
+
+.admin-card {
+    background:
+        rgba(244,252,247,.94);
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.access-icon {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 10px;
+
+    position: relative;
+}
+
+
+/* ==========================================================
+   PELANGGAN ICON
+========================================================== */
+
+.customer-icon {
+    background: #efdbc7;
+
+    color: #61391d;
+}
+
+.big-cup {
+    font-size: 29px;
+}
+
+
+/* ==========================================================
+   KASIR ICON
+========================================================== */
+
+.cashier-icon {
+    background: #c9e4f8;
+
+    color: #176aa4;
+
+    font-size: 20px;
+}
+
+.person {
+    position: absolute;
+
+    top: 7px;
+
+    font-size: 22px;
+}
+
+.person-body {
+    position: absolute;
+
+    bottom: 6px;
+
+    font-size: 28px;
+}
+
+.lock {
+    position: absolute;
+
+    bottom: 3px;
+    right: 6px;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================================
+   ADMIN ICON
+========================================================== */
+
+.admin-icon {
+    background: #c8efd9;
+
+    color: #197954;
+
+    font-size: 34px;
+}
+
+
+/* ==========================================================
+   CARD TEXT
+========================================================== */
+
+.access-card h2 {
+    font-size: 20px;
+
+    margin-bottom: 7px;
+}
+
+
+/* PELANGGAN */
+
+.customer-card h2 {
+    color: #392719;
+}
+
+
+/* KASIR */
+
+.cashier-card h2 {
+    color: #213c54;
+}
+
+
+/* ADMIN */
+
+.admin-card h2 {
+    color: #213c3a;
+}
+
+
+/* CARD DESCRIPTION */
+
+.access-card p {
+    color: #4d4946;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    margin-bottom: 14px;
+
+    max-width: 240px;
+}
+
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.access-button {
+    width: 100%;
+
+    height: 42px;
+
+    margin-top: auto;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    border-radius: 10px;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease;
+}
+
+
+/* HOVER */
+
+.access-button:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(.95);
+}
+
+
+/* ==========================================================
+   PELANGGAN BUTTON
+========================================================== */
+
+.customer-button {
+    background: #ad6d3d;
+}
+
+
+/* ==========================================================
+   KASIR BUTTON
+========================================================== */
+
+.cashier-button {
+    background: #398bd0;
+}
+
+
+/* ==========================================================
+   ADMIN BUTTON
+========================================================== */
+
+.admin-button {
+    background: #2c9a70;
+}
+
+
+/* ==========================================================
+   ARROW
+========================================================== */
+
+.arrow {
+    font-size: 19px;
+
+    line-height: 1;
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.footer {
+    min-height: 60px;
+
+    background: #ffffff;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 16px;
+
+    color: #3e3a36;
+
+    font-size: 13px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.footer-line {
+    height: 1px;
+
+    width: 25%;
+
+    max-width: 280px;
+
+    background: #d9d1ca;
+}
+
+
+.footer-icon {
+    color: #704a2d;
+
+    font-size: 16px;
+}
+
+
+.footer-text {
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 900px) {
+
+    .header {
+        padding:
+            0
+            25px;
+    }
+
+
+    .hero-container {
+        padding:
+            30px
+            20px
+            25px;
+    }
+
+
+    .welcome-small {
+        font-size: 25px;
+    }
+
+
+    .welcome-section h1 {
+        font-size: 40px;
+    }
+
+
+    .welcome-section p {
+        font-size: 14px;
+    }
+
+
+    .access-container {
+        grid-template-columns:
+            1fr;
+
+        max-width: 480px;
+
+        margin:
+            0 auto;
+    }
+
+
+    .access-card {
+        min-height: 230px;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 70px;
+
+        padding:
+            0
+            12px;
+    }
+
+
+    .brand-logo {
+        transform:
+            scale(.70);
+
+        transform-origin:
+            left center;
+
+        margin-right:
+            -12px;
+    }
+
+
+    .brand-name {
+        font-size: 19px;
+    }
+
+
+    .brand-tagline {
+        font-size: 9px;
+    }
+
+
+    .home {
+        min-width: 65px;
+
+        font-size: 12px;
+    }
+
+
+    .home-symbol {
+        font-size: 18px;
+    }
+
+
+    .hero-container {
+        padding:
+            28px
+            12px
+            20px;
+    }
+
+
+    .welcome-small {
+        font-size: 22px;
+    }
+
+
+    .welcome-section h1 {
+        font-size: 34px;
+    }
+
+
+    .welcome-section p {
+        font-size: 14px;
+
+        line-height: 1.4;
+    }
+
+
+    .desktop {
+        display: none;
+    }
+
+
+    .ornament {
+        margin-top: 12px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .ornament-line {
+        width: 50px;
+    }
+
+
+    .access-container {
+        gap: 12px;
+    }
+
+
+    .access-card {
+        min-height: 230px;
+
+        padding:
+            18px
+            18px
+            17px;
+    }
+
+
+    .access-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+
+    .access-card h2 {
+        font-size: 19px;
+    }
+
+
+    .access-card p {
+        font-size: 13px;
+    }
+
+
+    .access-button {
+        height: 42px;
+
+        font-size: 13px;
+    }
+
+
+    .footer {
+        min-height: 55px;
+
+        gap: 7px;
+
+        font-size: 10px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .footer-line {
+        width: 15%;
+    }
+}
+/* KECILKAN SELURUH HALAMAN */
+body {
+    zoom: 0.90;
+}
+body {
+    zoom: 0.85;
+}
+body {
+    zoom: 0.95;
+}
+body {
+    zoom: 0.90;
+}
