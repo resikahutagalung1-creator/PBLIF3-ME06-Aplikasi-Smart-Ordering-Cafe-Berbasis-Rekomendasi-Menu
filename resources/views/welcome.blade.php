@@ -207,8 +207,9 @@
                     -->
 
                     <a
-                        href="{{ url('/login?role=kasir') }}"
-                        class="access-button cashier-button"
+                       href="{{ url('/kasir/login') }}"
+                       class="access-button cashier-button"
+>
                     >
 
                         <span>

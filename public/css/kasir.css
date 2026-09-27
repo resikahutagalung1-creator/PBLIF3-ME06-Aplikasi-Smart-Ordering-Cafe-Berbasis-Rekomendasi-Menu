@@ -1,0 +1,1394 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3f7fc;
+    color: #123f73;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.kasir-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    width: 270px;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: linear-gradient(
+        180deg,
+        #0d3b70,
+        #123f73
+    );
+
+    color: white;
+
+    padding: 25px 15px;
+
+    z-index: 10;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 10px 35px;
+}
+
+.logo-icon {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+
+    background: #2d78c9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.logo-title {
+    font-size: 21px;
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+}
+
+.logo-subtitle {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #c6daee;
+}
+
+
+/* =====================================================
+   SIDEBAR MENU
+===================================================== */
+
+.sidebar-menu {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 8px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border-radius: 10px;
+
+    color: #dceafa;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background: #236fbd;
+
+    color: white;
+}
+
+.sidebar-menu a.active {
+    background: #2878ca;
+
+    color: white;
+}
+
+.menu-icon {
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 22px;
+}
+
+.menu-text {
+    flex: 1;
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.badge {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background: #ff4646;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   SIDEBAR BOTTOM
+===================================================== */
+
+.sidebar-bottom {
+    position: absolute;
+
+    left: 40px;
+    bottom: 30px;
+
+    color: #c7dcef;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+.sidebar-coffee {
+    font-size: 28px;
+
+    margin-bottom: 4px;
+}
+
+.sidebar-bottom-line {
+    width: 55px;
+    height: 3px;
+
+    background: #a5c8e9;
+
+    border-radius: 10px;
+
+    margin-top: 14px;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+    margin-left: 270px;
+
+    width: calc(100% - 270px);
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.top-bar {
+    height: 95px;
+
+    background: white;
+
+    border-bottom: 1px solid #e9f0f7;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    padding: 0 45px;
+}
+
+
+/* =====================================================
+   STAFF
+===================================================== */
+
+.staff {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #4d7095;
+
+    font-size: 15px;
+}
+
+.staff-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #e1efff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.staff-arrow {
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+    padding: 32px 45px 45px;
+}
+
+
+/* =====================================================
+   PAGE TITLE
+===================================================== */
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    margin-bottom: 8px;
+
+    color: #123f73;
+
+    font-size: 28px;
+
+    font-weight: 700;
+}
+
+.page-title p {
+    margin-bottom: 12px;
+
+    color: #6383a7;
+
+    font-size: 15px;
+}
+
+.title-line {
+    width: 68px;
+    height: 4px;
+
+    background: #2878ca;
+
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+
+    margin-bottom: 30px;
+}
+
+.stat {
+    background: white;
+
+    min-height: 118px;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(27, 76, 122, 0.08);
+
+    transition: 0.2s;
+}
+
+.stat:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(27, 76, 122, 0.12);
+}
+
+
+/* ICON STATISTIK */
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #e2efff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+}
+
+.stat-icon-success {
+    background: #daf5e9;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-title {
+    margin-bottom: 8px;
+
+    color: #6282a6;
+
+    font-size: 14px;
+}
+
+.stat-number {
+    color: #123f73;
+
+    font-size: 30px;
+
+    font-weight: 700;
+}
+
+.stat-arrow {
+    color: #2878ca;
+
+    font-size: 25px;
+}
+
+
+/* =====================================================
+   CARD PESANAN
+===================================================== */
+
+.card {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(27, 76, 122, 0.08);
+}
+
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
+
+.card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.card-title-wrapper {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.card-title-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 10px;
+
+    background: #e2efff;
+
+    color: #2474c1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+.card-title {
+    color: #123f73;
+
+    font-size: 23px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box {
+    width: 300px;
+    height: 43px;
+
+    border: 1px solid #cbdceb;
+
+    border-radius: 9px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 14px;
+}
+
+.search-icon {
+    margin-right: 8px;
+
+    color: #6f8fac;
+
+    font-size: 21px;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #45698e;
+
+    font-size: 13px;
+}
+
+.search-box input::placeholder {
+    color: #9ab0c7;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 850px;
+}
+
+.table thead {
+    background: #eef6fd;
+}
+
+.table th {
+    padding: 15px 12px;
+
+    color: #42698f;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.table td {
+    padding: 16px 12px;
+
+    border-bottom: 1px solid #edf2f6;
+
+    color: #45698e;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+.table tbody tr:hover {
+    background: #f8fbfe;
+}
+
+
+/* =====================================================
+   ORDER
+===================================================== */
+
+.order-number {
+    color: #123f73;
+
+    font-weight: 700;
+}
+
+.order-total {
+    color: #263f59;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.status-menunggu {
+    background: #fff0c9;
+
+    color: #c68100;
+}
+
+.status-diproses {
+    background: #dceeff;
+
+    color: #2473c4;
+}
+
+.status-selesai {
+    background: #d8f5e9;
+
+    color: #19966a;
+}
+
+.status-dibatalkan {
+    background: #ffe0e0;
+
+    color: #df4040;
+}
+
+
+/* =====================================================
+   BUTTON DETAIL
+===================================================== */
+
+.btn-detail {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px 18px;
+
+    border-radius: 8px;
+
+    background: #2474c1;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.btn-detail:hover {
+    background: #1b5e9e;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   EMPTY DATA
+===================================================== */
+
+.empty-data {
+    padding: 35px !important;
+
+    text-align: center !important;
+
+    color: #8ba2b8 !important;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.card-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 20px;
+}
+
+.showing-text {
+    color: #7894af;
+
+    font-size: 13px;
+}
+
+.pagination {
+    display: flex;
+
+    gap: 8px;
+}
+
+.page-button {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid #cbdceb;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #5f82a5;
+
+    font-size: 18px;
+
+    background: white;
+}
+
+.page-button.active {
+    border-color: #2474c1;
+
+    background: #2474c1;
+
+    color: white;
+}
+
+
+/* =====================================================
+   QUOTE BAGIAN BAWAH
+===================================================== */
+
+.bottom-quote {
+    margin-top: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    color: #6b87a5;
+
+    font-size: 14px;
+
+    font-style: italic;
+}
+
+.bottom-quote-icon {
+    font-size: 24px;
+}
+
+.bottom-quote-text {
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.5;
+}
+
+.bottom-quote-text span:last-child {
+    color: #547899;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        width: 230px;
+    }
+
+    .main {
+        margin-left: 230px;
+
+        width: calc(100% - 230px);
+    }
+
+    .content {
+        padding: 28px;
+    }
+
+    .top-bar {
+        padding: 0 28px;
+    }
+
+    .stats {
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 850px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        width: 70px;
+
+        padding: 20px 8px;
+    }
+
+    .logo {
+        justify-content: center;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .logo-text,
+    .menu-text,
+    .badge,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .sidebar-menu a {
+        justify-content: center;
+
+        padding: 14px 5px;
+    }
+
+    .main {
+        margin-left: 70px;
+
+        width: calc(100% - 70px);
+    }
+
+    .top-bar {
+        height: 75px;
+
+        padding: 0 20px;
+
+        justify-content: flex-end;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+}
+/* =========================================
+   PROSES PESANAN
+========================================= */
+
+.process-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+/* HEADER */
+
+.process-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 35px;
+}
+
+.process-header h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    color: #164b80;
+}
+
+.process-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* TIMELINE */
+
+.process-card .timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 25px 0 35px;
+}
+
+.process-card .timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+}
+
+.process-card .timeline-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #2d80d3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.process-card .timeline-circle.inactive {
+    background: #d9e1ea;
+    color: #7c8794;
+}
+
+.process-card .timeline-label {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #7c8794;
+}
+
+.process-card .timeline-label.active {
+    color: #164b80;
+    font-weight: bold;
+}
+
+.process-card .timeline-line {
+    height: 3px;
+    background: #2d80d3;
+    flex: 1;
+    max-width: 180px;
+    margin-bottom: 22px;
+}
+
+/* ILUSTRASI */
+
+.process-illustration {
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.chef-emoji {
+    font-size: 75px;
+}
+
+/* TEXT */
+
+.process-text {
+    text-align: center;
+    color: #5f6b78;
+    font-size: 15px;
+    margin: 15px 0 25px;
+}
+
+/* INFORMASI */
+
+.process-info {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin: 25px 0;
+    padding: 20px;
+    background: #f5f9fd;
+    border-radius: 12px;
+}
+
+.process-info div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 130px;
+}
+
+.process-info span {
+    font-size: 13px;
+    color: #7c8794;
+}
+
+.process-info strong {
+    font-size: 16px;
+    color: #164b80;
+}
+
+
+/* TOMBOL */
+
+.process-button {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 25px auto 0;
+    cursor: pointer;
+}
+
+
+/* EMPTY */
+
+.process-empty {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.process-empty-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.process-empty h3 {
+    margin: 0 0 8px;
+    color: #164b80;
+}
+
+.process-empty p {
+    margin: 0;
+    color: #7c8794;
+}
+
+/* TOMBOL SELESAI */
+
+.btn-selesai {
+    background: #28a745;
+    color: #ffffff;
+    border: none;
+    transition: all 0.15s ease;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-selesai:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.btn-selesai:active {
+    background: #1e7e34;
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+.process-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.process-action .btn-terima {
+    border: none;
+    padding: 11px 40px;
+    border-radius: 8px;
+    background: #19966a;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.process-action .btn-terima:hover {
+    background: #147b57;
+}
+/* =====================================================
+   LOGIN KASIR
+===================================================== */
+
+.login-page {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+
+    background:
+        linear-gradient(
+            rgba(30, 20, 15, 0.55),
+            rgba(30, 20, 15, 0.55)
+        ),
+        url('../images/poto_cafe.jpeg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-box {
+    width: 320px;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    padding: 28px 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================
+   LOGIN LOGO
+========================= */
+
+.login-logo {
+    margin-bottom: 20px;
+}
+
+.login-logo .icon {
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 8px;
+
+    border-radius: 50%;
+
+    background: #f5eadf;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+}
+
+.login-logo h1 {
+    color: #3b2416;
+
+    font-size: 21px;
+
+    margin-bottom: 4px;
+}
+
+.login-logo p {
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+    margin: 0;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.login-box .form-group {
+    text-align: left;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   LABEL
+========================= */
+
+.login-box .form-group label {
+    display: block;
+
+    color: #3b2416;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.login-box .form-group input {
+    width: 100%;
+
+    height: 37px;
+
+    padding: 0 10px;
+
+    border: 1px solid #d8d1cc;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    color: #333;
+
+    background: #ffffff;
+}
+
+.login-box .form-group input::placeholder {
+    color: #aaa;
+}
+
+
+/* =========================
+   INPUT FOCUS
+========================= */
+
+.login-box .form-group input:focus {
+    border-color: #8b5e3c;
+
+    box-shadow:
+        0 0 0 2px rgba(139, 94, 60, 0.10);
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-button {
+    width: 100%;
+
+    height: 38px;
+
+    margin-top: 3px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #8b5e3c;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button:hover {
+    background: #6f472c;
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   LOGIN NOTE
+========================= */
+
+.login-note {
+    margin-top: 10px;
+
+    color: #999;
+
+    font-size: 10px;
+}
+
+
+/* =========================
+   LAPTOP PENDEK
+========================= */
+
+@media (max-height: 750px) {
+
+    .login-box {
+        padding: 20px 20px;
+    }
+
+    .login-logo {
+        margin-bottom: 13px;
+    }
+
+    .login-logo .icon {
+        width: 44px;
+        height: 44px;
+
+        font-size: 22px;
+
+        margin-bottom: 5px;
+    }
+
+    .login-logo h1 {
+        font-size: 19px;
+    }
+
+    .login-box .form-group {
+        margin-bottom: 8px;
+    }
+
+    .login-box .form-group label {
+        margin-bottom: 3px;
+    }
+
+    .login-box .form-group input {
+        height: 34px;
+    }
+
+    .login-button {
+        height: 35px;
+    }
+
+    .login-note {
+        margin-top: 7px;
+    }
+}
+
+
+/* =========================
+   HP
+========================= */
+
+@media (max-width: 480px) {
+
+    .login-box {
+        width: 310px;
+
+        padding: 20px 18px;
+    }
+}

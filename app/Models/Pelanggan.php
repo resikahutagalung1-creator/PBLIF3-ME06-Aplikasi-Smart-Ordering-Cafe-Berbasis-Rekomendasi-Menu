@@ -16,4 +16,9 @@ class Pelanggan extends Model
         'nama',
         'nomor_meja',
     ];
+    
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class, 'pelanggan_id', 'pelanggan_id');
+    }
 }
