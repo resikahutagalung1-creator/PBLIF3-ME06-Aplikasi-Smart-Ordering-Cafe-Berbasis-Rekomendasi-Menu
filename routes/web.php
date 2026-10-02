@@ -7,6 +7,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -35,14 +36,23 @@ Route::post('/pelanggan/mulai', [PelangganController::class, 'mulai'])
 
 /*
 |--------------------------------------------------------------------------
-| LOGIN STAFF
+| LOGIN ADMIN
 |--------------------------------------------------------------------------
 */
 
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('admin.login');
 })->name('login');
 
+Route::post('/login', [AdminController::class, 'login'])
+    ->name('admin.login.process');
+
+Route::middleware('admin')->group(function () {
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+
+});
 
 /*
 |--------------------------------------------------------------------------
