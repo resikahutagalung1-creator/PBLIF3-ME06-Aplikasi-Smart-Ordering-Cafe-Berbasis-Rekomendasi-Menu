@@ -2,25 +2,19 @@
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{-- CSRF TOKEN UNTUK KERANJANG --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Smart Cafe - Menu</title>
 
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
-
 </head>
-
 
 <body>
 
 <div class="menu-page">
-
 
     {{-- =========================================================
         HEADER
@@ -30,8 +24,26 @@
 
         <div class="logo-area">
 
+            {{-- IKON CANGKIR --}}
             <div class="logo-circle">
-                ☕
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path>
+
+                    <path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path>
+
+                    <path d="M8 4c0 1 1 1 1 2"></path>
+
+                    <path d="M12 3c0 1 1 1 1 2"></path>
+                </svg>
+
             </div>
 
             <div class="logo-text">
@@ -65,23 +77,35 @@
 
 
             <div class="table-info">
-
                 Meja {{ session('nomor_meja', '-') }}
-
             </div>
 
 
-            {{-- =================================================
-                TOMBOL KERANJANG
-            ================================================== --}}
+            {{-- TOMBOL KERANJANG --}}
 
             <button
                 type="button"
                 class="header-cart"
                 id="cartButton"
+                aria-label="Keranjang Pesanan"
             >
 
-                🛒
+                {{-- IKON KERANJANG --}}
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="9" cy="20" r="1"></circle>
+
+                    <circle cx="19" cy="20" r="1"></circle>
+
+                    <path d="M3 4h2l2.5 11h10L20 7H6"></path>
+                </svg>
+
 
                 <span id="cartCount">
                     {{ collect(session('keranjang', []))->sum('jumlah') }}
@@ -94,7 +118,6 @@
     </header>
 
 
-
     {{-- =========================================================
         CONTENT
     ========================================================== --}}
@@ -103,11 +126,10 @@
 
 
         {{-- =====================================================
-            SIDEBAR KATEGORI
+            SIDEBAR
         ====================================================== --}}
 
         <aside class="category-sidebar">
-
 
             <div class="sidebar-title">
 
@@ -122,10 +144,7 @@
             </div>
 
 
-
-            {{-- =================================================
-                SEMUA MENU
-            ================================================== --}}
+            {{-- SEMUA MENU --}}
 
             <a
                 href="{{ route('menu.index') }}"
@@ -143,17 +162,14 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                     >
-
                         <path d="M3 10.5L12 3l9 7.5"></path>
 
                         <path d="M5.5 9.5V21h13V9.5"></path>
 
                         <path d="M9.5 21v-6h5v6"></path>
-
                     </svg>
 
                 </span>
-
 
                 <span>
                     Semua Menu
@@ -162,10 +178,7 @@
             </a>
 
 
-
-            {{-- =================================================
-                KATEGORI
-            ================================================== --}}
+            {{-- KATEGORI --}}
 
             @foreach($kategoris as $kategori)
 
@@ -177,11 +190,6 @@
 
                     <span class="category-icon">
 
-
-                        {{-- =====================================
-                            COFFEE
-                        ====================================== --}}
-
                         @if($kategori->nama_kategori == 'Coffee')
 
                             <svg
@@ -192,7 +200,6 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-
                                 <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
 
                                 <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
@@ -200,14 +207,7 @@
                                 <path d="M7 5c0 1 1 1 1 2"></path>
 
                                 <path d="M11 4c0 1 1 1 1 2"></path>
-
                             </svg>
-
-
-
-                        {{-- =====================================
-                            NON COFFEE
-                        ====================================== --}}
 
                         @elseif($kategori->nama_kategori == 'Non Coffee')
 
@@ -219,7 +219,6 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-
                                 <path d="M7 5h10"></path>
 
                                 <path d="M8 5l1 15h6l1-15"></path>
@@ -227,14 +226,7 @@
                                 <path d="M9 9h6"></path>
 
                                 <path d="M10 3h4"></path>
-
                             </svg>
-
-
-
-                        {{-- =====================================
-                            SNACK
-                        ====================================== --}}
 
                         @elseif($kategori->nama_kategori == 'Snack')
 
@@ -246,7 +238,6 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-
                                 <path d="M5 8h14"></path>
 
                                 <path d="M6 8l1.5 11h9L18 8"></path>
@@ -256,14 +247,7 @@
                                 <path d="M12 4v3"></path>
 
                                 <path d="M15 5v2"></path>
-
                             </svg>
-
-
-
-                        {{-- =====================================
-                            MAKANAN
-                        ====================================== --}}
 
                         @elseif($kategori->nama_kategori == 'Makanan')
 
@@ -275,7 +259,6 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-
                                 <path d="M4 12h16"></path>
 
                                 <path d="M5 12a7 7 0 0 0 14 0"></path>
@@ -283,16 +266,7 @@
                                 <path d="M7 16h10"></path>
 
                                 <path d="M12 5v2"></path>
-
-                                <path d="M9 7c.5-1 1.5-1.5 3-1.5S14.5 6 15 7"></path>
-
                             </svg>
-
-
-
-                        {{-- =====================================
-                            DESSERT
-                        ====================================== --}}
 
                         @elseif($kategori->nama_kategori == 'Dessert')
 
@@ -304,7 +278,6 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-
                                 <path d="M5 10h14"></path>
 
                                 <path d="M6 10c0 5 2 8 6 8s6-3 6-8"></path>
@@ -312,14 +285,7 @@
                                 <path d="M8 7c1-2 2-3 4-3s3 1 4 3"></path>
 
                                 <path d="M9 18h6"></path>
-
                             </svg>
-
-
-
-                        {{-- =====================================
-                            DEFAULT
-                        ====================================== --}}
 
                         @else
 
@@ -331,19 +297,12 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-
-                                <circle
-                                    cx="12"
-                                    cy="12"
-                                    r="8"
-                                ></circle>
+                                <circle cx="12" cy="12" r="8"></circle>
 
                                 <path d="M12 8v4l3 2"></path>
-
                             </svg>
 
                         @endif
-
 
                     </span>
 
@@ -356,9 +315,7 @@
 
             @endforeach
 
-
         </aside>
-
 
 
         {{-- =====================================================
@@ -366,11 +323,6 @@
         ====================================================== --}}
 
         <main class="menu-main">
-
-
-            {{-- =================================================
-                HEADING
-            ================================================== --}}
 
             <div class="menu-heading">
 
@@ -393,10 +345,7 @@
             </div>
 
 
-
-            {{-- =================================================
-                SEARCH
-            ================================================== --}}
+            {{-- SEARCH --}}
 
             <form
                 action="{{ route('menu.index') }}"
@@ -427,15 +376,9 @@
                             stroke-linecap="round"
                             stroke-linejoin="round"
                         >
-
-                            <circle
-                                cx="11"
-                                cy="11"
-                                r="7"
-                            ></circle>
+                            <circle cx="11" cy="11" r="7"></circle>
 
                             <path d="M20 20l-4-4"></path>
-
                         </svg>
 
                     </span>
@@ -458,10 +401,7 @@
             </form>
 
 
-
-            {{-- =================================================
-                MENU HEADER
-            ================================================== --}}
+            {{-- MENU HEADER --}}
 
             <div class="menu-list-header">
 
@@ -480,15 +420,11 @@
             </div>
 
 
-
-            {{-- =================================================
-                MENU CARD
-            ================================================== --}}
+            {{-- MENU GRID --}}
 
             @if($menus->count() > 0)
 
                 <div class="menu-grid">
-
 
                     @foreach($menus as $menu)
 
@@ -503,19 +439,14 @@
                             data-menu-image="{{ $menu->gambar ? asset('images/menu/' . $menu->gambar) : '' }}"
                         >
 
-
                             <a
                                 href="{{ route('menu.show', $menu->menu_id) }}"
                                 class="menu-detail-link"
                             >
 
-
-                                {{-- =================================
-                                    FOTO
-                                ================================== --}}
+                                {{-- FOTO --}}
 
                                 <div class="menu-photo">
-
 
                                     @if($menu->gambar)
 
@@ -524,7 +455,6 @@
                                             alt="{{ $menu->nama_menu }}"
                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                                         >
-
 
                                         <div
                                             class="photo-placeholder"
@@ -539,15 +469,12 @@
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
                                             >
-
                                                 <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
 
                                                 <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-
                                             </svg>
 
                                         </div>
-
 
                                     @else
 
@@ -561,11 +488,9 @@
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
                                             >
-
                                                 <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
 
                                                 <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-
                                             </svg>
 
                                         </div>
@@ -574,22 +499,15 @@
 
 
                                     <span class="category-badge">
-
                                         {{ $menu->kategori->nama_kategori ?? 'Menu' }}
-
                                     </span>
-
 
                                 </div>
 
 
-
-                                {{-- =================================
-                                    CARD CONTENT
-                                ================================== --}}
+                                {{-- CONTENT --}}
 
                                 <div class="menu-card-content">
-
 
                                     <h4>
                                         {{ $menu->nama_menu }}
@@ -599,49 +517,32 @@
                                     @if($menu->deskripsi)
 
                                         <p class="menu-description">
-
                                             {{ $menu->deskripsi }}
-
                                         </p>
 
                                     @else
 
                                         <p class="menu-description">
-
                                             Menu pilihan Smart Cafe untuk menemani hari kamu.
-
                                         </p>
 
                                     @endif
 
 
-
                                     <div class="menu-card-bottom">
-
 
                                         <div class="price-area">
 
                                             <span class="price">
-
-                                                Rp
-                                                {{ number_format($menu->harga, 0, ',', '.') }}
-
+                                                Rp {{ number_format($menu->harga, 0, ',', '.') }}
                                             </span>
 
-
                                             <small>
-
                                                 Stok {{ $menu->stok }}
-
                                             </small>
 
                                         </div>
 
-
-
-                                        {{-- =================================
-                                            TOMBOL PESAN
-                                        ================================== --}}
 
                                         <button
                                             type="button"
@@ -657,23 +558,12 @@
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
                                             >
+                                                <circle cx="9" cy="20" r="1"></circle>
 
-                                                <circle
-                                                    cx="9"
-                                                    cy="20"
-                                                    r="1"
-                                                ></circle>
-
-                                                <circle
-                                                    cx="19"
-                                                    cy="20"
-                                                    r="1"
-                                                ></circle>
+                                                <circle cx="19" cy="20" r="1"></circle>
 
                                                 <path d="M3 4h2l2.5 11h10L20 7H6"></path>
-
                                             </svg>
-
 
                                             <span>
                                                 Pesan Sekarang
@@ -681,30 +571,19 @@
 
                                         </button>
 
-
                                     </div>
-
 
                                 </div>
 
-
                             </a>
-
 
                         </div>
 
                     @endforeach
 
-
                 </div>
 
-
             @else
-
-
-                {{-- =============================================
-                    EMPTY MENU
-                ============================================== --}}
 
                 <div class="empty-menu">
 
@@ -715,25 +594,19 @@
                             fill="none"
                             stroke="currentColor"
                             stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
                         >
-
-                            <circle
-                                cx="12"
-                                cy="12"
-                                r="8"
-                            ></circle>
+                            <circle cx="12" cy="12" r="8"></circle>
 
                             <path d="M8 12h8"></path>
-
                         </svg>
 
                     </div>
 
-
                     <h3>
                         Menu tidak ditemukan
                     </h3>
-
 
                     <p>
                         Coba gunakan kata pencarian atau kategori lain.
@@ -743,13 +616,11 @@
 
             @endif
 
-
         </main>
 
     </div>
 
 </div>
-
 
 
 {{-- ============================================================
@@ -761,16 +632,10 @@
     id="menuDetailOverlay"
 >
 
-
     <div
         class="menu-detail-modal"
         id="menuDetailModal"
     >
-
-
-        {{-- =================================================
-            CLOSE
-        ================================================== --}}
 
         <button
             type="button"
@@ -781,10 +646,7 @@
         </button>
 
 
-
-        {{-- =================================================
-            FOTO DETAIL
-        ================================================== --}}
+        {{-- FOTO DETAIL --}}
 
         <div class="detail-image-area">
 
@@ -793,7 +655,6 @@
                 alt=""
                 id="detailImage"
             >
-
 
             <div
                 class="detail-image-placeholder"
@@ -808,11 +669,9 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 >
-
                     <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
 
                     <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-
                 </svg>
 
             </div>
@@ -828,13 +687,9 @@
         </div>
 
 
-
-        {{-- =================================================
-            DETAIL CONTENT
-        ================================================== --}}
+        {{-- DETAIL CONTENT --}}
 
         <div class="detail-content">
-
 
             <div class="detail-heading">
 
@@ -864,9 +719,6 @@
             </div>
 
 
-
-            {{-- DESKRIPSI --}}
-
             <p
                 class="detail-description"
                 id="detailDescription"
@@ -875,10 +727,7 @@
             </p>
 
 
-
-            {{-- =================================================
-                PILIHAN / TAG
-            ================================================== --}}
+            {{-- PILIHAN --}}
 
             <div class="detail-section">
 
@@ -907,10 +756,7 @@
             </div>
 
 
-
-            {{-- =================================================
-                JUMLAH
-            ================================================== --}}
+            {{-- JUMLAH --}}
 
             <div class="detail-section">
 
@@ -932,11 +778,9 @@
                         −
                     </button>
 
-
                     <span id="quantityValue">
                         1
                     </span>
-
 
                     <button
                         type="button"
@@ -950,23 +794,16 @@
             </div>
 
 
-
-            {{-- =================================================
-                CATATAN
-            ================================================== --}}
+            {{-- CATATAN --}}
 
             <div class="detail-section">
 
                 <h4>
-
                     Catatan
-
                     <span>
                         (opsional)
                     </span>
-
                 </h4>
-
 
                 <textarea
                     id="detailNote"
@@ -976,10 +813,7 @@
             </div>
 
 
-
-            {{-- =================================================
-                BUTTON PESAN
-            ================================================== --}}
+            {{-- BUTTON --}}
 
             <button
                 type="button"
@@ -997,22 +831,33 @@
 
             </button>
 
-
         </div>
 
 
-
-        {{-- =====================================================
-            REKOMENDASI
-        ====================================================== --}}
+        {{-- REKOMENDASI --}}
 
         <div class="recommendation-section">
 
-
             <div class="recommendation-title">
 
-                <span>
-                    ✨
+                {{-- IKON BINTANG --}}
+                <span class="recommendation-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8L12 3Z"></path>
+
+                        <path d="M19 15v4"></path>
+
+                        <path d="M17 17h4"></path>
+                    </svg>
+
                 </span>
 
                 <h3>
@@ -1024,14 +869,12 @@
 
             <div class="recommendation-grid">
 
-
                 @foreach($menus->take(3) as $recommendation)
 
                     <div
                         class="recommendation-card"
                         data-menu-id="{{ $recommendation->menu_id }}"
                     >
-
 
                         <div class="recommendation-image">
 
@@ -1044,9 +887,25 @@
 
                             @else
 
+                                {{-- IKON CANGKIR --}}
                                 <div class="recommendation-placeholder">
 
-                                    ☕
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.7"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    >
+                                        <path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path>
+
+                                        <path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path>
+
+                                        <path d="M8 4c0 1 1 1 1 2"></path>
+
+                                        <path d="M12 3c0 1 1 1 1 2"></path>
+                                    </svg>
 
                                 </div>
 
@@ -1062,10 +921,7 @@
                             </h4>
 
                             <span>
-
-                                Rp
-                                {{ number_format($recommendation->harga, 0, ',', '.') }}
-
+                                Rp {{ number_format($recommendation->harga, 0, ',', '.') }}
                             </span>
 
 
@@ -1074,37 +930,25 @@
                                 class="recommendation-button"
                                 data-menu-id="{{ $recommendation->menu_id }}"
                             >
-
                                 Pesan
-
                             </button>
 
                         </div>
-
 
                     </div>
 
                 @endforeach
 
-
             </div>
 
         </div>
-
 
     </div>
 
 </div>
 
 
-
-{{-- ============================================================
-    JAVASCRIPT
-============================================================= --}}
-
 <script src="{{ asset('js/menu.js') }}"></script>
 
-
 </body>
-
 </html>

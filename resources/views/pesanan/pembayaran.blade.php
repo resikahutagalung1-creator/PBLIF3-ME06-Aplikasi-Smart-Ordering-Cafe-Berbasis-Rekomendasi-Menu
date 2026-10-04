@@ -2,47 +2,69 @@
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta
-        name="csrf-token"
-        content="{{ csrf_token() }}"
-    >
+    <title>Smart Cafe - Pembayaran</title>
 
-    <title>
-        Smart Cafe - Pembayaran
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="{{ asset('css/pembayaran.css') }}"
-    >
-
+    <link rel="stylesheet" href="{{ asset('css/pembayaran.css') }}">
 </head>
-
 
 <body>
 
 <div class="payment-page">
 
-
-    {{-- =====================================================
-        HEADER
-    ====================================================== --}}
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="payment-header">
 
         <div class="payment-logo">
 
+            <!-- =================================================
+                 LOGO CANGKIR
+            ================================================== -->
+
             <div class="payment-logo-icon">
-                ☕
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+
+                    {{-- Badan cangkir --}}
+                    <path
+                        d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"
+                    ></path>
+
+                    {{-- Pegangan cangkir --}}
+                    <path
+                        d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"
+                    ></path>
+
+                    {{-- Uap --}}
+                    <path
+                        d="M8 5c0 1 1 1 1 2"
+                    ></path>
+
+                    <path
+                        d="M12 4c0 1 1 1 1 2"
+                    ></path>
+
+                </svg>
+
             </div>
+
+
+            <!-- NAMA CAFE -->
 
             <div>
 
@@ -59,12 +81,17 @@
         </div>
 
 
+        <!-- =================================================
+             TOMBOL KEMBALI
+        ================================================== -->
+
         <a
             href="{{ route('pesanan.ringkasan') }}"
-            class="back-button"
-        >
+            class="back-button">
 
-            ←
+            <span class="back-arrow">
+                ←
+            </span>
 
             <span>
                 Kembali
@@ -75,17 +102,16 @@
     </header>
 
 
-
-    {{-- =====================================================
-        MAIN
-    ====================================================== --}}
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
     <main class="payment-container">
 
 
-        {{-- =================================================
-            TITLE
-        ================================================== --}}
+        <!-- =================================================
+             TITLE
+        ================================================== -->
 
         <div class="payment-title">
 
@@ -104,12 +130,12 @@
         </div>
 
 
-
-        {{-- =================================================
-            CUSTOMER INFO
-        ================================================== --}}
+        <!-- =================================================
+             INFORMASI PELANGGAN
+        ================================================== -->
 
         <div class="customer-info-card">
+
 
             <div class="customer-info-item">
 
@@ -152,20 +178,21 @@
         </div>
 
 
-
-        {{-- =================================================
-            PAYMENT GRID
-        ================================================== --}}
+        <!-- =================================================
+             PAYMENT GRID
+        ================================================== -->
 
         <div class="payment-grid">
 
 
-            {{-- =============================================
-                METODE PEMBAYARAN
-            ============================================== --}}
+            <!-- =================================================
+                 METODE PEMBAYARAN
+            ================================================== -->
 
             <section class="payment-method-card">
 
+
+                <!-- HEADING -->
 
                 <div class="section-heading">
 
@@ -188,26 +215,66 @@
                 </div>
 
 
-
-                {{-- =========================================
-                    QRIS
-                ========================================== --}}
+                <!-- =================================================
+                     QRIS OPTION
+                ================================================== -->
 
                 <label
                     class="payment-option active"
-                    id="qrisOption"
-                >
+                    id="qrisOption">
 
                     <input
                         type="radio"
                         name="payment_method"
                         value="qris"
-                        checked
-                    >
+                        checked>
 
 
                     <div class="payment-option-icon">
-                        QR
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <rect
+                                x="4"
+                                y="4"
+                                width="6"
+                                height="6">
+                            </rect>
+
+                            <rect
+                                x="14"
+                                y="4"
+                                width="6"
+                                height="6">
+                            </rect>
+
+                            <rect
+                                x="4"
+                                y="14"
+                                width="6"
+                                height="6">
+                            </rect>
+
+                            <path d="M14 14h3">
+                            </path>
+
+                            <path d="M14 18h2">
+                            </path>
+
+                            <path d="M18 17h2">
+                            </path>
+
+                            <path d="M18 20h2">
+                            </path>
+
+                        </svg>
+
                     </div>
 
 
@@ -231,25 +298,52 @@
                 </label>
 
 
-
-                {{-- =========================================
-                    TUNAI
-                ========================================== --}}
+                <!-- =================================================
+                     TUNAI OPTION
+                ================================================== -->
 
                 <label
                     class="payment-option"
-                    id="cashOption"
-                >
+                    id="cashOption">
 
                     <input
                         type="radio"
                         name="payment_method"
-                        value="tunai"
-                    >
+                        value="tunai">
 
 
                     <div class="payment-option-icon cash-icon">
-                        Rp
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <rect
+                                x="3"
+                                y="7"
+                                width="18"
+                                height="11"
+                                rx="2">
+                            </rect>
+
+                            <circle
+                                cx="12"
+                                cy="12.5"
+                                r="2.5">
+                            </circle>
+
+                            <path d="M6 10v5">
+                            </path>
+
+                            <path d="M18 10v5">
+                            </path>
+
+                        </svg>
+
                     </div>
 
 
@@ -273,70 +367,98 @@
                 </label>
 
 
-
-                {{-- =========================================
-                    QRIS DETAIL
-                ========================================== --}}
+                <!-- =================================================
+                     DETAIL QRIS
+                ================================================== -->
 
                 <div
                     class="payment-detail qris-detail"
-                    id="qrisDetail"
-                >
+                    id="qrisDetail">
+
 
                     <div class="detail-header">
 
-                        <div>
+                        <h4>
+                            Scan QRIS
+                        </h4>
 
-                            <h4>
-                                Scan QRIS
-                            </h4>
-
-                            <p>
-                                Gunakan aplikasi pembayaran
-                                yang mendukung QRIS.
-                            </p>
-
-                        </div>
+                        <p>
+                            Gunakan aplikasi pembayaran yang mendukung QRIS.
+                        </p>
 
                     </div>
-
 
 
                     <div class="qris-box">
 
                         <div class="qris-image">
 
-                            {{-- =================================================
-                                JIKA QRIS SUDAH ADA
-                            ================================================== --}}
-
                             @if(file_exists(public_path('images/qris.png')))
 
                                 <img
                                     src="{{ asset('images/qris.png') }}"
-                                    alt="QRIS Smart Cafe"
-                                >
-
-                            {{-- =================================================
-                                JIKA QRIS BELUM ADA
-                            ================================================== --}}
+                                    alt="QRIS Smart Cafe">
 
                             @else
 
                                 <div class="qris-placeholder">
 
                                     <div class="qr-placeholder-icon">
-                                        QR
+
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.6"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round">
+
+                                            <rect
+                                                x="3"
+                                                y="3"
+                                                width="7"
+                                                height="7">
+                                            </rect>
+
+                                            <rect
+                                                x="14"
+                                                y="3"
+                                                width="7"
+                                                height="7">
+                                            </rect>
+
+                                            <rect
+                                                x="3"
+                                                y="14"
+                                                width="7"
+                                                height="7">
+                                            </rect>
+
+                                            <path d="M14 14h3">
+                                            </path>
+
+                                            <path d="M14 18h2">
+                                            </path>
+
+                                            <path d="M18 17h3">
+                                            </path>
+
+                                            <path d="M18 20h3">
+                                            </path>
+
+                                        </svg>
+
                                     </div>
+
 
                                     <strong>
                                         QRIS Smart Cafe
                                     </strong>
 
+
                                     <span>
                                         QRIS belum tersedia.
-                                        Silakan lakukan pembayaran
-                                        melalui kasir.
+                                        Silakan lakukan pembayaran melalui kasir.
                                     </span>
 
                                 </div>
@@ -348,16 +470,14 @@
                     </div>
 
 
-
                     <div class="qris-note">
 
-                        <span>
+                        <span class="note-check">
                             ✓
                         </span>
 
                         <p>
-                            Pastikan jumlah pembayaran
-                            sesuai dengan total pesanan.
+                            Pastikan jumlah pembayaran sesuai dengan total pesanan.
                         </p>
 
                     </div>
@@ -365,21 +485,52 @@
                 </div>
 
 
-
-                {{-- =========================================
-                    TUNAI DETAIL
-                ========================================== --}}
+                <!-- =================================================
+                     DETAIL TUNAI
+                ================================================== -->
 
                 <div
                     class="payment-detail cash-detail"
-                    id="cashDetail"
-                >
+                    id="cashDetail">
+
 
                     <div class="cash-information">
 
+
                         <div class="cash-icon-large">
-                            Rp
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                                <rect
+                                    x="3"
+                                    y="7"
+                                    width="18"
+                                    height="11"
+                                    rx="2">
+                                </rect>
+
+                                <circle
+                                    cx="12"
+                                    cy="12.5"
+                                    r="2.5">
+                                </circle>
+
+                                <path d="M6 10v5">
+                                </path>
+
+                                <path d="M18 10v5">
+                                </path>
+
+                            </svg>
+
                         </div>
+
 
                         <div>
 
@@ -388,8 +539,7 @@
                             </h4>
 
                             <p>
-                                Silakan lakukan pembayaran
-                                langsung kepada kasir.
+                                Silakan lakukan pembayaran langsung kepada kasir.
                             </p>
 
                         </div>
@@ -404,23 +554,20 @@
                         </strong>
 
                         <p>
-                            Tunjukkan detail pesanan kamu
-                            kepada kasir saat melakukan
-                            pembayaran.
+                            Tunjukkan detail pesanan kamu kepada kasir
+                            saat melakukan pembayaran.
                         </p>
 
                     </div>
 
                 </div>
 
-
             </section>
 
 
-
-            {{-- =============================================
-                RINGKASAN
-            ============================================== --}}
+            <!-- =================================================
+                 RINGKASAN PEMBAYARAN
+            ================================================== -->
 
             <section class="payment-summary-card">
 
@@ -446,10 +593,9 @@
                 </div>
 
 
-
-                {{-- =========================================
-                    LIST MENU
-                ========================================== --}}
+                <!-- =================================================
+                     DAFTAR MENU
+                ================================================== -->
 
                 <div class="summary-menu-list">
 
@@ -464,13 +610,28 @@
 
                                     <img
                                         src="{{ asset('images/menu/' . $item['gambar']) }}"
-                                        alt="{{ $item['nama'] }}"
-                                    >
+                                        alt="{{ $item['nama'] }}">
 
                                 @else
 
-                                    <span>
-                                        ☕
+                                    <span class="menu-placeholder-icon">
+
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round">
+
+                                            <path d="M4.5 9h12.5v4.5a5 5 0 0 1-5 5h-2.5a5 5 0 0 1-5-5V9Z">
+                                            </path>
+
+                                            <path d="M17 10.5h1.5a2.5 2.5 0 0 1 0 5H17">
+                                            </path>
+
+                                        </svg>
+
                                     </span>
 
                                 @endif
@@ -485,7 +646,8 @@
                                 </strong>
 
                                 <span>
-                                    {{ $item['jumlah'] }} ×
+                                    {{ $item['jumlah'] }}
+                                    ×
                                     Rp{{ number_format($item['harga'], 0, ',', '.') }}
                                 </span>
 
@@ -510,13 +672,12 @@
                 </div>
 
 
-
-                {{-- =========================================
-                    TOTAL
-                ========================================== --}}
+                <!-- GARIS -->
 
                 <div class="summary-divider"></div>
 
+
+                <!-- SUBTOTAL -->
 
                 <div class="summary-row">
 
@@ -531,6 +692,8 @@
                 </div>
 
 
+                <!-- PAJAK -->
+
                 <div class="summary-row">
 
                     <span>
@@ -543,6 +706,8 @@
 
                 </div>
 
+
+                <!-- TOTAL -->
 
                 <div class="summary-total">
 
@@ -557,16 +722,14 @@
                 </div>
 
 
-
-                {{-- =========================================
-                    BUTTON
-                ========================================== --}}
+                <!-- =================================================
+                     BUTTON BAYAR
+                ================================================== -->
 
                 <button
                     type="button"
                     class="pay-button"
-                    id="payButton"
-                >
+                    id="payButton">
 
                     <span>
                         Bayar Sekarang
@@ -579,10 +742,15 @@
                 </button>
 
 
+                <!-- CATATAN KEAMANAN -->
+
                 <p class="secure-note">
 
-                    🔒 Pembayaran aman dan tercatat
-                    di sistem Smart Cafe.
+                    <span>
+                        🔒
+                    </span>
+
+                    Pembayaran aman dan tercatat di sistem Smart Cafe.
 
                 </p>
 
@@ -593,21 +761,24 @@
     </main>
 
 
-
-    {{-- =====================================================
-        MODAL KONFIRMASI
-    ====================================================== --}}
+    <!-- =====================================================
+         MODAL KONFIRMASI
+    ====================================================== -->
 
     <div
         class="payment-modal-overlay"
-        id="paymentModal"
-    >
+        id="paymentModal">
+
 
         <div class="payment-modal">
 
 
             <div class="modal-icon">
-                ✓
+
+                <span>
+                    ✓
+                </span>
+
             </div>
 
 
@@ -617,8 +788,7 @@
 
 
             <p id="modalMessage">
-                Apakah kamu yakin ingin melanjutkan
-                pembayaran?
+                Apakah kamu yakin ingin melanjutkan pembayaran?
             </p>
 
 
@@ -637,21 +807,24 @@
 
             <div class="modal-buttons">
 
+
                 <button
                     type="button"
                     class="modal-cancel"
-                    id="modalCancel"
-                >
+                    id="modalCancel">
+
                     Kembali
+
                 </button>
 
 
                 <button
                     type="button"
                     class="modal-confirm"
-                    id="modalConfirm"
-                >
+                    id="modalConfirm">
+
                     Ya, Bayar
+
                 </button>
 
             </div>
@@ -660,9 +833,10 @@
 
     </div>
 
-
 </div>
 
+
+<!-- JAVASCRIPT -->
 
 <script src="{{ asset('js/pembayaran.js') }}"></script>
 

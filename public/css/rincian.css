@@ -1,0 +1,288 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f3ef;
+    color: #3b2416;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.brand h1 {
+    color: #70472b;
+    font-size: 27px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.brand p {
+    color: #927b68;
+    font-size: 12px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+}
+
+/* SUCCESS */
+.success-card {
+    background: #edf5e9;
+    border: 1px solid #d4e5ca;
+    border-radius: 14px;
+    padding: 25px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.success-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    background: #638c51;
+    color: white;
+    font-size: 25px;
+    line-height: 43px;
+    margin: 0 auto 12px;
+}
+
+.success-card h2 {
+    font-size: 20px;
+    color: #416b35;
+    margin-bottom: 8px;
+}
+
+.success-card p {
+    color: #64745d;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* CARD */
+.card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 15px rgba(60, 35, 18, 0.045);
+}
+
+.card h3 {
+    font-size: 17px;
+    color: #56351f;
+    margin-bottom: 20px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.section-heading h3 {
+    margin-bottom: 0;
+}
+
+.order-status,
+.payment-status {
+    display: inline-block;
+    background: #fff0d9;
+    color: #98621e;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* INFORMATION */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 13px 0;
+    border-bottom: 1px solid #f0eae5;
+    font-size: 14px;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row > span {
+    color: #89796c;
+}
+
+.info-row > strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.order-number {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-number button {
+    border: none;
+    background: #f2e8de;
+    color: #70472b;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.order-number button:hover {
+    background: #e7d5c5;
+}
+
+.copy-message {
+    color: #638c51;
+    font-size: 12px;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* MENU */
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0eae5;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-information h4 {
+    font-size: 14px;
+    color: #49301f;
+    margin-bottom: 6px;
+}
+
+.menu-information p {
+    color: #89796c;
+    font-size: 12px;
+}
+
+.menu-subtotal {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* PAYMENT */
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 11px 0;
+    font-size: 14px;
+}
+
+.payment-row span {
+    color: #89796c;
+}
+
+.payment-row strong {
+    text-align: right;
+}
+
+.total-row {
+    border-top: 1px solid #e9ded5;
+    margin-top: 10px;
+    padding-top: 18px;
+    color: #70472b;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.total-row span {
+    color: #70472b;
+}
+
+.payment-note {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fff7e9;
+    border-radius: 8px;
+    color: #946a35;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* BUTTON */
+.back-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: #70472b;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    background: #54331e;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #89796c;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer span {
+    color: #70472b;
+    font-weight: bold;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .page-container {
+        padding: 20px 12px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .info-row {
+        font-size: 12px;
+    }
+
+    .menu-subtotal {
+        font-size: 12px;
+    }
+
+    .section-heading h3 {
+        font-size: 15px;
+    }
+}

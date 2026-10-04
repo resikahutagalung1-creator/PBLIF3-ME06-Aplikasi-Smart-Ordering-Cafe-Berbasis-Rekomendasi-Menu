@@ -43,6 +43,10 @@ body {
 }
 
 
+/* =====================================================
+   LOGO
+===================================================== */
+
 .logo-area {
 
     display: flex;
@@ -57,11 +61,15 @@ body {
 }
 
 
+/* LINGKARAN LOGO */
+
 .logo-circle {
 
     width: 42px;
 
     height: 42px;
+
+    min-width: 42px;
 
     border-radius: 50%;
 
@@ -74,8 +82,20 @@ body {
     align-items: center;
 
     justify-content: center;
+}
 
-    font-size: 20px;
+
+/* IKON CANGKIR */
+
+.logo-circle svg {
+
+    width: 24px;
+
+    height: 24px;
+
+    display: block;
+
+    flex-shrink: 0;
 }
 
 
@@ -819,6 +839,10 @@ body {
 }
 
 
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media (max-width: 600px) {
 
     .top-header {
@@ -857,4 +881,80 @@ body {
         grid-template-columns: 1fr;
     }
 
+}
+
+
+/* =========================================================
+   RECOMMENDATION TITLE ICON
+========================================================= */
+
+.recommendation-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 13px;
+}
+
+
+.recommendation-icon {
+
+    width: 20px;
+
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #8b5e3c;
+
+    flex-shrink: 0;
+}
+
+
+.recommendation-icon svg {
+
+    width: 18px;
+
+    height: 18px;
+
+    display: block;
+}
+
+
+/* =========================================================
+   RECOMMENDATION PLACEHOLDER
+========================================================= */
+
+.recommendation-placeholder {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #8b5e3c;
+
+    background: #eee6df;
+}
+
+
+.recommendation-placeholder svg {
+
+    width: 30px;
+
+    height: 30px;
+
+    display: block;
 }

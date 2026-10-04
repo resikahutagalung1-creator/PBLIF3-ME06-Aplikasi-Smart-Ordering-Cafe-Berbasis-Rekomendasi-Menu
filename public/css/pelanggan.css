@@ -1,388 +1,689 @@
+/*
+|--------------------------------------------------------------------------
+| SMART CAFE
+| HALAMAN PELANGGAN
+|--------------------------------------------------------------------------
+*/
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 html,
 body {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 
-/* =========================
+
+/* =========================================================
    BODY
-========================= */
+========================================================= */
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background:
+
         linear-gradient(
-            rgba(30, 20, 15, 0.55),
-            rgba(30, 20, 15, 0.55)
+            rgba(30, 20, 15, 0.57),
+            rgba(30, 20, 15, 0.57)
         ),
-        url('../images/poto_cafe.jpeg');
+
+        url("../images/poto_cafe.jpeg");
 
     background-size: cover;
-    background-position: center;
+
+    background-position: center center;
+
     background-repeat: no-repeat;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* Tidak boleh ada scroll */
     overflow: hidden;
 }
 
 
-/* =========================
+
+/* =========================================================
    CUSTOMER PAGE
-========================= */
+========================================================= */
 
 .customer-page {
+
     width: 100%;
+
     height: 100vh;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
-    padding: 10px;
+    padding: 20px;
+
 }
 
 
-/* =========================
+
+/* =========================================================
    CUSTOMER CARD
-========================= */
+========================================================= */
 
 .customer-card {
-    width: 320px;
 
-    background: #ffffff;
+    width: 390px;
 
-    border-radius: 15px;
+    max-width: 100%;
 
-    padding: 20px 22px;
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border-radius: 18px;
+
+    padding:
+        25px
+        25px
+        19px;
 
     text-align: center;
 
     box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.25);
+
+        0 18px 45px
+        rgba(0, 0, 0, 0.25);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.8);
+
+    animation:
+        cardAppear 0.45s ease;
 }
 
 
-/* =========================
+
+/* =========================================================
+   CARD ANIMATION
+========================================================= */
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+
+/* =========================================================
    ICON
-========================= */
+========================================================= */
 
 .customer-icon {
-    width: 50px;
-    height: 50px;
 
-    margin: 0 auto 8px;
+    width: 52px;
+
+    height: 52px;
+
+    margin:
+        0 auto
+        9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        #f3e3d1;
 
     border-radius: 50%;
 
-    background: #f5eadf;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 25px;
+    color:
+        #79502f;
 }
 
 
-/* =========================
+
+/* =========================================================
+   ICON SVG
+========================================================= */
+
+.customer-icon svg {
+
+    width: 31px;
+
+    height: 31px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+
+/* =========================================================
    TITLE
-========================= */
+========================================================= */
 
 .customer-card h1 {
-    color: #3b2416;
-
-    font-size: 21px;
 
     margin-bottom: 4px;
+
+    color:
+        #3b2416;
+
+    font-size: 23px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    letter-spacing: -0.2px;
 }
 
 
-/* =========================
+
+/* =========================================================
    SUBTITLE
-========================= */
+========================================================= */
 
 .customer-subtitle {
-    color: #777;
 
-    font-size: 11px;
+    margin-bottom: 16px;
 
-    line-height: 1.35;
+    color:
+        #766960;
 
-    margin-bottom: 13px;
+    font-size: 13px;
+
+    line-height: 1.45;
 }
 
 
-/* =========================
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.success-message {
+
+    margin-bottom: 12px;
+
+    padding:
+        8px
+        10px;
+
+    border-radius: 7px;
+
+    background:
+        #edf7f1;
+
+    color:
+        #317451;
+
+    font-size: 12px;
+}
+
+
+
+/* =========================================================
    FORM
-========================= */
+========================================================= */
 
 .form-group {
-    text-align: left;
 
-    margin-bottom: 9px;
+    margin-bottom: 12px;
+
+    text-align: left;
 }
 
 
-/* =========================
+
+/* =========================================================
    LABEL
-========================= */
+========================================================= */
 
 .form-group label {
+
     display: block;
 
-    color: #3b2416;
+    margin-bottom: 5px;
 
-    font-size: 12px;
+    color:
+        #3b2416;
 
-    font-weight: 600;
+    font-size: 13px;
 
-    margin-bottom: 4px;
+    font-weight: 650;
 }
 
 
-/* =========================
-   INPUT
-========================= */
 
-.form-group input {
+/* =========================================================
+   INPUT & SELECT
+========================================================= */
+
+.form-group input,
+.form-group select {
+
     width: 100%;
 
-    height: 37px;
+    height: 42px;
 
-    padding: 0 10px;
+    padding:
+        0
+        12px;
 
-    border: 1px solid #d8d1cc;
+    border:
+        1px solid
+        #d8d1cc;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     outline: none;
 
-    font-size: 12px;
+    background:
+        #ffffff;
 
-    color: #333;
+    color:
+        #333333;
 
-    background: #ffffff;
+    font-family:
+        inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
 
 .form-group input::placeholder {
-    color: #aaa;
+
+    color:
+        #aaa29d;
 }
 
 
-/* =========================
-   INPUT FOCUS
-========================= */
 
-.form-group input:focus {
-    border-color: #8b5e3c;
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color:
+        #9a633b;
 
     box-shadow:
-        0 0 0 2px rgba(139, 94, 60, 0.10);
+        0 0 0 3px
+        rgba(154, 99, 59, 0.10);
 }
 
 
-/* =========================
-   NOMOR MEJA
-========================= */
+
+/* =========================================================
+   SELECT
+========================================================= */
 
 .form-group select {
-    width: 100%;
-
-    height: 37px;
-
-    padding: 0 10px;
-
-    border: 1px solid #d8d1cc;
-
-    border-radius: 8px;
-
-    outline: none;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 12px;
-
-    font-weight: 400;
-
-    color: #333;
-
-    background: #ffffff;
 
     cursor: pointer;
+
+    appearance: auto;
 }
 
-.form-group select:focus {
-    border-color: #8b5e3c;
-
-    box-shadow:
-        0 0 0 2px rgba(139, 94, 60, 0.10);
-}
 
 .form-group select option {
-    font-family: Arial, Helvetica, sans-serif;
 
-    font-size: 12px;
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    font-weight: 400;
+    font-size: 13px;
 
-    color: #333;
+    color:
+        #333333;
 }
 
 
-/* =========================
+
+/* =========================================================
    ERROR
-========================= */
+========================================================= */
 
 .error-message {
+
     display: block;
 
-    color: #d93025;
+    margin-top: 3px;
 
-    font-size: 10px;
+    color:
+        #d93025;
 
-    margin-top: 2px;
+    font-size: 11px;
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+
+/* =========================================================
+   ORDER BUTTON
+========================================================= */
 
 .order-button {
+
     width: 100%;
 
-    height: 38px;
+    height: 44px;
 
     margin-top: 2px;
+
+    padding:
+        0
+        15px;
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
-    background: #8b5e3c;
+    background:
+        #9a633b;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    font-size: 12px;
+    font-family:
+        inherit;
 
-    font-weight: 600;
+    font-size: 14px;
+
+    font-weight: 650;
 
     cursor: pointer;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
 
-    gap: 6px;
+    justify-content: center;
+
+    gap: 7px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
+
+
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
 
 .order-button:hover {
-    background: #6f472c;
+
+    background:
+        #87542f;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 6px 15px
+        rgba(112, 67, 38, 0.20);
 }
+
+
+
+/* =========================================================
+   BUTTON ACTIVE
+========================================================= */
 
 .order-button:active {
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
 
-/* =========================
+
+/* =========================================================
+   BUTTON DISABLED
+========================================================= */
+
+.order-button:disabled {
+
+    opacity:
+        0.75;
+
+    cursor:
+        wait;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+
+/* =========================================================
    ARROW
-========================= */
+========================================================= */
 
 .button-arrow {
-    font-size: 15px;
+
+    font-size:
+        18px;
+
+    line-height:
+        1;
+
+    transition:
+        transform 0.2s ease;
 }
 
 
-/* =========================
+.order-button:hover .button-arrow {
+
+    transform:
+        translateX(3px);
+}
+
+
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 .customer-footer {
-    margin-top: 9px;
 
-    color: #999;
+    margin-top:
+        9px;
 
-    font-size: 10px;
+    color:
+        #998e87;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        0.1px;
 }
 
 
-/* =========================
+
+/* =========================================================
    LAPTOP PENDEK
-========================= */
+========================================================= */
 
 @media (max-height: 750px) {
 
     .customer-card {
-        padding: 16px 20px;
+
+        padding:
+            20px
+            24px
+            16px;
     }
+
 
     .customer-icon {
-        width: 44px;
-        height: 44px;
 
-        font-size: 22px;
+        width: 47px;
 
-        margin-bottom: 5px;
+        height: 47px;
+
+        margin-bottom: 7px;
     }
+
+
+    .customer-icon svg {
+
+        width: 28px;
+
+        height: 28px;
+    }
+
 
     .customer-card h1 {
-        font-size: 19px;
+
+        font-size: 21px;
     }
 
+
     .customer-subtitle {
+
+        margin-bottom: 12px;
+
+        font-size: 12px;
+    }
+
+
+    .form-group {
+
         margin-bottom: 9px;
     }
 
-    .form-group {
-        margin-bottom: 6px;
-    }
 
-    .form-group label {
-        margin-bottom: 3px;
-    }
-
-    .form-group input {
-        height: 34px;
-    }
-
+    .form-group input,
     .form-group select {
-        height: 34px;
+
+        height: 38px;
     }
+
 
     .order-button {
-        height: 35px;
+
+        height: 40px;
     }
 
+
     .customer-footer {
-        margin-top: 6px;
+
+        margin-top: 7px;
     }
+
 }
 
 
-/* =========================
+
+/* =========================================================
    HP
-========================= */
+========================================================= */
 
 @media (max-width: 480px) {
 
-    .customer-card {
-        width: 310px;
+    .customer-page {
 
-        padding: 16px 18px;
+        padding:
+            15px;
     }
+
+
+    .customer-card {
+
+        width: 100%;
+
+        max-width: 390px;
+
+        padding:
+            21px
+            19px
+            17px;
+    }
+
+
+    .customer-card h1 {
+
+        font-size: 21px;
+    }
+
+
+    .customer-subtitle {
+
+        font-size: 12px;
+    }
+
+
+    .form-group input,
+    .form-group select {
+
+        height: 40px;
+
+        font-size: 13px;
+    }
+
+
+    .order-button {
+
+        height: 42px;
+    }
+
 }

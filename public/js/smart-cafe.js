@@ -25,7 +25,7 @@ document.addEventListener(
 
         /*
         |--------------------------------------------------------------------------
-        | ANIMASI CARD
+        | ANIMASI CARD SAAT HALAMAN DIBUKA
         |--------------------------------------------------------------------------
         */
 
@@ -35,14 +35,14 @@ document.addEventListener(
                 card.style.opacity = "0";
 
                 card.style.transform =
-                    "translateY(20px)";
+                    "translateY(15px)";
 
 
                 setTimeout(
                     function () {
 
                         card.style.transition =
-                            "opacity .5s ease, transform .5s ease";
+                            "opacity 0.45s ease, transform 0.45s ease";
 
                         card.style.opacity =
                             "1";
@@ -52,7 +52,7 @@ document.addEventListener(
 
                     },
 
-                    150 + (index * 120)
+                    120 + (index * 100)
 
                 );
 
@@ -62,7 +62,7 @@ document.addEventListener(
 
         /*
         |--------------------------------------------------------------------------
-        | EFEK BUTTON
+        | BUTTON
         |--------------------------------------------------------------------------
         */
 
@@ -75,19 +75,49 @@ document.addEventListener(
         buttons.forEach(
             function (button) {
 
+
+                /*
+                |------------------------------------------------------------------
+                | CURSOR
+                |------------------------------------------------------------------
+                */
+
+                button.style.cursor =
+                    "pointer";
+
+
+                /*
+                |------------------------------------------------------------------
+                | EFEK KLIK
+                |------------------------------------------------------------------
+                */
+
                 button.addEventListener(
-                    "mouseenter",
+                    "click",
                     function () {
 
-                        button.style.cursor =
-                            "pointer";
+                        button.classList.add(
+                            "button-clicked"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                button.classList.remove(
+                                    "button-clicked"
+                                );
+
+                            },
+
+                            200
+                        );
 
                     }
                 );
 
             }
         );
-
 
     }
 );

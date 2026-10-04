@@ -42,7 +42,22 @@
         >
 
             <div class="logo-circle">
-                ☕
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path>
+
+                    <path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path>
+
+                    <path d="M8 4c0 1 1 1 1 2"></path>
+
+                    <path d="M12 3c0 1 1 1 1 2"></path>
+                </svg>
             </div>
 
 

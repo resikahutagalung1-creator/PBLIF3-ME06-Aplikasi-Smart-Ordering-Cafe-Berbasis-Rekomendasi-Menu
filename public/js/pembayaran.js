@@ -1,300 +1,152 @@
+
 document.addEventListener('DOMContentLoaded', function () {
+    const paymentInputs = document.querySelectorAll(
+        'input[name="payment_method"]'
+    );
 
-    /* =====================================================
-       ELEMENT
-    ===================================================== */
+    const qrisOption = document.getElementById('qrisOption');
+    const cashOption = document.getElementById('cashOption');
 
-    const qrisOption =
-        document.getElementById('qrisOption');
+    const qrisDetail = document.getElementById('qrisDetail');
+    const cashDetail = document.getElementById('cashDetail');
 
-    const cashOption =
-        document.getElementById('cashOption');
+    const payButton = document.getElementById('payButton');
+    const paymentModal = document.getElementById('paymentModal');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalConfirm = document.getElementById('modalConfirm');
+    const modalMessage = document.getElementById('modalMessage');
 
-    const qrisDetail =
-        document.getElementById('qrisDetail');
+    let selectedPaymentMethod = null;
 
-    const cashDetail =
-        document.getElementById('cashDetail');
-
-    const paymentInputs =
-        document.querySelectorAll(
-            'input[name="payment_method"]'
+    // Mengatur tampilan metode pembayaran
+    function updatePaymentDisplay() {
+        const selected = document.querySelector(
+            'input[name="payment_method"]:checked'
         );
 
+        selectedPaymentMethod = selected ? selected.value : null;
 
-    const payButton =
-        document.getElementById('payButton');
-
-    const paymentModal =
-        document.getElementById('paymentModal');
-
-    const modalCancel =
-        document.getElementById('modalCancel');
-
-    const modalConfirm =
-        document.getElementById('modalConfirm');
-
-    const modalMessage =
-        document.getElementById('modalMessage');
-
-
-    /* =====================================================
-       PILIH METODE PEMBAYARAN
-    ===================================================== */
-
-    function updatePaymentMethod(method) {
-
-        /*
-         * Reset tampilan
-         */
-
-        qrisOption.classList.remove('active');
-
-        cashOption.classList.remove('active');
-
-
-        /*
-         * Sembunyikan semua detail
-         */
-
-        qrisDetail.style.display = 'none';
-
-        cashDetail.style.display = 'none';
-
-
-        /*
-         * QRIS
-         */
-
-        if (method === 'qris') {
-
-            qrisOption.classList.add('active');
-
-            qrisDetail.style.display = 'block';
-
+        if (qrisOption) {
+            qrisOption.classList.toggle(
+                'active',
+                selectedPaymentMethod === 'qris'
+            );
         }
 
-
-        /*
-         * TUNAI
-         */
-
-        if (method === 'tunai') {
-
-            cashOption.classList.add('active');
-
-            cashDetail.style.display = 'block';
-
+        if (cashOption) {
+            cashOption.classList.toggle(
+                'active',
+                selectedPaymentMethod === 'tunai'
+            );
         }
 
+        if (qrisDetail) {
+            qrisDetail.style.display =
+                selectedPaymentMethod === 'qris' ? 'block' : 'none';
+        }
+
+        if (cashDetail) {
+            cashDetail.style.display =
+                selectedPaymentMethod === 'tunai' ? 'block' : 'none';
+        }
     }
 
-
-    /* =====================================================
-       RADIO CHANGE
-    ===================================================== */
-
     paymentInputs.forEach(function (input) {
-
-        input.addEventListener('change', function () {
-
-            updatePaymentMethod(
-                this.value
-            );
-
-        });
-
+        input.addEventListener('change', updatePaymentDisplay);
     });
 
+    updatePaymentDisplay();
 
-    /* =====================================================
-       KLIK CARD QRIS
-    ===================================================== */
-
-    qrisOption.addEventListener(
-        'click',
-        function () {
-
-            const input =
-                qrisOption.querySelector(
-                    'input[name="payment_method"]'
-                );
-
-            input.checked = true;
-
-            updatePaymentMethod('qris');
-
-        }
-    );
-
-
-    /* =====================================================
-       KLIK CARD TUNAI
-    ===================================================== */
-
-    cashOption.addEventListener(
-        'click',
-        function () {
-
-            const input =
-                cashOption.querySelector(
-                    'input[name="payment_method"]'
-                );
-
-            input.checked = true;
-
-            updatePaymentMethod('tunai');
-
-        }
-    );
-
-
-    /* =====================================================
-       TOMBOL BAYAR
-    ===================================================== */
-
-    payButton.addEventListener(
-        'click',
-        function () {
-
-            const selected =
-                document.querySelector(
-                    'input[name="payment_method"]:checked'
-                );
-
+    // Membuka konfirmasi pembayaran
+    if (payButton) {
+        payButton.addEventListener('click', function () {
+            const selected = document.querySelector(
+                'input[name="payment_method"]:checked'
+            );
 
             if (!selected) {
-
-                alert(
-                    'Silakan pilih metode pembayaran terlebih dahulu.'
-                );
-
+                alert('Silakan pilih metode pembayaran terlebih dahulu.');
                 return;
             }
 
+            selectedPaymentMethod = selected.value;
 
-            /*
-             * Pesan sesuai metode
-             */
-
-            if (selected.value === 'qris') {
-
+            if (modalMessage) {
                 modalMessage.textContent =
-                    'Pastikan kamu sudah melakukan pembayaran melalui QRIS sebelum melanjutkan.';
-
-            } else {
-
-                modalMessage.textContent =
-                    'Pesanan akan diproses setelah kamu melakukan pembayaran tunai kepada kasir.';
-
+                    selectedPaymentMethod === 'qris'
+                        ? 'Apakah Anda yakin ingin melanjutkan pembayaran menggunakan QRIS?'
+                        : 'Apakah Anda yakin ingin melanjutkan pembayaran secara tunai?';
             }
 
-
-            /*
-             * Tampilkan modal
-             */
-
-            paymentModal.classList.add('show');
-
-        }
-    );
-
-
-    /* =====================================================
-       TUTUP MODAL
-    ===================================================== */
-
-    modalCancel.addEventListener(
-        'click',
-        function () {
-
-            paymentModal.classList.remove(
-                'show'
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       KLIK AREA LUAR MODAL
-    ===================================================== */
-
-    paymentModal.addEventListener(
-        'click',
-        function (event) {
-
-            if (
-                event.target === paymentModal
-            ) {
-
-                paymentModal.classList.remove(
-                    'show'
-                );
-
+            if (paymentModal) {
+                paymentModal.style.display = 'flex';
             }
+        });
+    }
 
-        }
-    );
+    // Menutup modal
+    if (modalCancel) {
+        modalCancel.addEventListener('click', function () {
+            if (paymentModal) {
+                paymentModal.style.display = 'none';
+            }
+        });
+    }
 
-
-    /* =====================================================
-       KONFIRMASI
-    ===================================================== */
-
-    modalConfirm.addEventListener(
-        'click',
-        function () {
-
-            const selected =
-                document.querySelector(
-                    'input[name="payment_method"]:checked'
-                );
-
-
-            if (!selected) {
-
+    // Mengirim konfirmasi ke Laravel dan menyimpan pesanan
+    if (modalConfirm) {
+        modalConfirm.addEventListener('click', async function () {
+            if (!selectedPaymentMethod) {
+                alert('Silakan pilih metode pembayaran.');
                 return;
             }
 
-
-            /*
-             * Untuk sementara tampilkan
-             * konfirmasi pembayaran.
-             *
-             * Tahap berikutnya bisa kita
-             * sambungkan ke status pesanan
-             * dan database pesanan.
-             */
-
-            if (selected.value === 'qris') {
-
-                alert(
-                    'Pembayaran QRIS berhasil dikonfirmasi.'
-                );
-
-            } else {
-
-                alert(
-                    'Pembayaran tunai dipilih. Silakan lakukan pembayaran kepada kasir.'
-                );
-
-            }
-
-
-            paymentModal.classList.remove(
-                'show'
+            const csrfToken = document.querySelector(
+                'meta[name="csrf-token"]'
             );
 
-        }
-    );
+            if (!csrfToken) {
+                alert('Token keamanan tidak ditemukan. Silakan muat ulang halaman.');
+                return;
+            }
 
+            modalConfirm.disabled = true;
+            modalConfirm.textContent = 'Memproses...';
 
-    /* =====================================================
-       DEFAULT
-       QRIS AKTIF
-    ===================================================== */
+            try {
+                const response = await fetch('/pesanan/konfirmasi', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken.content,
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        payment_method: selectedPaymentMethod
+                    })
+                });
 
-    updatePaymentMethod('qris');
+                const data = await response.json();
 
+                if (!response.ok || !data.success) {
+                    throw new Error(
+                        data.message || 'Pesanan gagal disimpan.'
+                    );
+                }
+
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                    return;
+                }
+
+                throw new Error('Alamat halaman rincian pesanan tidak ditemukan.');
+
+            } catch (error) {
+                alert(error.message || 'Terjadi kesalahan saat memproses pesanan.');
+
+                modalConfirm.disabled = false;
+                modalConfirm.textContent = 'Ya, Bayar';
+            }
+        });
+    }
 });

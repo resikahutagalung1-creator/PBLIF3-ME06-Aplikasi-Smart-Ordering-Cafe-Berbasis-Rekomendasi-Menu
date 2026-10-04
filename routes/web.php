@@ -97,6 +97,19 @@ Route::get('/pembayaran', [PesananController::class, 'pembayaran'])
     ->name('pesanan.pembayaran');
 
 
+    /*
+|--------------------------------------------------------------------------
+| KONFIRMASI DAN RINCIAN PESANAN
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])
+    ->name('pesanan.konfirmasi');
+
+Route::get('/rincian-pesanan/{id}', [PesananController::class, 'rincian'])
+    ->name('pesanan.rincian');
+
+
 /*
 |--------------------------------------------------------------------------
 | UPDATE KERANJANG

@@ -13,27 +13,37 @@
 
     <link rel="stylesheet" href="{{ asset('css/ringkasan.css') }}">
 
-    {{-- Ukuran ikon pembayaran dibuat lebih kecil --}}
     <style>
+
+        /* =====================================================
+           IKON PEMBAYARAN
+        ====================================================== */
+
         .payment-preview .preview-icon {
             width: 105px;
             height: 105px;
             margin: 0 auto 20px;
+
             border-radius: 20px;
+
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
 
         .payment-preview .preview-icon svg {
             width: 50px;
             height: 50px;
         }
 
+
         @media (max-width: 450px) {
+
             .payment-preview .preview-icon {
                 width: 80px;
                 height: 80px;
+
                 margin-bottom: 16px;
             }
 
@@ -41,7 +51,9 @@
                 width: 40px;
                 height: 40px;
             }
+
         }
+
     </style>
 
 </head>
@@ -59,11 +71,49 @@
 
     <header class="top-header">
 
+
+        {{-- =================================================
+             LOGO SMART CAFE
+        ================================================== --}}
+
         <div class="logo-area">
 
+
             <div class="logo-circle">
-                ☕
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+
+                    {{-- Badan cangkir --}}
+                    <path
+                        d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"
+                    ></path>
+
+                    {{-- Pegangan cangkir --}}
+                    <path
+                        d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"
+                    ></path>
+
+                    {{-- Uap --}}
+                    <path
+                        d="M8 5c0 1 1 1 1 2"
+                    ></path>
+
+                    <path
+                        d="M12 4c0 1 1 1 1 2"
+                    ></path>
+
+                </svg>
+
             </div>
+
 
             <div class="logo-text">
 
@@ -77,10 +127,17 @@
 
             </div>
 
+
         </div>
 
 
+
+        {{-- =================================================
+             INFORMASI PELANGGAN
+        ================================================== --}}
+
         <div class="customer-area">
+
 
             <div class="customer-name">
 
@@ -95,33 +152,16 @@
             </div>
 
 
+            {{-- Nomor meja tidak ditampilkan di header
+                 agar sesuai dengan desain screenshot --}}
+
             <div class="table-info">
                 Meja {{ session('nomor_meja', '-') }}
             </div>
 
 
-            <div class="cart-icon">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <circle cx="9" cy="20" r="1"></circle>
-                    <circle cx="19" cy="20" r="1"></circle>
-                    <path d="M3 4h2l2.5 11h10L20 7H6"></path>
-                </svg>
-
-                <span>
-                    {{ collect($keranjang)->sum('jumlah') }}
-                </span>
-
-            </div>
-
         </div>
+
 
     </header>
 
@@ -140,17 +180,21 @@
 
         <div class="page-heading">
 
+
             <span>
                 SMART CAFE
             </span>
+
 
             <h2>
                 Ringkasan Pesanan
             </h2>
 
+
             <p>
                 Periksa kembali pesanan kamu sebelum melanjutkan ke pembayaran.
             </p>
+
 
         </div>
 
@@ -170,13 +214,19 @@
             <section class="order-card">
 
 
+                {{-- ===============================
+                     HEADER PESANAN
+                ================================ --}}
+
                 <div class="card-header">
+
 
                     <div>
 
                         <span class="small-title">
                             PESANAN
                         </span>
+
 
                         <h3>
                             Pesanan Anda
@@ -197,6 +247,7 @@
 
                     @endif
 
+
                 </div>
 
 
@@ -210,9 +261,12 @@
                     id="orderItems"
                 >
 
+
                     @if(count($keranjang) > 0)
 
+
                         @foreach($keranjang as $index => $item)
+
 
                             <div
                                 class="order-item"
@@ -226,16 +280,21 @@
 
                                 <div class="item-image">
 
+
                                     @if(!empty($item['gambar']))
+
 
                                         <img
                                             src="{{ asset('images/menu/' . $item['gambar']) }}"
                                             alt="{{ $item['nama'] }}"
                                         >
 
+
                                     @else
 
+
                                         <div class="image-placeholder">
+
 
                                             <svg
                                                 viewBox="0 0 24 24"
@@ -244,17 +303,26 @@
                                                 stroke-width="1.5"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
+                                                aria-hidden="true"
                                             >
 
-                                                <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
+                                                <path
+                                                    d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"
+                                                ></path>
 
-                                                <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
+
+                                                <path
+                                                    d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"
+                                                ></path>
 
                                             </svg>
 
+
                                         </div>
 
+
                                     @endif
+
 
                                 </div>
 
@@ -266,13 +334,16 @@
 
                                 <div class="item-info">
 
+
                                     <h4>
                                         {{ $item['nama'] }}
                                     </h4>
 
+
                                     <span class="item-price">
                                         Rp {{ number_format($item['harga'], 0, ',', '.') }}
                                     </span>
+
 
 
                                     {{-- ===========================
@@ -280,6 +351,7 @@
                                     ============================ --}}
 
                                     <div class="quantity-area">
+
 
                                         <button
                                             type="button"
@@ -289,9 +361,11 @@
                                             −
                                         </button>
 
+
                                         <span class="quantity">
                                             {{ $item['jumlah'] }}
                                         </span>
+
 
                                         <button
                                             type="button"
@@ -301,7 +375,9 @@
                                             +
                                         </button>
 
+
                                     </div>
+
 
                                 </div>
 
@@ -317,7 +393,9 @@
 
                                 </div>
 
+
                             </div>
+
 
                         @endforeach
 
@@ -331,7 +409,9 @@
 
                         <div class="empty-order">
 
+
                             <div class="empty-icon">
+
 
                                 <svg
                                     viewBox="0 0 24 24"
@@ -340,15 +420,29 @@
                                     stroke-width="1.5"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
+                                    aria-hidden="true"
                                 >
 
-                                    <circle cx="9" cy="20" r="1"></circle>
+                                    <circle
+                                        cx="9"
+                                        cy="20"
+                                        r="1"
+                                    ></circle>
 
-                                    <circle cx="19" cy="20" r="1"></circle>
 
-                                    <path d="M3 4h2l2.5 11h10L20 7H6"></path>
+                                    <circle
+                                        cx="19"
+                                        cy="20"
+                                        r="1"
+                                    ></circle>
+
+
+                                    <path
+                                        d="M3 4h2l2.5 11h10L20 7H6"
+                                    ></path>
 
                                 </svg>
+
 
                             </div>
 
@@ -356,6 +450,7 @@
                             <h3>
                                 Pesanan masih kosong
                             </h3>
+
 
                             <p>
                                 Silakan pilih menu terlebih dahulu.
@@ -369,9 +464,12 @@
                                 Kembali ke Menu
                             </a>
 
+
                         </div>
 
+
                     @endif
+
 
                 </div>
 
@@ -383,6 +481,7 @@
 
                 @if(count($keranjang) > 0)
 
+
                     <div class="order-summary">
 
 
@@ -392,11 +491,13 @@
                                 Subtotal
                             </span>
 
+
                             <strong>
                                 Rp {{ number_format($subtotal, 0, ',', '.') }}
                             </strong>
 
                         </div>
+
 
 
                         <div class="summary-row">
@@ -405,6 +506,7 @@
                                 Pajak (10%)
                             </span>
 
+
                             <strong>
                                 Rp {{ number_format($pajak, 0, ',', '.') }}
                             </strong>
@@ -412,7 +514,9 @@
                         </div>
 
 
+
                         <div class="summary-divider"></div>
+
 
 
                         <div class="summary-total">
@@ -421,15 +525,19 @@
                                 Total
                             </span>
 
+
                             <strong>
                                 Rp {{ number_format($total, 0, ',', '.') }}
                             </strong>
 
                         </div>
 
+
                     </div>
 
+
                 @endif
+
 
             </section>
 
@@ -441,6 +549,7 @@
 
             @if(count($keranjang) > 0)
 
+
                 <section class="payment-card">
 
 
@@ -450,13 +559,16 @@
 
                     <div class="payment-header">
 
+
                         <span>
                             PESANAN
                         </span>
 
+
                         <h3>
                             Siap untuk Membayar?
                         </h3>
+
 
                     </div>
 
@@ -469,8 +581,8 @@
                     <div class="payment-preview">
 
 
-                        {{-- Ikon kartu pembayaran --}}
                         <div class="preview-icon">
+
 
                             <svg
                                 viewBox="0 0 24 24"
@@ -479,6 +591,7 @@
                                 stroke-width="1.7"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
+                                aria-hidden="true"
                             >
 
                                 <rect
@@ -489,26 +602,37 @@
                                     rx="2"
                                 ></rect>
 
-                                <path d="M3 10h18"></path>
 
-                                <path d="M7 15h3"></path>
+                                <path
+                                    d="M3 10h18"
+                                ></path>
+
+
+                                <path
+                                    d="M7 15h3"
+                                ></path>
 
                             </svg>
+
 
                         </div>
 
 
                         <div class="preview-text">
 
+
                             <strong>
                                 Lanjut ke Pembayaran
                             </strong>
+
 
                             <span>
                                 Pilih metode pembayaran pada halaman berikutnya.
                             </span>
 
+
                         </div>
+
 
                     </div>
 
@@ -520,17 +644,22 @@
 
                     <div class="payment-total">
 
+
                         <div>
+
 
                             <span>
                                 Total Pembayaran
                             </span>
 
+
                             <strong>
                                 Rp {{ number_format($total, 0, ',', '.') }}
                             </strong>
 
+
                         </div>
+
 
                     </div>
 
@@ -545,9 +674,11 @@
                         class="pay-button"
                     >
 
+
                         <span>
                             Lanjut ke Pembayaran
                         </span>
+
 
                         <svg
                             viewBox="0 0 24 24"
@@ -556,13 +687,20 @@
                             stroke-width="1.8"
                             stroke-linecap="round"
                             stroke-linejoin="round"
+                            aria-hidden="true"
                         >
 
-                            <path d="M5 12h14"></path>
+                            <path
+                                d="M5 12h14"
+                            ></path>
 
-                            <path d="M13 6l6 6-6 6"></path>
+
+                            <path
+                                d="M13 6l6 6-6 6"
+                            ></path>
 
                         </svg>
+
 
                     </a>
 
@@ -582,16 +720,23 @@
 
                 </section>
 
+
             @endif
 
 
         </div>
 
+
     </main>
+
 
 </div>
 
 
+
+{{-- =====================================================
+     JAVASCRIPT
+====================================================== --}}
 
 <script src="{{ asset('js/ringkasan.js') }}"></script>
 

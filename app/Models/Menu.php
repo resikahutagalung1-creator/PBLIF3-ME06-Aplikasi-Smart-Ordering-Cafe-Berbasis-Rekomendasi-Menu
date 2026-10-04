@@ -12,7 +12,6 @@ class Menu extends Model
 
     public $timestamps = false;
 
-
     protected $fillable = [
         'kategori_id',
         'nama_menu',
@@ -20,8 +19,8 @@ class Menu extends Model
         'harga',
         'stok',
         'gambar',
+        'status',
     ];
-
 
     public function kategori()
     {
