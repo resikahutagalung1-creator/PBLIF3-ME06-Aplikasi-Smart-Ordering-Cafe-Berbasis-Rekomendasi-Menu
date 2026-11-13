@@ -1,8 +1,9 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use App\Models\Menu;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PesananController;
@@ -17,7 +18,14 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $menus = Menu::where('status', 'tersedia')
+        ->orderBy('terjual', 'desc')
+        ->take(4)
+        ->get();
+
+    return view('welcome', compact('menus'));
+
 })->name('welcome');
 
 
@@ -36,16 +44,39 @@ Route::post('/pelanggan/mulai', [PelangganController::class, 'mulai'])
 
 /*
 |--------------------------------------------------------------------------
-| LOGIN ADMIN
+| LOGIN ADMIN DAN KASIR
 |--------------------------------------------------------------------------
 */
 
-Route::get('/login', function () {
+// Menampilkan halaman login sesuai role
+Route::get('/login', function (Request $request) {
+
+    $role = $request->query('role');
+
+    if ($role === 'kasir') {
+        return view('kasir.login');
+    }
+
     return view('admin.login');
+
 })->name('login');
+
+
+/*
+|--------------------------------------------------------------------------
+| PROSES LOGIN ADMIN
+|--------------------------------------------------------------------------
+*/
 
 Route::post('/login', [AdminController::class, 'login'])
     ->name('admin.login.process');
+
+
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD ADMIN
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware('admin')->group(function () {
 
@@ -53,6 +84,7 @@ Route::middleware('admin')->group(function () {
         ->name('admin.dashboard');
 
 });
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,7 +129,7 @@ Route::get('/pembayaran', [PesananController::class, 'pembayaran'])
     ->name('pesanan.pembayaran');
 
 
-    /*
+/*
 |--------------------------------------------------------------------------
 | KONFIRMASI DAN RINCIAN PESANAN
 |--------------------------------------------------------------------------
@@ -132,38 +164,58 @@ Route::post('/pesanan/keranjang/kosongkan', [PesananController::class, 'kosongka
 
 /*
 |--------------------------------------------------------------------------
-| KASIR
+| LOGIN KASIR
 |--------------------------------------------------------------------------
 */
 
-Route::get('/kasir/login', function () {return view('kasir.login');});
+Route::get('/kasir/login', function () {
+    return view('kasir.login');
+});
 
 Route::post('/kasir/login', [KasirController::class, 'login']);
 
+
+/*
+|--------------------------------------------------------------------------
+| LOGOUT KASIR
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/kasir/logout', function () {
+
     session()->flush();
 
-    return redirect('/kasir/login');});
+    return redirect('/kasir/login');
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| FITUR KASIR
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware('kasir')->group(function () {
 
-Route::get('/kasir/dashboard', [KasirController::class, 'dashboard']);
+    Route::get('/kasir/dashboard', [KasirController::class, 'dashboard']);
 
-Route::get('/kasir/pesanan-masuk', [KasirController::class, 'pesananMasuk']);
+    Route::get('/kasir/pesanan-masuk', [KasirController::class, 'pesananMasuk']);
 
-Route::get('/kasir/detail/{id}', [KasirController::class, 'detail']);
+    Route::get('/kasir/detail/{id}', [KasirController::class, 'detail']);
 
-Route::post('/kasir/pesanan/terima/{id}', [KasirController::class, 'terimaPesanan']);
+    Route::post('/kasir/pesanan/terima/{id}', [KasirController::class, 'terimaPesanan']);
 
-Route::post('/kasir/pesanan/selesai/{id}', [KasirController::class, 'selesaiPesanan']);
+    Route::post('/kasir/pesanan/selesai/{id}', [KasirController::class, 'selesaiPesanan']);
 
-Route::post('/kasir/pesanan/batalkan/{id}', [KasirController::class, 'batalkanPesanan']);
+    Route::post('/kasir/pesanan/batalkan/{id}', [KasirController::class, 'batalkanPesanan']);
 
-Route::get('/kasir/proses', [KasirController::class, 'proses']);
+    Route::get('/kasir/proses', [KasirController::class, 'proses']);
 
-Route::get('/kasir/transaksi', [KasirController::class, 'transaksi']);
+    Route::get('/kasir/transaksi', [KasirController::class, 'transaksi']);
 
-Route::post('/kasir/pembayaran/konfirmasi/{id}', [KasirController::class, 'konfirmasiPembayaran']);
+    Route::post('/kasir/pembayaran/konfirmasi/{id}', [KasirController::class, 'konfirmasiPembayaran']);
 
-Route::get('/kasir/riwayat', [KasirController::class, 'riwayat']);
+    Route::get('/kasir/riwayat', [KasirController::class, 'riwayat']);
+
 });

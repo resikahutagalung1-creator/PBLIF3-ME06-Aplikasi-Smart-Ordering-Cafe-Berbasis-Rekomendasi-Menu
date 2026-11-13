@@ -1,448 +1,209 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Smart Cafe - Pelanggan</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ asset('css/pelanggan.css') }}"
-    >
+    <link rel="stylesheet" href="{{ asset('css/pelanggan.css') }}">
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 
 <body>
 
-
-    <!-- =====================================================
-         HALAMAN PELANGGAN
-    ====================================================== -->
-
     <main class="customer-page">
 
+        <!-- HEADER -->
+        <header class="customer-header">
+            <a href="{{ route('welcome') }}" class="brand">
+                <span class="brand-name">SMART CAFE</span>
+                <span class="brand-tagline">Good Food Good Mood</span>
+            </a>
 
-        <!-- =================================================
-             CARD
-        ================================================== -->
+            <a href="{{ route('welcome') }}" class="home-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Beranda</span>
+            </a>
+        </header>
 
-        <div class="customer-card">
+
+        <!-- HERO -->
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+                <h1>
+                    Selamat Datang<br>
+                    di Smart Cafe!
+                </h1>
+
+                <p>
+                    Nikmati pengalaman memesan makanan dan minuman
+                    favorit Anda dengan mudah dan nyaman.
+                </p>
+
+                <div class="welcome-line"></div>
+            </div>
+
+            <div class="welcome-photo">
+                <div class="photo-overlay"></div>
+                <div class="photo-caption">
+                    <span>SMART CAFE</span>
+                    <p>Good Food Good Mood</p>
+                </div>
+            </div>
+
+        </section>
 
 
-            <!-- =================================================
-                 IKON CANGKIR
-                 BUKAN EMOJI
-            ================================================== -->
+        <!-- FORM PELANGGAN -->
+        <section class="customer-form-section">
 
-            <div class="customer-icon">
+            <div class="customer-card">
 
-                <svg
-                    viewBox="0 0 48 48"
-                    aria-hidden="true"
-                >
+                <div class="form-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
 
-                    <!-- Badan cangkir -->
-                    <path
-                        d="M10 18h25v10c0 7-5 11-12.5 11S10 35 10 28V18Z"
-                    ></path>
+                <div class="form-content">
 
-                    <!-- Pegangan -->
-                    <path
-                        d="M35 21h4c4 0 6 3 6 6s-2 6-6 6h-4"
-                    ></path>
+                    <div class="form-heading">
+                        <h2>Mulai Pengalaman Anda</h2>
+                        <p>
+                            Isi nama dan pilih meja untuk memulai pemesanan.
+                        </p>
+                    </div>
 
-                    <!-- Tatakan -->
-                    <path
-                        d="M7 43h34"
-                    ></path>
+                    @if(session('success'))
+                        <div class="success-message">
+                            <i class="fa-solid fa-circle-check"></i>
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
-                    <!-- Uap -->
-                    <path
-                        d="M17 13c-2-3 2-4 0-7"
-                    ></path>
+                    <form
+                        action="{{ route('pelanggan.mulai') }}"
+                        method="POST"
+                        id="customerForm"
+                    >
+                        @csrf
 
-                    <path
-                        d="M24 13c-2-3 2-4 0-7"
-                    ></path>
+                        <!-- NAMA PELANGGAN -->
+                        <div class="form-group">
 
-                    <path
-                        d="M31 13c-2-3 2-4 0-7"
-                    ></path>
+                            <label for="nama">
+                                Nama Anda
+                            </label>
 
-                </svg>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-user input-icon"></i>
+
+                                <input
+                                    type="text"
+                                    id="nama"
+                                    name="nama"
+                                    placeholder="Contoh: Budi Santoso"
+                                    value="{{ old('nama') }}"
+                                    maxlength="100"
+                                    autocomplete="name"
+                                    required
+                                >
+                            </div>
+
+                            @error('nama')
+                                <small class="error-message">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+
+                        </div>
+
+
+                        <!-- NOMOR MEJA -->
+                        <div class="form-group">
+
+                            <label for="nomor_meja">
+                                Pilih Meja
+                            </label>
+
+                            <p class="field-description">
+                                Silakan pilih nomor meja Anda.
+                            </p>
+
+                            <div class="input-wrapper select-wrapper">
+                                <i class="fa-solid fa-chair input-icon"></i>
+
+                                <select
+                                    id="nomor_meja"
+                                    name="nomor_meja"
+                                    required
+                                >
+                                    <option value="">
+                                        Pilih Nomor Meja
+                                    </option>
+
+                                    @foreach(range(1, 25) as $nomor)
+                                        @php
+                                            $meja = 'A' . str_pad($nomor, 2, '0', STR_PAD_LEFT);
+                                        @endphp
+
+                                        <option
+                                            value="{{ $meja }}"
+                                            {{ old('nomor_meja') == $meja ? 'selected' : '' }}
+                                        >
+                                            Meja {{ $meja }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                                <i class="fa-solid fa-chevron-down select-arrow"></i>
+                            </div>
+
+                            @error('nomor_meja')
+                                <small class="error-message">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+
+                        </div>
+
+
+                        <!-- TOMBOL MULAI MEMESAN -->
+                        <button
+                            type="submit"
+                            class="order-button"
+                            id="orderButton"
+                        >
+                            <span>Mulai Memesan</span>
+                            <i class="fa-solid fa-arrow-right button-arrow"></i>
+                        </button>
+
+                    </form>
+
+                </div>
 
             </div>
 
-
-
-            <!-- =================================================
-                 JUDUL
-            ================================================== -->
-
-            <h1>
-                Selamat Datang
-            </h1>
-
-
-            <p class="customer-subtitle">
-                Silakan isi data Anda sebelum mulai memesan.
-            </p>
-
-
-
-            <!-- =================================================
-                 PESAN BERHASIL
-            ================================================== -->
-
-            @if(session('success'))
-
-                <div class="success-message">
-                    {{ session('success') }}
-                </div>
-
-            @endif
-
-
-
-            <!-- =================================================
-                 FORM
-            ================================================== -->
-
-            <form
-                action="{{ route('pelanggan.mulai') }}"
-                method="POST"
-                id="customerForm"
-            >
-
-                @csrf
-
-
-
-                <!-- =============================================
-                     NAMA
-                ============================================== -->
-
-                <div class="form-group">
-
-                    <label for="nama">
-                        Nama Anda
-                    </label>
-
-
-                    <input
-                        type="text"
-                        id="nama"
-                        name="nama"
-                        placeholder="Masukkan nama Anda"
-                        value="{{ old('nama') }}"
-                        maxlength="100"
-                        autocomplete="name"
-                        required
-                    >
-
-
-                    @error('nama')
-
-                        <small class="error-message">
-                            {{ $message }}
-                        </small>
-
-                    @enderror
-
-                </div>
-
-
-
-                <!-- =============================================
-                     NOMOR MEJA
-                ============================================== -->
-
-                <div class="form-group">
-
-                    <label for="nomor_meja">
-                        Nomor Meja
-                    </label>
-
-
-                    <select
-                        id="nomor_meja"
-                        name="nomor_meja"
-                        required
-                    >
-
-                        <option value="">
-                            Pilih Nomor Meja
-                        </option>
-
-
-                        <option
-                            value="A01"
-                            {{ old('nomor_meja') == 'A01' ? 'selected' : '' }}
-                        >
-                            A01
-                        </option>
-
-
-                        <option
-                            value="A02"
-                            {{ old('nomor_meja') == 'A02' ? 'selected' : '' }}
-                        >
-                            A02
-                        </option>
-
-
-                        <option
-                            value="A03"
-                            {{ old('nomor_meja') == 'A03' ? 'selected' : '' }}
-                        >
-                            A03
-                        </option>
-
-
-                        <option
-                            value="A04"
-                            {{ old('nomor_meja') == 'A04' ? 'selected' : '' }}
-                        >
-                            A04
-                        </option>
-
-
-                        <option
-                            value="A05"
-                            {{ old('nomor_meja') == 'A05' ? 'selected' : '' }}
-                        >
-                            A05
-                        </option>
-
-
-                        <option
-                            value="A06"
-                            {{ old('nomor_meja') == 'A06' ? 'selected' : '' }}
-                        >
-                            A06
-                        </option>
-
-
-                        <option
-                            value="A07"
-                            {{ old('nomor_meja') == 'A07' ? 'selected' : '' }}
-                        >
-                            A07
-                        </option>
-
-
-                        <option
-                            value="A08"
-                            {{ old('nomor_meja') == 'A08' ? 'selected' : '' }}
-                        >
-                            A08
-                        </option>
-
-
-                        <option
-                            value="A09"
-                            {{ old('nomor_meja') == 'A09' ? 'selected' : '' }}
-                        >
-                            A09
-                        </option>
-
-
-                        <option
-                            value="A10"
-                            {{ old('nomor_meja') == 'A10' ? 'selected' : '' }}
-                        >
-                            A10
-                        </option>
-
-
-                        <option
-                            value="A11"
-                            {{ old('nomor_meja') == 'A11' ? 'selected' : '' }}
-                        >
-                            A11
-                        </option>
-
-
-                        <option
-                            value="A12"
-                            {{ old('nomor_meja') == 'A12' ? 'selected' : '' }}
-                        >
-                            A12
-                        </option>
-
-
-                        <option
-                            value="A13"
-                            {{ old('nomor_meja') == 'A13' ? 'selected' : '' }}
-                        >
-                            A13
-                        </option>
-
-
-                        <option
-                            value="A14"
-                            {{ old('nomor_meja') == 'A14' ? 'selected' : '' }}
-                        >
-                            A14
-                        </option>
-
-
-                        <option
-                            value="A15"
-                            {{ old('nomor_meja') == 'A15' ? 'selected' : '' }}
-                        >
-                            A15
-                        </option>
-
-
-                        <option
-                            value="A16"
-                            {{ old('nomor_meja') == 'A16' ? 'selected' : '' }}
-                        >
-                            A16
-                        </option>
-
-
-                        <option
-                            value="A17"
-                            {{ old('nomor_meja') == 'A17' ? 'selected' : '' }}
-                        >
-                            A17
-                        </option>
-
-
-                        <option
-                            value="A18"
-                            {{ old('nomor_meja') == 'A18' ? 'selected' : '' }}
-                        >
-                            A18
-                        </option>
-
-
-                        <option
-                            value="A19"
-                            {{ old('nomor_meja') == 'A19' ? 'selected' : '' }}
-                        >
-                            A19
-                        </option>
-
-
-                        <option
-                            value="A20"
-                            {{ old('nomor_meja') == 'A20' ? 'selected' : '' }}
-                        >
-                            A20
-                        </option>
-
-
-                        <option
-                            value="A21"
-                            {{ old('nomor_meja') == 'A21' ? 'selected' : '' }}
-                        >
-                            A21
-                        </option>
-
-
-                        <option
-                            value="A22"
-                            {{ old('nomor_meja') == 'A22' ? 'selected' : '' }}
-                        >
-                            A22
-                        </option>
-
-
-                        <option
-                            value="A23"
-                            {{ old('nomor_meja') == 'A23' ? 'selected' : '' }}
-                        >
-                            A23
-                        </option>
-
-
-                        <option
-                            value="A24"
-                            {{ old('nomor_meja') == 'A24' ? 'selected' : '' }}
-                        >
-                            A24
-                        </option>
-
-
-                        <option
-                            value="A25"
-                            {{ old('nomor_meja') == 'A25' ? 'selected' : '' }}
-                        >
-                            A25
-                        </option>
-
-                    </select>
-
-
-                    @error('nomor_meja')
-
-                        <small class="error-message">
-                            {{ $message }}
-                        </small>
-
-                    @enderror
-
-                </div>
-
-
-
-                <!-- =============================================
-                     TOMBOL
-                ============================================== -->
-
-                <button
-                    type="submit"
-                    class="order-button"
-                    id="orderButton"
-                >
-
-                    <span>
-                        Mulai Memesan
-                    </span>
-
-                    <span class="button-arrow">
-                        →
-                    </span>
-
-                </button>
-
-            </form>
-
-
-
-            <!-- =================================================
-                 FOOTER CARD
-            ================================================== -->
-
-            <div class="customer-footer">
-                Smart Ordering Café
-            </div>
-
-
-        </div>
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="customer-footer">
+            <span></span>
+            <p>Terima kasih telah berkunjung di Smart Cafe</p>
+            <span></span>
+        </footer>
 
     </main>
 
 
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
+    <!-- JAVASCRIPT -->
     <script src="{{ asset('js/pelanggan.js') }}"></script>
 
-
 </body>
-
 </html>

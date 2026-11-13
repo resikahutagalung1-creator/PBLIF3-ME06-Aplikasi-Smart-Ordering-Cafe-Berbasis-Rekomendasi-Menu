@@ -1,689 +1,716 @@
-/*
-|--------------------------------------------------------------------------
-| SMART CAFE
-| HALAMAN PELANGGAN
-|--------------------------------------------------------------------------
-*/
 
+/* =====================================================
+   SMART CAFE - HALAMAN PELANGGAN
+===================================================== */
 
-/* =========================================================
-   RESET
-========================================================= */
-
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-html,
-body {
-    width: 100%;
-    height: 100%;
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
-
-
-/* =========================================================
-   BODY
-========================================================= */
-
 body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background: #FFF8F1;
+    color: #3B2418;
+    overflow-x: hidden;
+}
 
-    font-family:
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
+/* =====================================================
+   MAIN PAGE
+===================================================== */
 
-    background:
+.customer-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 
-        linear-gradient(
-            rgba(30, 20, 15, 0.57),
-            rgba(30, 20, 15, 0.57)
-        ),
+/* =====================================================
+   HEADER
+===================================================== */
 
-        url("../images/poto_cafe.jpeg");
+.customer-header {
+    width: 100%;
+    min-height: 72px;
+    padding: 10px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 252, 249, 0.97);
+    border-bottom: 1px solid #EEE2D7;
+    position: relative;
+    z-index: 5;
+}
 
+.brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #3B2418;
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.brand-tagline {
+    margin-top: 2px;
+    font-size: 12px;
+    font-style: italic;
+    color: #79502F;
+}
+
+.home-link {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #70452B;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.home-link:hover {
+    color: #A36A3D;
+    transform: translateY(-1px);
+}
+
+/* =====================================================
+   WELCOME SECTION
+===================================================== */
+
+.welcome-section {
+    min-height: 275px;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #FFF1E2;
+}
+
+.welcome-content {
+    padding: 28px 8% 28px 12%;
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #9A633B;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.welcome-content h1 {
+    font-size: clamp(30px, 3vw, 39px);
+    line-height: 1.18;
+    color: #3B2418;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
+
+.welcome-content p {
+    max-width: 420px;
+    color: #765D4C;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.welcome-line {
+    width: 70px;
+    height: 4px;
+    border-radius: 10px;
+    background: #C58A43;
+    margin-top: 17px;
+}
+
+/* =====================================================
+   CAFE PHOTO
+===================================================== */
+
+.welcome-photo {
+    min-height: 275px;
+    height: 100%;
+    position: relative;
+    background-image: url("../images/poto_cafe.jpeg");
     background-size: cover;
-
-    background-position: center center;
-
-    background-repeat: no-repeat;
-
+    background-position: center;
+    border-radius: 110px 0 0 110px;
     overflow: hidden;
 }
 
-
-
-/* =========================================================
-   CUSTOMER PAGE
-========================================================= */
-
-.customer-page {
-
-    width: 100%;
-
-    height: 100vh;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 20px;
-
+.photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(59, 36, 24, 0.15),
+        rgba(35, 20, 12, 0.35)
+    );
 }
 
+.photo-caption {
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    color: white;
+    text-align: right;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 
+.photo-caption span {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
 
-/* =========================================================
+.photo-caption p {
+    margin-top: 3px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* =====================================================
+   CUSTOMER FORM SECTION
+   KARTU DITURUNKAN 30 PIXEL
+===================================================== */
+
+.customer-form-section {
+    width: 100%;
+    max-width: 960px;
+    padding: 0 22px;
+    margin: 10px auto 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* =====================================================
    CUSTOMER CARD
-========================================================= */
+===================================================== */
 
 .customer-card {
-
-    width: 390px;
-
-    max-width: 100%;
-
-    background:
-        rgba(255, 255, 255, 0.98);
-
-    border-radius: 18px;
-
-    padding:
-        25px
-        25px
-        19px;
-
-    text-align: center;
-
-    box-shadow:
-
-        0 18px 45px
-        rgba(0, 0, 0, 0.25);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.8);
-
-    animation:
-        cardAppear 0.45s ease;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    gap: 18px;
+    align-items: start;
+    padding: 30px 36px;
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid #E9DCD1;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(59, 36, 24, 0.10);
+    animation: cardAppear 0.5s ease;
 }
 
-
-
-/* =========================================================
-   CARD ANIMATION
-========================================================= */
-
 @keyframes cardAppear {
-
     from {
-
         opacity: 0;
-
-        transform:
-            translateY(12px)
-            scale(0.98);
+        transform: translateY(15px);
     }
 
     to {
-
         opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
+        transform: translateY(0);
     }
 }
 
+/* =====================================================
+   FORM ICON
+===================================================== */
 
-
-/* =========================================================
-   ICON
-========================================================= */
-
-.customer-icon {
-
-    width: 52px;
-
-    height: 52px;
-
-    margin:
-        0 auto
-        9px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background:
-        #f3e3d1;
-
+.form-icon {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-
-    color:
-        #79502f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #70452B;
+    color: white;
+    font-size: 20px;
+    margin-top: 3px;
 }
 
+/* =====================================================
+   FORM CONTENT
+===================================================== */
 
-
-/* =========================================================
-   ICON SVG
-========================================================= */
-
-.customer-icon svg {
-
-    width: 31px;
-
-    height: 31px;
-
-    fill: none;
-
-    stroke: currentColor;
-
-    stroke-width: 1.8;
-
-    stroke-linecap: round;
-
-    stroke-linejoin: round;
+.form-content {
+    min-width: 0;
 }
 
+.form-heading {
+    margin-bottom: 18px;
+}
 
-
-/* =========================================================
-   TITLE
-========================================================= */
-
-.customer-card h1 {
-
-    margin-bottom: 4px;
-
-    color:
-        #3b2416;
-
+.form-heading h2 {
+    color: #3B2418;
     font-size: 23px;
-
-    line-height: 1.2;
-
-    font-weight: 700;
-
-    letter-spacing: -0.2px;
+    font-weight: 750;
+    margin-bottom: 5px;
 }
 
-
-
-/* =========================================================
-   SUBTITLE
-========================================================= */
-
-.customer-subtitle {
-
-    margin-bottom: 16px;
-
-    color:
-        #766960;
-
+.form-heading p {
+    color: #88766A;
     font-size: 13px;
-
-    line-height: 1.45;
+    line-height: 1.5;
 }
 
-
-
-/* =========================================================
+/* =====================================================
    SUCCESS MESSAGE
-========================================================= */
+===================================================== */
 
 .success-message {
-
-    margin-bottom: 12px;
-
-    padding:
-        8px
-        10px;
-
-    border-radius: 7px;
-
-    background:
-        #edf7f1;
-
-    color:
-        #317451;
-
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 13px;
+    margin-bottom: 14px;
+    border-radius: 9px;
+    background: #EDF7F1;
+    color: #317451;
     font-size: 12px;
 }
 
-
-
-/* =========================================================
-   FORM
-========================================================= */
+/* =====================================================
+   FORM GROUP
+===================================================== */
 
 .form-group {
-
-    margin-bottom: 12px;
-
-    text-align: left;
+    margin-bottom: 15px;
 }
-
-
-
-/* =========================================================
-   LABEL
-========================================================= */
 
 .form-group label {
-
     display: block;
-
-    margin-bottom: 5px;
-
-    color:
-        #3b2416;
-
-    font-size: 13px;
-
-    font-weight: 650;
+    margin-bottom: 7px;
+    color: #3B2418;
+    font-size: 14px;
+    font-weight: 700;
 }
 
+.field-description {
+    margin-top: -2px;
+    margin-bottom: 8px;
+    color: #948276;
+    font-size: 12px;
+}
 
+/* =====================================================
+   INPUT WRAPPER
+===================================================== */
 
-/* =========================================================
-   INPUT & SELECT
-========================================================= */
-
-.form-group input,
-.form-group select {
-
+.input-wrapper {
     width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 14px;
+    border: 1px solid #DDD2C9;
+    border-radius: 10px;
+    background: #FFFCF9;
+    transition: 0.2s ease;
+}
 
-    height: 42px;
+.input-wrapper:focus-within {
+    border-color: #70452B;
+    box-shadow: 0 0 0 3px rgba(112, 69, 43, 0.10);
+}
 
-    padding:
-        0
-        12px;
+.input-icon {
+    color: #9B897A;
+    font-size: 14px;
+    flex-shrink: 0;
+}
 
-    border:
-        1px solid
-        #d8d1cc;
-
-    border-radius: 9px;
-
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    height: 100%;
+    border: none;
     outline: none;
-
-    background:
-        #ffffff;
-
-    color:
-        #333333;
-
-    font-family:
-        inherit;
-
+    background: transparent;
+    color: #3B2418;
+    font-family: inherit;
     font-size: 13px;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
-
-
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
-
-.form-group input::placeholder {
-
-    color:
-        #aaa29d;
+.input-wrapper input::placeholder {
+    color: #A99D94;
 }
 
+/* =====================================================
+   SELECT MEJA
+===================================================== */
 
-
-/* =========================================================
-   FOCUS
-========================================================= */
-
-.form-group input:focus,
-.form-group select:focus {
-
-    border-color:
-        #9a633b;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(154, 99, 59, 0.10);
+.select-wrapper {
+    position: relative;
 }
 
-
-
-/* =========================================================
-   SELECT
-========================================================= */
-
-.form-group select {
-
+.select-wrapper select {
     cursor: pointer;
-
-    appearance: auto;
+    appearance: none;
+    padding-right: 25px;
 }
 
-
-.form-group select option {
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    font-size: 13px;
-
-    color:
-        #333333;
+.select-wrapper select:invalid {
+    color: #A99D94;
 }
 
+.select-wrapper select option {
+    color: #3B2418;
+    background: white;
+}
 
+.select-arrow {
+    color: #79502F;
+    font-size: 12px;
+    pointer-events: none;
+}
 
-/* =========================================================
-   ERROR
-========================================================= */
+/* =====================================================
+   ERROR MESSAGE
+===================================================== */
 
 .error-message {
-
     display: block;
-
-    margin-top: 3px;
-
-    color:
-        #d93025;
-
+    margin-top: 6px;
+    color: #D93025;
     font-size: 11px;
 }
 
-
-
-/* =========================================================
+/* =====================================================
    ORDER BUTTON
-========================================================= */
+===================================================== */
 
 .order-button {
-
     width: 100%;
-
-    height: 44px;
-
+    min-height: 50px;
     margin-top: 2px;
-
-    padding:
-        0
-        15px;
-
+    padding: 10px 18px;
     border: none;
-
-    border-radius: 9px;
-
-    background:
-        #9a633b;
-
-    color:
-        #ffffff;
-
-    font-family:
-        inherit;
-
-    font-size: 14px;
-
-    font-weight: 650;
-
+    border-radius: 10px;
+    background: #70452B;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    gap: 7px;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    gap: 11px;
+    transition: 0.25s ease;
 }
-
-
-
-/* =========================================================
-   BUTTON HOVER
-========================================================= */
 
 .order-button:hover {
-
-    background:
-        #87542f;
-
-    transform:
-        translateY(-1px);
-
-    box-shadow:
-        0 6px 15px
-        rgba(112, 67, 38, 0.20);
+    background: #3B2418;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(112, 69, 43, 0.20);
 }
-
-
-
-/* =========================================================
-   BUTTON ACTIVE
-========================================================= */
 
 .order-button:active {
-
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
-
-
-
-/* =========================================================
-   BUTTON DISABLED
-========================================================= */
 
 .order-button:disabled {
-
-    opacity:
-        0.75;
-
-    cursor:
-        wait;
-
-    transform:
-        none;
-
-    box-shadow:
-        none;
+    opacity: 0.75;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
 }
-
-
-
-/* =========================================================
-   ARROW
-========================================================= */
 
 .button-arrow {
-
-    font-size:
-        18px;
-
-    line-height:
-        1;
-
-    transition:
-        transform 0.2s ease;
+    font-size: 14px;
+    transition: transform 0.2s ease;
 }
-
 
 .order-button:hover .button-arrow {
-
-    transform:
-        translateX(3px);
+    transform: translateX(4px);
 }
 
-
-
-/* =========================================================
+/* =====================================================
    FOOTER
-========================================================= */
+===================================================== */
 
 .customer-footer {
-
-    margin-top:
-        9px;
-
-    color:
-        #998e87;
-
-    font-size:
-        11px;
-
-    letter-spacing:
-        0.1px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 20px 18px;
+    color: #79502F;
+    font-size: 13px;
+    text-align: center;
 }
 
+.customer-footer span {
+    width: 65px;
+    height: 1px;
+    background: #CDA77F;
+}
 
-
-/* =========================================================
+/* =====================================================
    LAPTOP PENDEK
-========================================================= */
+===================================================== */
 
-@media (max-height: 750px) {
+@media (max-height: 750px) and (min-width: 601px) {
+
+    .customer-header {
+        min-height: 65px;
+    }
+
+    .welcome-section,
+    .welcome-photo {
+        min-height: 215px;
+    }
 
     .customer-card {
-
-        padding:
-            20px
-            24px
-            16px;
+        padding: 19px 28px;
     }
 
-
-    .customer-icon {
-
-        width: 47px;
-
-        height: 47px;
-
-        margin-bottom: 7px;
+    .form-heading {
+        margin-bottom: 13px;
     }
-
-
-    .customer-icon svg {
-
-        width: 28px;
-
-        height: 28px;
-    }
-
-
-    .customer-card h1 {
-
-        font-size: 21px;
-    }
-
-
-    .customer-subtitle {
-
-        margin-bottom: 12px;
-
-        font-size: 12px;
-    }
-
 
     .form-group {
-
-        margin-bottom: 9px;
+        margin-bottom: 11px;
     }
 
-
-    .form-group input,
-    .form-group select {
-
-        height: 38px;
-    }
-
-
-    .order-button {
-
-        height: 40px;
-    }
-
-
-    .customer-footer {
-
-        margin-top: 7px;
-    }
-
-}
-
-
-
-/* =========================================================
-   HP
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .customer-page {
-
-        padding:
-            15px;
-    }
-
-
-    .customer-card {
-
-        width: 100%;
-
-        max-width: 390px;
-
-        padding:
-            21px
-            19px
-            17px;
-    }
-
-
-    .customer-card h1 {
-
-        font-size: 21px;
-    }
-
-
-    .customer-subtitle {
-
-        font-size: 12px;
-    }
-
-
-    .form-group input,
-    .form-group select {
-
-        height: 40px;
-
-        font-size: 13px;
-    }
-
-
-    .order-button {
-
+    .input-wrapper {
         height: 42px;
     }
 
+    .order-button {
+        min-height: 46px;
+        font-size: 14px;
+    }
+
+    .customer-footer {
+        padding: 15px;
+    }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .customer-header {
+        min-height: 68px;
+        padding: 10px 4%;
+    }
+
+    .brand-name {
+        font-size: 23px;
+    }
+
+    .welcome-section {
+        grid-template-columns: 1fr 0.8fr;
+        min-height: 225px;
+    }
+
+    .welcome-content {
+        padding: 25px 7%;
+    }
+
+    .welcome-content h1 {
+        font-size: 32px;
+    }
+
+    .welcome-content p {
+        font-size: 13px;
+    }
+
+    .welcome-photo {
+        min-height: 225px;
+    }
+
+    .customer-card {
+        padding: 22px;
+        gap: 15px;
+        grid-template-columns: 50px 1fr;
+    }
+
+    .form-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 18px;
+    }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .customer-header {
+        min-height: 65px;
+        padding: 10px 18px;
+    }
+
+    .brand-name {
+        font-size: 20px;
+    }
+
+    .brand-tagline {
+        font-size: 11px;
+    }
+
+    .home-link {
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    .welcome-section {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        min-height: auto;
+    }
+
+    .welcome-content {
+        padding: 28px 22px 23px;
+    }
+
+    .welcome-label {
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+
+    .welcome-content h1 {
+        font-size: 29px;
+    }
+
+    .welcome-content p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .welcome-line {
+        margin-top: 14px;
+    }
+
+    .welcome-photo {
+        min-height: 175px;
+        width: 100%;
+        border-radius: 55px 0 0 0;
+        background-position: center;
+    }
+
+    .photo-caption {
+        bottom: 15px;
+        right: 18px;
+    }
+
+    .photo-caption span {
+        font-size: 16px;
+    }
+
+    /* KARTU FORM TURUN 10 PIXEL DI MOBILE */
+    .customer-form-section {
+        padding: 0 15px;
+        margin-top: 10px;
+    }
+
+    .customer-card {
+        display: block;
+        padding: 22px 18px;
+        border-radius: 17px;
+    }
+
+    .form-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 17px;
+        margin-bottom: 14px;
+    }
+
+    .form-heading {
+        margin-bottom: 18px;
+    }
+
+    .form-heading h2 {
+        font-size: 19px;
+    }
+
+    .form-heading p {
+        font-size: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .input-wrapper {
+        height: 46px;
+        padding: 0 12px;
+    }
+
+    .input-wrapper input,
+    .input-wrapper select {
+        font-size: 12px;
+    }
+
+    .order-button {
+        min-height: 46px;
+        font-size: 13px;
+    }
+
+    .customer-footer {
+        padding: 20px 12px;
+        gap: 9px;
+        font-size: 11px;
+    }
+
+    .customer-footer span {
+        width: 25px;
+    }
+}
+
+/* =====================================================
+   MOBILE KECIL
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .home-link {
+        font-size: 11px;
+    }
+
+    .welcome-content h1 {
+        font-size: 26px;
+    }
+
+    .customer-card {
+        padding: 20px 15px;
+    }
 }

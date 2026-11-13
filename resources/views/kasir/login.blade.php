@@ -1,85 +1,98 @@
+
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Login Kasir - Smart Cafe</title>
 
     <link rel="stylesheet" href="{{ asset('css/kasir.css') }}">
-</head>
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
 <body>
 
-<div class="login-page">
+<div class="auth-split">
 
-    <div class="login-box">
+    <div class="auth-visual">
+        <div class="auth-overlay"></div>
 
-        <div class="login-logo">
-
-            <div class="icon">
-                ☕
-            </div>
+        <div class="auth-brand">
 
             <h1>SMART CAFE</h1>
-
-            <p>Login Kasir</p>
-
+            <p>Good Food Good Mood</p>
         </div>
 
-        @if (session('error'))
-    <div class="error-message">
-        {{ session('error') }}
+        <div class="auth-visual-bottom">
+            <h2>Selamat Datang Kembali</h2>
+            <p>Layani pelanggan dengan lebih cepat dan kelola pesanan cafe dengan mudah.</p>
         </div>
-    @endif
+    </div>
 
-        <form action="/kasir/login" method="POST">
-    @csrf
+    <div class="auth-form-section">
 
-            <div class="form-group">
+        <div class="auth-form-container">
 
-                <label for="username">
-                    Username
-                </label>
-
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Masukkan username"
-                    required
-                >
-
+            <div class="auth-heading">
+                <span class="auth-label">STAFF AREA</span>
+                <h2>Login Kasir</h2>
+                <p>Silakan masuk menggunakan akun kasir Anda.</p>
             </div>
 
+            @if (session('error'))
+                <div class="auth-error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    {{ session('error') }}
+                </div>
+            @endif
 
-            <div class="form-group">
+            <form action="/kasir/login" method="POST">
+                @csrf
 
-                <label for="password">
-                    Password
-                </label>
+                <div class="auth-input-group">
+                    <label for="username">Username</label>
 
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Masukkan password"
-                    required
-                >
+                    <div class="auth-input">
+                        <i class="fa-solid fa-user"></i>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            value="{{ old('username') }}"
+                            placeholder="Masukkan username"
+                            required
+                            autofocus
+                        >
+                    </div>
+                </div>
 
+                <div class="auth-input-group">
+                    <label for="password">Password</label>
+
+                    <div class="auth-input">
+                        <i class="fa-solid fa-lock"></i>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Masukkan password"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-button">
+                    Masuk sebagai Kasir
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <i class="fa-solid fa-shield-halved"></i>
+                Halaman khusus Kasir
             </div>
 
-
-            <button type="submit" class="login-button">
-                Login
-            </button>
-
-        </form>
-
-
-        <div class="login-note">
-            Hanya untuk Admin dan Kasir
         </div>
 
     </div>
@@ -87,5 +100,4 @@
 </div>
 
 </body>
-
 </html>
