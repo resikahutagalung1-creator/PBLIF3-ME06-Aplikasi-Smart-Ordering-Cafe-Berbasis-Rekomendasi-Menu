@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dashboard Admin - Smart Cafe</title>
@@ -15,14 +15,10 @@
 
 <div class="admin-container">
 
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <!-- LOGO -->
-
         <div class="logo">
 
             <div class="logo-icon">
@@ -30,7 +26,6 @@
             </div>
 
             <div class="logo-text">
-
                 <div class="logo-title">
                     SMART CAFE
                 </div>
@@ -38,73 +33,48 @@
                 <div class="logo-subtitle">
                     Smart Ordering Cafe
                 </div>
-
             </div>
 
         </div>
 
-
         <!-- MENU SIDEBAR -->
-
         <ul class="sidebar-menu">
 
             <!-- DASHBOARD -->
-
             <li>
-                <a href="/admin/dashboard" class="active">
-
-                    <span class="menu-icon">
-                        ⌂
-                    </span>
-
-                    <span class="menu-text">
-                        Dashboard
-                    </span>
-
+                <a href="{{ route('admin.dashboard') }}" class="active">
+                    <span class="menu-icon">⌂</span>
+                    <span class="menu-text">Dashboard</span>
                 </a>
             </li>
-
 
             <!-- KELOLA MENU -->
-
             <li>
                 <a href="#">
-
-                    <span class="menu-icon">
-                        ▤
-                    </span>
-
-                    <span class="menu-text">
-                        Kelola Menu
-                    </span>
-
+                    <span class="menu-icon">▤</span>
+                    <span class="menu-text">Kelola Menu</span>
                 </a>
             </li>
 
-
             <!-- KELOLA DATA PENGGUNA -->
-
             <li>
                 <a href="#">
+                    <span class="menu-icon">♙</span>
+                    <span class="menu-text">Kelola Data Pengguna</span>
+                </a>
+            </li>
 
-                    <span class="menu-icon">
-                        ♙
-                    </span>
-
-                    <span class="menu-text">
-                        Kelola Data Pengguna
-                    </span>
-
+            <!-- KELOLA MEJA -->
+            <li>
+                <a href="{{ route('admin.meja') }}">
+                    <span class="menu-icon">▦</span>
+                    <span class="menu-text">Kelola Meja</span>
                 </a>
             </li>
 
         </ul>
 
-
-        <!-- =================================================
-             BAGIAN BAWAH SIDEBAR
-        ================================================== -->
-
+        <!-- BAGIAN BAWAH SIDEBAR -->
         <div class="sidebar-bottom">
 
             <div class="sidebar-coffee">
@@ -125,18 +95,10 @@
 
     </aside>
 
-
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
+    <!-- MAIN -->
     <main class="main">
 
-
-        <!-- =================================================
-             TOP BAR
-        ================================================== -->
-
+        <!-- TOP BAR -->
         <div class="top-bar">
 
             <div class="staff">
@@ -160,18 +122,10 @@
 
         </div>
 
-
-        <!-- =================================================
-             CONTENT
-        ================================================== -->
-
+        <!-- CONTENT -->
         <div class="content">
 
-
-            <!-- =================================================
-                 JUDUL
-            ================================================== -->
-
+            <!-- JUDUL -->
             <div class="page-title">
 
                 <h1>
@@ -179,23 +133,17 @@
                 </h1>
 
                 <p>
-                    Kelola menu dan data pengguna Smart Cafe.
+                    Kelola menu, data pengguna, dan meja Smart Cafe.
                 </p>
 
                 <div class="title-line"></div>
 
             </div>
 
-
-            <!-- =================================================
-                 STATISTIK
-            ================================================== -->
-
+            <!-- STATISTIK -->
             <div class="stats">
 
-
                 <!-- TOTAL MENU -->
-
                 <div class="stat">
 
                     <div class="stat-icon">
@@ -220,9 +168,7 @@
 
                 </div>
 
-
                 <!-- TOTAL PENGGUNA -->
-
                 <div class="stat">
 
                     <div class="stat-icon">
@@ -247,9 +193,7 @@
 
                 </div>
 
-
                 <!-- TOTAL KASIR -->
-
                 <div class="stat">
 
                     <div class="stat-icon stat-icon-success">
@@ -276,16 +220,10 @@
 
             </div>
 
-
-            <!-- =================================================
-                 CARD MENU ADMIN
-            ================================================== -->
-
+            <!-- CARD MENU ADMIN -->
             <div class="card">
 
-
                 <!-- HEADER CARD -->
-
                 <div class="card-header">
 
                     <div class="card-title-wrapper">
@@ -302,16 +240,10 @@
 
                 </div>
 
-
-                <!-- =================================================
-                     MENU ADMIN
-                ================================================== -->
-
+                <!-- MENU ADMIN -->
                 <div class="admin-menu-grid">
 
-
                     <!-- KELOLA MENU -->
-
                     <a
                         href="#"
                         class="admin-menu-card"
@@ -331,9 +263,7 @@
 
                     </a>
 
-
                     <!-- KELOLA DATA PENGGUNA -->
-
                     <a
                         href="#"
                         class="admin-menu-card"
@@ -353,15 +283,32 @@
 
                     </a>
 
+                    <!-- KELOLA MEJA -->
+                    <a
+                        href="{{ route('admin.meja') }}"
+                        class="admin-menu-card"
+                    >
+
+                        <div class="admin-menu-icon">
+                            ▦
+                        </div>
+
+                        <div class="admin-menu-title">
+                            Kelola Meja
+                        </div>
+
+                        <div class="admin-menu-description">
+                            Melihat status meja dan mengatur meja
+                            yang tersedia kembali.
+                        </div>
+
+                    </a>
+
                 </div>
 
             </div>
 
-
-            <!-- =================================================
-                 QUOTE
-            ================================================== -->
-
+            <!-- QUOTE -->
             <div class="bottom-quote">
 
                 <div class="bottom-quote-icon">
@@ -381,7 +328,6 @@
                 </div>
 
             </div>
-
 
         </div>
 

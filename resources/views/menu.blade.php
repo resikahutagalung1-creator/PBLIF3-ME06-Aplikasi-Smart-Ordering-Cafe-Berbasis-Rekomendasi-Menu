@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Smart Cafe - Menu</title>
@@ -16,96 +16,67 @@
 
 <div class="menu-page">
 
-    {{-- =========================================================
-        HEADER
-    ========================================================== --}}
-
+    {{-- HEADER --}}
     <header class="top-header">
 
         <div class="logo-area">
 
-            {{-- IKON CANGKIR --}}
             <div class="logo-circle">
-
-                <svg
-                    viewBox="0 0 24 24"
+                <svg viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.8"
                     stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
+                    stroke-linejoin="round">
+
                     <path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path>
-
                     <path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-
                     <path d="M8 4c0 1 1 1 1 2"></path>
-
                     <path d="M12 3c0 1 1 1 1 2"></path>
                 </svg>
-
             </div>
 
             <div class="logo-text">
-
-                <h1>
-                    SMART CAFE
-                </h1>
-
-                <span>
-                    Smart Ordering Café
-                </span>
-
+                <h1>SMART CAFE</h1>
+                <span>Smart Ordering Café</span>
             </div>
 
         </div>
 
-
         <div class="customer-area">
 
             <div class="customer-name">
-
-                <span class="hello">
-                    Halo,
-                </span>
-
-                <strong>
-                    {{ session('nama_pelanggan', 'Pelanggan') }}
-                </strong>
-
+                <span class="hello">Halo,</span>
+                <strong>{{ session('nama_pelanggan', 'Pelanggan') }}</strong>
             </div>
-
 
             <div class="table-info">
                 Meja {{ session('nomor_meja', '-') }}
             </div>
 
-
             {{-- TOMBOL KERANJANG --}}
-
             <button
                 type="button"
                 class="header-cart"
                 id="cartButton"
-                aria-label="Keranjang Pesanan"
-            >
+                aria-label="Keranjang Pesanan">
 
-                {{-- IKON KERANJANG --}}
-                <svg
-                    viewBox="0 0 24 24"
+                <svg viewBox="0 0 24 24"
+                    width="23"
+                    height="23"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.8"
+                    stroke-width="1.7"
                     stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <circle cx="9" cy="20" r="1"></circle>
+                    stroke-linejoin="round">
 
-                    <circle cx="19" cy="20" r="1"></circle>
-
-                    <path d="M3 4h2l2.5 11h10L20 7H6"></path>
+                    <circle cx="9" cy="20" r="1"/>
+                    <circle cx="18" cy="20" r="1"/>
+                    <path d="M2 3h2l2.5 12.5a2 2 0 0 0 2 1.5h9.8a2 2 0 0 0 2-1.6L22 8H5"/>
+                    <path d="M8 11h11"/>
+                    <path d="M10 8v7"/>
+                    <path d="M15 8v7"/>
                 </svg>
-
 
                 <span id="cartCount">
                     {{ collect(session('keranjang', []))->sum('jumlah') }}
@@ -118,187 +89,137 @@
     </header>
 
 
-    {{-- =========================================================
-        CONTENT
-    ========================================================== --}}
-
+    {{-- CONTENT --}}
     <div class="menu-container">
 
-
-        {{-- =====================================================
-            SIDEBAR
-        ====================================================== --}}
-
+        {{-- SIDEBAR --}}
         <aside class="category-sidebar">
 
             <div class="sidebar-title">
-
-                <span>
-                    SMART CAFE
-                </span>
-
-                <h2>
-                    Kategori
-                </h2>
-
+                <span>SMART CAFE</span>
+                <h2>Kategori</h2>
             </div>
 
-
             {{-- SEMUA MENU --}}
-
             <a
                 href="{{ route('menu.index') }}"
                 class="category-item {{ !request('kategori') ? 'active' : '' }}"
-                title="Semua Menu"
-            >
+                title="Semua Menu">
 
                 <span class="category-icon">
-
-                    <svg
-                        viewBox="0 0 24 24"
+                    <svg viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="1.8"
                         stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                        stroke-linejoin="round">
+
                         <path d="M3 10.5L12 3l9 7.5"></path>
-
                         <path d="M5.5 9.5V21h13V9.5"></path>
-
                         <path d="M9.5 21v-6h5v6"></path>
                     </svg>
-
                 </span>
 
-                <span>
-                    Semua Menu
-                </span>
-
+                <span>Semua Menu</span>
             </a>
 
 
             {{-- KATEGORI --}}
-
             @foreach($kategoris as $kategori)
 
                 <a
                     href="{{ route('menu.index', ['kategori' => $kategori->kategori_id]) }}"
                     class="category-item {{ request('kategori') == $kategori->kategori_id ? 'active' : '' }}"
-                    title="{{ $kategori->nama_kategori }}"
-                >
+                    title="{{ $kategori->nama_kategori }}">
 
                     <span class="category-icon">
 
                         @if($kategori->nama_kategori == 'Coffee')
 
-                            <svg
-                                viewBox="0 0 24 24"
+                            <svg viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
+                                stroke-linejoin="round">
+
                                 <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
-
                                 <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-
                                 <path d="M7 5c0 1 1 1 1 2"></path>
-
                                 <path d="M11 4c0 1 1 1 1 2"></path>
                             </svg>
 
                         @elseif($kategori->nama_kategori == 'Non Coffee')
 
-                            <svg
-                                viewBox="0 0 24 24"
+                            <svg viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
+                                stroke-linejoin="round">
+
                                 <path d="M7 5h10"></path>
-
                                 <path d="M8 5l1 15h6l1-15"></path>
-
                                 <path d="M9 9h6"></path>
-
                                 <path d="M10 3h4"></path>
                             </svg>
 
                         @elseif($kategori->nama_kategori == 'Snack')
 
-                            <svg
-                                viewBox="0 0 24 24"
+                            <svg viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
+                                stroke-linejoin="round">
+
                                 <path d="M5 8h14"></path>
-
                                 <path d="M6 8l1.5 11h9L18 8"></path>
-
                                 <path d="M9 5v2"></path>
-
                                 <path d="M12 4v3"></path>
-
                                 <path d="M15 5v2"></path>
                             </svg>
 
                         @elseif($kategori->nama_kategori == 'Makanan')
 
-                            <svg
-                                viewBox="0 0 24 24"
+                            <svg viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
+                                stroke-linejoin="round">
+
                                 <path d="M4 12h16"></path>
-
                                 <path d="M5 12a7 7 0 0 0 14 0"></path>
-
                                 <path d="M7 16h10"></path>
-
                                 <path d="M12 5v2"></path>
                             </svg>
 
                         @elseif($kategori->nama_kategori == 'Dessert')
 
-                            <svg
-                                viewBox="0 0 24 24"
+                            <svg viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
+                                stroke-linejoin="round">
+
                                 <path d="M5 10h14"></path>
-
                                 <path d="M6 10c0 5 2 8 6 8s6-3 6-8"></path>
-
                                 <path d="M8 7c1-2 2-3 4-3s3 1 4 3"></path>
-
                                 <path d="M9 18h6"></path>
                             </svg>
 
                         @else
 
-                            <svg
-                                viewBox="0 0 24 24"
+                            <svg viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="1.8"
                                 stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <circle cx="12" cy="12" r="8"></circle>
+                                stroke-linejoin="round">
 
+                                <circle cx="12" cy="12" r="8"></circle>
                                 <path d="M12 8v4l3 2"></path>
                             </svg>
 
@@ -306,10 +227,7 @@
 
                     </span>
 
-
-                    <span>
-                        {{ $kategori->nama_kategori }}
-                    </span>
+                    <span>{{ $kategori->nama_kategori }}</span>
 
                 </a>
 
@@ -318,110 +236,159 @@
         </aside>
 
 
-        {{-- =====================================================
-            MAIN MENU
-        ====================================================== --}}
-
+        {{-- MAIN MENU --}}
         <main class="menu-main">
 
             <div class="menu-heading">
 
                 <div>
+                    <span class="small-label">SMART CAFE</span>
 
-                    <span class="small-label">
-                        SMART CAFE
-                    </span>
-
-                    <h2>
-                        Mau pesan apa hari ini?
-                    </h2>
+                    <h2>Mau pesan apa hari ini?</h2>
 
                     <p>
                         Pilih menu favorit kamu dan mulai memesan.
                     </p>
-
                 </div>
 
             </div>
 
 
             {{-- SEARCH --}}
-
             <form
                 action="{{ route('menu.index') }}"
                 method="GET"
-                class="search-form"
-            >
+                class="search-form">
 
                 @if(request('kategori'))
-
                     <input
                         type="hidden"
                         name="kategori"
-                        value="{{ request('kategori') }}"
-                    >
-
+                        value="{{ request('kategori') }}">
                 @endif
-
 
                 <div class="search-input-wrapper">
 
                     <span class="search-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
+                        <svg viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
                             stroke-width="2"
                             stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <circle cx="11" cy="11" r="7"></circle>
+                            stroke-linejoin="round">
 
+                            <circle cx="11" cy="11" r="7"></circle>
                             <path d="M20 20l-4-4"></path>
                         </svg>
-
                     </span>
-
 
                     <input
                         type="text"
                         name="search"
                         value="{{ request('search') }}"
-                        placeholder="Cari makanan atau minuman..."
-                    >
+                        placeholder="Cari makanan atau minuman...">
 
                 </div>
 
-
-                <button type="submit">
-                    Cari
-                </button>
+                <button type="submit">Cari</button>
 
             </form>
 
 
-            {{-- MENU HEADER --}}
+            {{-- REKOMENDASI MENU TERLARIS --}}
+            @if($rekomendasi->count() > 0)
 
+                <section class="top-recommendation">
+
+                    <div class="top-recommendation-heading">
+
+                        <div>
+                            <span class="small-label">PILIHAN PELANGGAN</span>
+
+                            <h3>Menu Terlaris</h3>
+
+                            <p>
+                                Menu yang paling banyak dipesan pelanggan.
+                            </p>
+                        </div>
+
+                        <span class="top-recommendation-star">
+                            ★ Terpopuler
+                        </span>
+
+                    </div>
+
+
+                    <div class="top-recommendation-grid">
+
+                        @foreach($rekomendasi as $recommendation)
+
+                            <a
+                                href="{{ route('menu.show', $recommendation->menu_id) }}"
+                                class="top-recommendation-card">
+
+                                <div class="top-recommendation-image">
+
+                                    @if($recommendation->gambar)
+
+                                        <img
+                                            src="{{ asset('images/menu/' . $recommendation->gambar) }}"
+                                            alt="{{ $recommendation->nama_menu }}">
+
+                                    @else
+
+                                        <div class="top-recommendation-placeholder">
+                                            <span>Menu</span>
+                                        </div>
+
+                                    @endif
+
+                                    <span class="best-seller-badge">
+                                        ★ Terlaris
+                                    </span>
+
+                                </div>
+
+
+                                <div class="top-recommendation-info">
+
+                                    <h4>
+                                        {{ $recommendation->nama_menu }}
+                                    </h4>
+
+                                    <span class="top-recommendation-price">
+                                        Rp {{ number_format($recommendation->harga, 0, ',', '.') }}
+                                    </span>
+
+                                    <small>
+                                        {{ $recommendation->terjual }} kali dipesan
+                                    </small>
+
+                                </div>
+
+                            </a>
+
+                        @endforeach
+
+                    </div>
+
+                </section>
+
+            @endif
+
+
+            {{-- MENU HEADER --}}
             <div class="menu-list-header">
 
                 <div>
-
-                    <h3>
-                        Daftar Menu
-                    </h3>
-
-                    <p>
-                        {{ $menus->count() }} menu tersedia
-                    </p>
-
+                    <h3>Daftar Menu</h3>
+                    <p>{{ $menus->count() }} menu tersedia</p>
                 </div>
 
             </div>
 
 
             {{-- MENU GRID --}}
-
             @if($menus->count() > 0)
 
                 <div class="menu-grid">
@@ -436,15 +403,12 @@
                             data-menu-description="{{ $menu->deskripsi ?? 'Menu pilihan Smart Cafe untuk menemani hari kamu.' }}"
                             data-menu-stock="{{ $menu->stok }}"
                             data-menu-category="{{ $menu->kategori->nama_kategori ?? 'Menu' }}"
-                            data-menu-image="{{ $menu->gambar ? asset('images/menu/' . $menu->gambar) : '' }}"
-                        >
+                            data-menu-image="{{ $menu->gambar ? asset('images/menu/' . $menu->gambar) : '' }}">
 
+                            {{-- FOTO MENU: MENUJU DETAIL --}}
                             <a
                                 href="{{ route('menu.show', $menu->menu_id) }}"
-                                class="menu-detail-link"
-                            >
-
-                                {{-- FOTO --}}
+                                class="menu-photo-link">
 
                                 <div class="menu-photo">
 
@@ -453,24 +417,20 @@
                                         <img
                                             src="{{ asset('images/menu/' . $menu->gambar) }}"
                                             alt="{{ $menu->nama_menu }}"
-                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                        >
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
 
                                         <div
                                             class="photo-placeholder"
-                                            style="display:none;"
-                                        >
+                                            style="display:none;">
 
-                                            <svg
-                                                viewBox="0 0 24 24"
+                                            <svg viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 stroke-width="1.5"
                                                 stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            >
-                                                <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
+                                                stroke-linejoin="round">
 
+                                                <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
                                                 <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
                                             </svg>
 
@@ -480,16 +440,14 @@
 
                                         <div class="photo-placeholder">
 
-                                            <svg
-                                                viewBox="0 0 24 24"
+                                            <svg viewBox="0 0 24 24"
                                                 fill="none"
                                                 stroke="currentColor"
                                                 stroke-width="1.5"
                                                 stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            >
-                                                <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
+                                                stroke-linejoin="round">
 
+                                                <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
                                                 <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
                                             </svg>
 
@@ -497,85 +455,73 @@
 
                                     @endif
 
-
                                     <span class="category-badge">
                                         {{ $menu->kategori->nama_kategori ?? 'Menu' }}
                                     </span>
 
                                 </div>
 
+                            </a>
 
-                                {{-- CONTENT --}}
 
-                                <div class="menu-card-content">
+                            {{-- INFORMASI MENU --}}
+                            <div class="menu-card-content">
+
+                                {{-- NAMA DAN DESKRIPSI: MENUJU DETAIL --}}
+                                <a
+                                    href="{{ route('menu.show', $menu->menu_id) }}"
+                                    class="menu-detail-link">
 
                                     <h4>
                                         {{ $menu->nama_menu }}
                                     </h4>
 
+                                    <p class="menu-description">
+                                        {{ $menu->deskripsi ?? 'Menu pilihan Smart Cafe untuk menemani hari kamu.' }}
+                                    </p>
 
-                                    @if($menu->deskripsi)
-
-                                        <p class="menu-description">
-                                            {{ $menu->deskripsi }}
-                                        </p>
-
-                                    @else
-
-                                        <p class="menu-description">
-                                            Menu pilihan Smart Cafe untuk menemani hari kamu.
-                                        </p>
-
-                                    @endif
+                                </a>
 
 
-                                    <div class="menu-card-bottom">
+                                {{-- HARGA DAN TOMBOL PESAN --}}
+                                <div class="menu-card-bottom">
 
-                                        <div class="price-area">
+                                    <div class="price-area">
 
-                                            <span class="price">
-                                                Rp {{ number_format($menu->harga, 0, ',', '.') }}
-                                            </span>
+                                        <span class="price">
+                                            Rp {{ number_format($menu->harga, 0, ',', '.') }}
+                                        </span>
 
-                                            <small>
-                                                Stok {{ $menu->stok }}
-                                            </small>
-
-                                        </div>
-
-
-                                        <button
-                                            type="button"
-                                            class="order-button"
-                                            data-menu-id="{{ $menu->menu_id }}"
-                                        >
-
-                                            <svg
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="1.8"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                            >
-                                                <circle cx="9" cy="20" r="1"></circle>
-
-                                                <circle cx="19" cy="20" r="1"></circle>
-
-                                                <path d="M3 4h2l2.5 11h10L20 7H6"></path>
-                                            </svg>
-
-                                            <span>
-                                                Pesan Sekarang
-                                            </span>
-
-                                        </button>
+                                        <small>
+                                            Stok {{ $menu->stok }}
+                                        </small>
 
                                     </div>
 
+                                    <button
+                                        type="button"
+                                        class="order-button"
+                                        data-menu-id="{{ $menu->menu_id }}">
+
+                                        <svg viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.8"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round">
+
+                                            <circle cx="9" cy="20" r="1"></circle>
+                                            <circle cx="19" cy="20" r="1"></circle>
+                                            <path d="M3 4h2l2.5 11h10L20 7H6"></path>
+                                        </svg>
+
+                                        <span>Pesan Sekarang</span>
+
+                                    </button>
+
                                 </div>
 
-                            </a>
+                            </div>
 
                         </div>
 
@@ -588,25 +534,19 @@
                 <div class="empty-menu">
 
                     <div class="empty-icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
+                        <svg viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
                             stroke-width="1.5"
                             stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <circle cx="12" cy="12" r="8"></circle>
+                            stroke-linejoin="round">
 
+                            <circle cx="12" cy="12" r="8"></circle>
                             <path d="M8 12h8"></path>
                         </svg>
-
                     </div>
 
-                    <h3>
-                        Menu tidak ditemukan
-                    </h3>
+                    <h3>Menu tidak ditemukan</h3>
 
                     <p>
                         Coba gunakan kata pencarian atau kategori lain.
@@ -623,64 +563,47 @@
 </div>
 
 
-{{-- ============================================================
-    MODAL DETAIL MENU
-============================================================= --}}
+{{-- MODAL DETAIL MENU --}}
+<div class="menu-detail-overlay" id="menuDetailOverlay">
 
-<div
-    class="menu-detail-overlay"
-    id="menuDetailOverlay"
->
-
-    <div
-        class="menu-detail-modal"
-        id="menuDetailModal"
-    >
+    <div class="menu-detail-modal" id="menuDetailModal">
 
         <button
             type="button"
             class="detail-close"
-            id="detailClose"
-        >
+            id="detailClose">
             ×
         </button>
 
 
         {{-- FOTO DETAIL --}}
-
         <div class="detail-image-area">
 
             <img
                 src=""
                 alt=""
-                id="detailImage"
-            >
+                id="detailImage">
 
             <div
                 class="detail-image-placeholder"
-                id="detailImagePlaceholder"
-            >
+                id="detailImagePlaceholder">
 
-                <svg
-                    viewBox="0 0 24 24"
+                <svg viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="1.5"
                     stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
+                    stroke-linejoin="round">
 
+                    <path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9Z"></path>
                     <path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"></path>
                 </svg>
 
             </div>
 
-
             <span
                 class="detail-category"
-                id="detailCategory"
-            >
+                id="detailCategory">
                 Coffee
             </span>
 
@@ -688,31 +611,19 @@
 
 
         {{-- DETAIL CONTENT --}}
-
         <div class="detail-content">
 
             <div class="detail-heading">
 
                 <div>
+                    <h2 id="detailName">Cafe Latte</h2>
 
-                    <h2 id="detailName">
-                        Cafe Latte
-                    </h2>
-
-                    <p
-                        class="detail-price"
-                        id="detailPrice"
-                    >
+                    <p class="detail-price" id="detailPrice">
                         Rp25.000
                     </p>
-
                 </div>
 
-
-                <div
-                    class="detail-stock"
-                    id="detailStock"
-                >
+                <div class="detail-stock" id="detailStock">
                     Stok 10
                 </div>
 
@@ -721,33 +632,27 @@
 
             <p
                 class="detail-description"
-                id="detailDescription"
-            >
+                id="detailDescription">
                 Espresso dengan susu segar.
             </p>
 
 
             {{-- PILIHAN --}}
-
             <div class="detail-section">
 
-                <h4>
-                    Pilihan
-                </h4>
+                <h4>Pilihan</h4>
 
                 <div class="detail-options">
 
                     <button
                         type="button"
-                        class="detail-option active"
-                    >
+                        class="detail-option active">
                         Normal
                     </button>
 
                     <button
                         type="button"
-                        class="detail-option"
-                    >
+                        class="detail-option">
                         Less Sugar
                     </button>
 
@@ -757,35 +662,21 @@
 
 
             {{-- JUMLAH --}}
-
             <div class="detail-section">
 
                 <div class="detail-row-title">
-
-                    <h4>
-                        Jumlah
-                    </h4>
-
+                    <h4>Jumlah</h4>
                 </div>
-
 
                 <div class="quantity-control">
 
-                    <button
-                        type="button"
-                        id="quantityMinus"
-                    >
+                    <button type="button" id="quantityMinus">
                         −
                     </button>
 
-                    <span id="quantityValue">
-                        1
-                    </span>
+                    <span id="quantityValue">1</span>
 
-                    <button
-                        type="button"
-                        id="quantityPlus"
-                    >
+                    <button type="button" id="quantityPlus">
                         +
                     </button>
 
@@ -795,35 +686,27 @@
 
 
             {{-- CATATAN --}}
-
             <div class="detail-section">
 
                 <h4>
                     Catatan
-                    <span>
-                        (opsional)
-                    </span>
+                    <span>(opsional)</span>
                 </h4>
 
                 <textarea
                     id="detailNote"
-                    placeholder="Contoh: less ice, tanpa gula, dll."
-                ></textarea>
+                    placeholder="Contoh: less ice, tanpa gula, dll."></textarea>
 
             </div>
 
 
-            {{-- BUTTON --}}
-
+            {{-- BUTTON DETAIL --}}
             <button
                 type="button"
                 class="detail-order-button"
-                id="detailOrderButton"
-            >
+                id="detailOrderButton">
 
-                <span>
-                    Pesan Sekarang
-                </span>
+                <span>Pesan Sekarang</span>
 
                 <strong id="detailTotal">
                     Rp25.000
@@ -835,46 +718,39 @@
 
 
         {{-- REKOMENDASI --}}
-
         <div class="recommendation-section">
 
             <div class="recommendation-title">
 
-                {{-- IKON BINTANG --}}
                 <span class="recommendation-icon">
 
-                    <svg
-                        viewBox="0 0 24 24"
+                    <svg viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         stroke-width="1.7"
                         stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                        stroke-linejoin="round">
+
                         <path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8L12 3Z"></path>
-
                         <path d="M19 15v4"></path>
-
                         <path d="M17 17h4"></path>
                     </svg>
 
                 </span>
 
-                <h3>
-                    Mungkin kamu juga suka
-                </h3>
+                <h3>Mungkin kamu juga suka</h3>
 
             </div>
 
 
             <div class="recommendation-grid">
 
-                @foreach($menus->take(3) as $recommendation)
+                {{-- MENGGUNAKAN REKOMENDASI MENU TERLARIS --}}
+                @foreach($rekomendasi->take(3) as $recommendation)
 
                     <div
                         class="recommendation-card"
-                        data-menu-id="{{ $recommendation->menu_id }}"
-                    >
+                        data-menu-id="{{ $recommendation->menu_id }}">
 
                         <div class="recommendation-image">
 
@@ -882,34 +758,32 @@
 
                                 <img
                                     src="{{ asset('images/menu/' . $recommendation->gambar) }}"
-                                    alt="{{ $recommendation->nama_menu }}"
-                                >
+                                    alt="{{ $recommendation->nama_menu }}">
 
                             @else
 
-                                {{-- IKON CANGKIR --}}
                                 <div class="recommendation-placeholder">
 
-                                    <svg
-                                        viewBox="0 0 24 24"
+                                    <svg viewBox="0 0 24 24"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="1.7"
                                         stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
+                                        stroke-linejoin="round">
+
                                         <path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Z"></path>
-
                                         <path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path>
-
                                         <path d="M8 4c0 1 1 1 1 2"></path>
-
                                         <path d="M12 3c0 1 1 1 1 2"></path>
                                     </svg>
 
                                 </div>
 
                             @endif
+
+                            <span class="best-seller-badge">
+                                ★ Terlaris
+                            </span>
 
                         </div>
 
@@ -924,12 +798,14 @@
                                 Rp {{ number_format($recommendation->harga, 0, ',', '.') }}
                             </span>
 
+                            <small>
+                                {{ $recommendation->terjual }} kali dipesan
+                            </small>
 
                             <button
                                 type="button"
                                 class="recommendation-button"
-                                data-menu-id="{{ $recommendation->menu_id }}"
-                            >
+                                data-menu-id="{{ $recommendation->menu_id }}">
                                 Pesan
                             </button>
 

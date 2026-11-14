@@ -30,7 +30,6 @@
             </a>
         </header>
 
-
         <!-- HERO -->
         <section class="welcome-section">
 
@@ -59,7 +58,6 @@
 
         </section>
 
-
         <!-- FORM PELANGGAN -->
         <section class="customer-form-section">
 
@@ -78,6 +76,7 @@
                         </p>
                     </div>
 
+                    <!-- PESAN SUKSES -->
                     @if(session('success'))
                         <div class="success-message">
                             <i class="fa-solid fa-circle-check"></i>
@@ -85,6 +84,7 @@
                         </div>
                     @endif
 
+                    <!-- FORM -->
                     <form
                         action="{{ route('pelanggan.mulai') }}"
                         method="POST"
@@ -122,7 +122,6 @@
 
                         </div>
 
-
                         <!-- NOMOR MEJA -->
                         <div class="form-group">
 
@@ -131,7 +130,7 @@
                             </label>
 
                             <p class="field-description">
-                                Silakan pilih nomor meja Anda.
+                                Silakan pilih nomor meja yang masih tersedia.
                             </p>
 
                             <div class="input-wrapper select-wrapper">
@@ -141,21 +140,18 @@
                                     id="nomor_meja"
                                     name="nomor_meja"
                                     required
+                                    {{ $mejas->isEmpty() ? 'disabled' : '' }}
                                 >
                                     <option value="">
                                         Pilih Nomor Meja
                                     </option>
 
-                                    @foreach(range(1, 25) as $nomor)
-                                        @php
-                                            $meja = 'A' . str_pad($nomor, 2, '0', STR_PAD_LEFT);
-                                        @endphp
-
+                                    @foreach($mejas as $meja)
                                         <option
-                                            value="{{ $meja }}"
-                                            {{ old('nomor_meja') == $meja ? 'selected' : '' }}
+                                            value="{{ $meja->nomor_meja }}"
+                                            {{ old('nomor_meja') == $meja->nomor_meja ? 'selected' : '' }}
                                         >
-                                            Meja {{ $meja }}
+                                            Meja {{ $meja->nomor_meja }}
                                         </option>
                                     @endforeach
 
@@ -163,6 +159,15 @@
 
                                 <i class="fa-solid fa-chevron-down select-arrow"></i>
                             </div>
+
+                            <!-- PESAN JIKA TIDAK ADA MEJA -->
+                            @if($mejas->isEmpty())
+                                <p class="field-description">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    Maaf, semua meja sedang digunakan.
+                                    Silakan hubungi admin untuk informasi lebih lanjut.
+                                </p>
+                            @endif
 
                             @error('nomor_meja')
                                 <small class="error-message">
@@ -172,12 +177,12 @@
 
                         </div>
 
-
                         <!-- TOMBOL MULAI MEMESAN -->
                         <button
                             type="submit"
                             class="order-button"
                             id="orderButton"
+                            {{ $mejas->isEmpty() ? 'disabled' : '' }}
                         >
                             <span>Mulai Memesan</span>
                             <i class="fa-solid fa-arrow-right button-arrow"></i>
@@ -191,7 +196,6 @@
 
         </section>
 
-
         <!-- FOOTER -->
         <footer class="customer-footer">
             <span></span>
@@ -200,7 +204,6 @@
         </footer>
 
     </main>
-
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('js/pelanggan.js') }}"></script>

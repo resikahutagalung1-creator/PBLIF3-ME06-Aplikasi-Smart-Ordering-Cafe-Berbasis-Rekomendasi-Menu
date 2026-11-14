@@ -14,9 +14,7 @@ use App\Models\Pembayaran;
 class PesananController extends Controller
 {
     /**
-     * =========================================================
      * TAMBAH MENU KE KERANJANG
-     * =========================================================
      */
     public function tambahKeranjang(Request $request)
     {
@@ -37,6 +35,13 @@ class PesananController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Menu sedang tidak tersedia.'
+            ], 422);
+        }
+
+        if ($menu->stok <= 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Stok menu sudah habis.'
             ], 422);
         }
 
@@ -99,9 +104,7 @@ class PesananController extends Controller
 
 
     /**
-     * =========================================================
      * HALAMAN RINGKASAN PESANAN
-     * =========================================================
      */
     public function ringkasan()
     {
@@ -124,9 +127,7 @@ class PesananController extends Controller
 
 
     /**
-     * =========================================================
      * HALAMAN PEMBAYARAN
-     * =========================================================
      */
     public function pembayaran()
     {
@@ -165,9 +166,7 @@ class PesananController extends Controller
 
 
     /**
-     * =========================================================
      * KONFIRMASI DAN SIMPAN PESANAN
-     * =========================================================
      */
     public function konfirmasi(Request $request)
     {
@@ -221,9 +220,7 @@ class PesananController extends Controller
                 $subtotal = 0;
 
                 /*
-                 * Periksa menu dan stok terbaru.
-                 * lockForUpdate mencegah stok yang sama
-                 * digunakan bersamaan oleh transaksi lain.
+                 * PERIKSA MENU DAN STOK TERBARU
                  */
                 foreach ($keranjang as $item) {
 
@@ -267,14 +264,14 @@ class PesananController extends Controller
                 }
 
                 /*
-                 * Hitung pajak dan total.
+                 * HITUNG PAJAK DAN TOTAL
                  */
                 $subtotal = round($subtotal, 2);
                 $pajak = round($subtotal * 0.10, 2);
                 $total = $subtotal + $pajak;
 
                 /*
-                 * Buat nomor pesanan unik.
+                 * BUAT NOMOR PESANAN UNIK
                  */
                 do {
                     $nomorPesanan =
@@ -290,7 +287,7 @@ class PesananController extends Controller
                 );
 
                 /*
-                 * SIMPAN PESANAN
+                 * SIMPAN DATA PESANAN
                  */
                 $pesanan = Pesanan::create([
                     'nomor_pesanan' => $nomorPesanan,
@@ -304,10 +301,11 @@ class PesananController extends Controller
 
                 /*
                  * SIMPAN DETAIL PESANAN
-                 * DAN KURANGI STOK MENU
+                 * DAN PERBARUI STOK SERTA JUMLAH TERJUAL
                  */
                 foreach ($daftarMenu as $item) {
 
+                    // Simpan detail pesanan
                     DetailPesanan::create([
                         'pesanan_id' => $pesanan->pesanan_id,
                         'menu_id' => $item['menu']->menu_id,
@@ -317,30 +315,34 @@ class PesananController extends Controller
                         'catatan' => null,
                     ]);
 
+                    // Ambil data menu
                     $menu = $item['menu'];
 
-                    $stokBaru =
-                        $menu->stok - $item['jumlah'];
+                    // Kurangi stok sesuai jumlah pesanan
+                    $stokBaru = $menu->stok - $item['jumlah'];
 
-                    $menu->stok = $stokBaru;
-
+                    // Tambahkan jumlah menu yang berhasil terjual
                     $menu->terjual =
                         (int) $menu->terjual + $item['jumlah'];
 
+                    // Perbarui stok menu
+                    $menu->stok = $stokBaru;
+
+                    // Ubah status jika stok habis
                     if ($stokBaru <= 0) {
                         $menu->status = 'habis';
                     }
 
+                    // Simpan perubahan menu
                     $menu->save();
                 }
 
                 /*
-                 * SIMPAN PEMBAYARAN
+                 * SIMPAN DATA PEMBAYARAN
                  */
                 Pembayaran::create([
                     'pesanan_id' => $pesanan->pesanan_id,
 
-                    // Sesuaikan nilai dengan enum database.
                     'metode' => $request->payment_method === 'qris'
                         ? 'QRIS'
                         : 'Tunai',
@@ -366,8 +368,7 @@ class PesananController extends Controller
             });
 
             /*
-             * Keranjang hanya dikosongkan
-             * setelah transaksi berhasil disimpan.
+             * KOSONGKAN KERANJANG SETELAH TRANSAKSI BERHASIL
              */
             session()->forget('keranjang');
 
@@ -400,9 +401,7 @@ class PesananController extends Controller
 
 
     /**
-     * =========================================================
      * HALAMAN RINCIAN PESANAN PELANGGAN
-     * =========================================================
      */
     public function rincian($id)
     {
@@ -419,9 +418,9 @@ class PesananController extends Controller
             'detailPesanan.menu',
             'pembayaran',
         ])
-        ->where('pesanan_id', $id)
-        ->where('pelanggan_id', $pelangganId)
-        ->firstOrFail();
+            ->where('pesanan_id', $id)
+            ->where('pelanggan_id', $pelangganId)
+            ->firstOrFail();
 
         return view(
             'pesanan.rincian',
@@ -431,9 +430,7 @@ class PesananController extends Controller
 
 
     /**
-     * =========================================================
-     * UPDATE JUMLAH ITEM
-     * =========================================================
+     * UPDATE JUMLAH ITEM DI KERANJANG
      */
     public function updateKeranjang(Request $request)
     {
@@ -444,8 +441,9 @@ class PesananController extends Controller
 
         if (!isset($keranjang[$index])) {
             return response()->json([
-                'success' => false
-            ]);
+                'success' => false,
+                'message' => 'Item keranjang tidak ditemukan.'
+            ], 404);
         }
 
         if ($action === 'plus') {
@@ -464,9 +462,8 @@ class PesananController extends Controller
             }
 
             $keranjang[$index]['jumlah']++;
-        }
 
-        if ($action === 'minus') {
+        } elseif ($action === 'minus') {
 
             $keranjang[$index]['jumlah']--;
 
@@ -475,6 +472,13 @@ class PesananController extends Controller
 
                 $keranjang = array_values($keranjang);
             }
+
+        } else {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Aksi tidak valid.'
+            ], 422);
         }
 
         session([
@@ -488,9 +492,7 @@ class PesananController extends Controller
 
 
     /**
-     * =========================================================
      * KOSONGKAN KERANJANG
-     * =========================================================
      */
     public function kosongkanKeranjang()
     {

@@ -83,6 +83,13 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
 
+        // KELOLA MEJA
+Route::get('/admin/meja', [AdminController::class, 'kelolaMeja'])
+    ->name('admin.meja');
+
+Route::patch('/admin/meja/{id}/tersedia', [AdminController::class, 'tersediaKembali'])
+    ->name('admin.meja.tersedia');
+
 });
 
 

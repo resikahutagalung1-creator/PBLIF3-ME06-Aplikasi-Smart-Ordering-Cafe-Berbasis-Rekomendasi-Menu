@@ -8,20 +8,14 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | HALAMAN MENU
-    |--------------------------------------------------------------------------
-    */
-
     public function index(Request $request)
     {
-        // Ambil kategori yang aktif
+        // Ambil kategori aktif
         $kategoris = Kategori::where('status', 'aktif')
             ->orderBy('kategori_id')
             ->get();
 
-        // Ambil menu yang masih ditampilkan kepada pelanggan
+        // Query daftar menu
         $query = Menu::with('kategori')
             ->whereIn('status', ['tersedia', 'habis'])
             ->whereHas('kategori', function ($q) {
@@ -37,27 +31,40 @@ class MenuController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
 
-            $query->where('nama_menu', 'like', '%' . $search . '%');
+            $query->where(
+                'nama_menu',
+                'like',
+                '%' . $search . '%'
+            );
         }
 
-        // Ambil daftar menu
+        // Daftar menu
         $menus = $query
             ->orderBy('menu_id')
             ->get();
 
-        return view('menu', compact('menus', 'kategoris'));
+        // Rekomendasi 5 menu terpopuler
+        $rekomendasi = Menu::with('kategori')
+            ->where('status', 'tersedia')
+            ->where('stok', '>', 0)
+            ->where('terjual', '>', 0)
+            ->whereHas('kategori', function ($q) {
+                $q->where('status', 'aktif');
+            })
+            ->orderByDesc('terjual')
+            ->orderBy('menu_id')
+            ->limit(5)
+            ->get();
+
+        return view(
+            'menu',
+            compact('menus', 'kategoris', 'rekomendasi')
+        );
     }
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | DETAIL MENU
-    |--------------------------------------------------------------------------
-    */
 
     public function show($id)
     {
-        // Cari menu yang tidak berstatus nonaktif
+        // Ambil detail menu
         $menu = Menu::with('kategori')
             ->where('menu_id', $id)
             ->whereIn('status', ['tersedia', 'habis'])
@@ -66,19 +73,24 @@ class MenuController extends Controller
             })
             ->firstOrFail();
 
-        // Ambil rekomendasi dari kategori yang sama
+        // Rekomendasi dari kategori yang sama
         $rekomendasi = Menu::with('kategori')
             ->where('kategori_id', $menu->kategori_id)
             ->where('menu_id', '!=', $menu->menu_id)
             ->where('status', 'tersedia')
             ->where('stok', '>', 0)
+            ->where('terjual', '>', 0)
             ->whereHas('kategori', function ($q) {
                 $q->where('status', 'aktif');
             })
+            ->orderByDesc('terjual')
             ->orderBy('menu_id')
             ->limit(3)
             ->get();
 
-        return view('menu-detail', compact('menu', 'rekomendasi'));
+        return view(
+            'menu-detail',
+            compact('menu', 'rekomendasi')
+        );
     }
 }

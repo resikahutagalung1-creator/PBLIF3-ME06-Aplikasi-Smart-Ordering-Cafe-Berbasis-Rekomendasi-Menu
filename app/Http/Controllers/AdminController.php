@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Meja;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,10 @@ class AdminController extends Controller
             ->first();
 
         if (!$user || $user->password !== $request->password) {
-            return back()->with('error', 'Username atau password admin salah.');
+            return back()->with(
+                'error',
+                'Username atau password admin salah.'
+            );
         }
 
         session([
@@ -28,8 +32,31 @@ class AdminController extends Controller
 
         return redirect('/admin/dashboard');
     }
+
     public function dashboard()
     {
-    return view('admin.dashboard');
+        return view('admin.dashboard');
+    }
+
+    // Menampilkan daftar meja
+    public function kelolaMeja()
+    {
+        $mejas = Meja::orderBy('nomor_meja')->get();
+
+        return view('admin.meja', compact('mejas'));
+    }
+
+    // Membuka kembali meja yang sudah digunakan
+    public function tersediaKembali($id)
+    {
+        $meja = Meja::findOrFail($id);
+
+        $meja->update([
+            'status' => 'tersedia',
+        ]);
+
+        return redirect()
+            ->route('admin.meja')
+            ->with('success', 'Meja ' . $meja->nomor_meja . ' berhasil tersedia kembali.');
     }
 }
