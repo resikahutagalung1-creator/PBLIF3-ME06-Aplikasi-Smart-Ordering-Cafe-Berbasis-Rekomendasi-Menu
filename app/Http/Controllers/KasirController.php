@@ -97,14 +97,23 @@ class KasirController extends Controller
         return view('kasir.detail', compact('pesanan'));
     }
     public function terimaPesanan($id)
-    {
-    $pesanan = Pesanan::findOrFail($id);
+{
+    $berhasil = Pesanan::where('pesanan_id', $id)
+        ->where('status', 'Menunggu')
+        ->update([
+            'status' => 'Diproses',
+            'kasir_id' => session('kasir_id'),
+        ]);
 
-    $pesanan->status = 'Diproses';
-    $pesanan->save();
-
-    return redirect('/kasir/proses');
+    if ($berhasil) {
+        return redirect('/kasir/proses')
+            ->with('success', 'Pesanan berhasil diterima dan sedang diproses.');
     }
+
+    return redirect('/kasir/pesanan-masuk')
+        ->with('error', 'Pesanan sudah diterima atau tidak ditemukan.');
+}
+
 
     public function batalkanPesanan($id)
     {

@@ -160,7 +160,17 @@
                 <h1>
                     Pesanan Masuk
                 </h1>
+                @if (session('success'))
+    <div class="alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
+@if (session('error'))
+    <div class="alert-error">
+        {{ session('error') }}
+    </div>
+@endif
                 <p>
                     Daftar pesanan baru yang menunggu untuk diproses.
                 </p>
@@ -296,22 +306,25 @@
 
                                     </td>
 
-                                    <td>
+                                   <td>
+                                    <div class="aksi-pesanan">
+                                        <form
+                                        action="/kasir/pesanan/terima/{{ $order->pesanan_id }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Terima pesanan ini?')"
+                                        >@csrf
+                                        <button type="submit" class="btn-terima">
+                                            ✓ Terima
+                                        </button>
+                                    </form>
+                                    <a
+                                    href="/kasir/detail/{{ $order->pesanan_id }}"
+                                    class="btn-detail"
+                                    >👁 Detail
+                                </a>
+                            </div>
+                        </td>
 
-                                        <a
-                                            href="/kasir/detail/{{ $order->pesanan_id }}"
-                                            class="btn-detail"
-                                        >
-
-                                            <span>
-                                                👁
-                                            </span>
-
-                                            Detail
-
-                                        </a>
-
-                                    </td>
 
                                 </tr>
 

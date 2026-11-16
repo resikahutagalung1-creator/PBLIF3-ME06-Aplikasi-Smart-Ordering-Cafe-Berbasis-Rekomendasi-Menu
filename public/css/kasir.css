@@ -1400,3 +1400,64 @@ body {
         font-size: 27px;
     }
 }
+
+
+/* =====================================================
+   AKSI PESANAN MASUK
+===================================================== */
+
+.aksi-pesanan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aksi-pesanan form {
+    margin: 0;
+}
+
+.btn-terima {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #198754;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.btn-terima:hover {
+    background: #157347;
+    transform: translateY(-1px);
+}
+
+.aksi-pesanan .btn-detail {
+    padding: 9px 15px;
+    white-space: nowrap;
+}
+
+/* NOTIFIKASI PESANAN */
+.alert-success {
+    padding: 13px 18px;
+    margin-bottom: 20px;
+    background: #D8F5E9;
+    color: #198754;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.alert-error {
+    padding: 13px 18px;
+    margin-bottom: 20px;
+    background: #FFE0E0;
+    color: #C62828;
+    border-radius: 8px;
+    font-size: 14px;
+}
