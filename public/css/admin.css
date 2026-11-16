@@ -1,3 +1,4 @@
+
 /* =====================================================
    RESET
 ===================================================== */
@@ -10,8 +11,8 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f3f8f5;
-    color: #145a3a;
+    background: #F8F4EF;
+    color: #3B2418;
 }
 
 
@@ -39,8 +40,8 @@ body {
 
     background: linear-gradient(
         180deg,
-        #145a3a,
-        #176b45
+        #3B2418,
+        #70452B
     );
 
     color: white;
@@ -70,7 +71,7 @@ body {
 
     border-radius: 50%;
 
-    background: #2f9a68;
+    background: #A87955;
 
     display: flex;
     align-items: center;
@@ -91,7 +92,7 @@ body {
 
     font-size: 12px;
 
-    color: #cde7da;
+    color: #EAD8C8;
 }
 
 
@@ -122,7 +123,7 @@ body {
 
     border-radius: 10px;
 
-    color: #dcefe5;
+    color: #F3E2D0;
 
     text-decoration: none;
 
@@ -132,13 +133,13 @@ body {
 }
 
 .sidebar-menu a:hover {
-    background: #238052;
+    background: #8A5B3C;
 
     color: white;
 }
 
 .sidebar-menu a.active {
-    background: #2f9a68;
+    background: #A87955;
 
     color: white;
 }
@@ -166,7 +167,7 @@ body {
     left: 40px;
     bottom: 25px;
 
-    color: #c7e0d2;
+    color: #EAD8C8;
 
     font-size: 14px;
 
@@ -183,7 +184,7 @@ body {
     width: 55px;
     height: 3px;
 
-    background: #9bd0b4;
+    background: #D7B89E;
 
     border-radius: 10px;
 
@@ -213,7 +214,7 @@ body {
 
     background: white;
 
-    border-bottom: 1px solid #e5eee9;
+    border-bottom: 1px solid #EDE3DA;
 
     display: flex;
 
@@ -236,7 +237,7 @@ body {
 
     gap: 10px;
 
-    color: #4d7095;
+    color: #806B5B;
 
     font-size: 15px;
 }
@@ -247,7 +248,7 @@ body {
 
     border-radius: 50%;
 
-    background: #e1efff;
+    background: #F3E2D0;
 
     display: flex;
 
@@ -300,7 +301,7 @@ body {
 .page-title h1 {
     margin-bottom: 8px;
 
-    color: #145a3a;
+    color: #3B2418;
 
     font-size: 28px;
 
@@ -310,7 +311,7 @@ body {
 .page-title p {
     margin-bottom: 12px;
 
-    color: #648675;
+    color: #806B5B;
 
     font-size: 15px;
 }
@@ -319,7 +320,7 @@ body {
     width: 68px;
     height: 4px;
 
-    background: #2f9a68;
+    background: #70452B;
 
     border-radius: 10px;
 }
@@ -356,7 +357,7 @@ body {
 
     box-shadow:
         0 5px 20px
-        rgba(27, 97, 65, 0.08);
+        rgba(59, 36, 24, 0.08);
 
     transition: 0.2s;
 }
@@ -366,7 +367,7 @@ body {
 
     box-shadow:
         0 8px 25px
-        rgba(27, 97, 65, 0.12);
+        rgba(59, 36, 24, 0.12);
 }
 
 
@@ -382,7 +383,9 @@ body {
 
     border-radius: 50%;
 
-    background: #dff3e8;
+    background: #F3E2D0;
+
+    color: #70452B;
 
     display: flex;
 
@@ -393,7 +396,7 @@ body {
 }
 
 .stat-icon-success {
-    background: #d7f2e4;
+    background: #DDF1E5;
 }
 
 .stat-content {
@@ -403,13 +406,13 @@ body {
 .stat-title {
     margin-bottom: 8px;
 
-    color: #648675;
+    color: #806B5B;
 
     font-size: 14px;
 }
 
 .stat-number {
-    color: #145a3a;
+    color: #3B2418;
 
     font-size: 30px;
 
@@ -417,7 +420,7 @@ body {
 }
 
 .stat-arrow {
-    color: #2f9a68;
+    color: #70452B;
 
     font-size: 25px;
 }
@@ -436,7 +439,7 @@ body {
 
     box-shadow:
         0 5px 20px
-        rgba(27, 97, 65, 0.08);
+        rgba(59, 36, 24, 0.08);
 }
 
 
@@ -468,9 +471,9 @@ body {
 
     border-radius: 10px;
 
-    background: #dff3e8;
+    background: #F3E2D0;
 
-    color: #248255;
+    color: #70452B;
 
     display: flex;
 
@@ -482,7 +485,7 @@ body {
 }
 
 .card-title {
-    color: #145a3a;
+    color: #3B2418;
 
     font-size: 23px;
 
@@ -507,21 +510,21 @@ body {
 
     padding: 22px;
 
-    background: #f3faf6;
+    background: #FCF8F4;
 
-    border: 1px solid #dceee4;
+    border: 1px solid #EEE5DD;
 
     border-radius: 12px;
 
     text-decoration: none;
 
-    color: #145a3a;
+    color: #3B2418;
 
     transition: 0.2s;
 }
 
 .admin-menu-card:hover {
-    background: #e6f5ec;
+    background: #F3E2D0;
 
     transform: translateY(-2px);
 }
@@ -545,7 +548,7 @@ body {
 
     line-height: 1.5;
 
-    color: #6b8477;
+    color: #806B5B;
 }
 
 
@@ -566,7 +569,7 @@ body {
 
     padding: 18px;
 
-    color: #6a8878;
+    color: #806B5B;
 
     font-size: 14px;
 
@@ -586,7 +589,7 @@ body {
 }
 
 .bottom-quote-text span:last-child {
-    color: #51806a;
+    color: #70452B;
 }
 
 

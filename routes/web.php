@@ -67,9 +67,14 @@ Route::get('/login', function (Request $request) {
 | PROSES LOGIN ADMIN
 |--------------------------------------------------------------------------
 */
-
+// LOGIN ADMIN
 Route::post('/login', [AdminController::class, 'login'])
     ->name('admin.login.process');
+// LOGOUT ADMIN
+Route::get('/admin/logout', function () {
+    session()->flush();
+    return redirect('/login');
+})->name('admin.logout');
 
 
 /*
