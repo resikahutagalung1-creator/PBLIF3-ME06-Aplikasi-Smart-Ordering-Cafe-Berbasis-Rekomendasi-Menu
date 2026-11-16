@@ -49,26 +49,59 @@ class KasirController extends Controller
     return view('kasir.transaksi', compact('pembayaran'));
 }
     public function dashboard()
-    {
-        // Mengambil jumlah pesanan berdasarkan status
-        $pesananBaru = Pesanan::where('status', 'Menunggu')->count();
+{
+    $hariIni = now()->toDateString();
 
-        $diproses = Pesanan::where('status', 'Diproses')->count();
+    $awalMinggu = now()->startOfWeek()->toDateString();
+    $akhirMinggu = now()->endOfWeek()->toDateString();
 
-        $selesai = Pesanan::where('status', 'Selesai')->count();
+    $pesananBaru = Pesanan::where('status', 'Menunggu')->count();
 
-        // Mengambil semua pesanan terbaru
-        $pesanan = Pesanan::with('pelanggan')
-            ->orderBy('tanggal_pesanan', 'desc')
-            ->get();
+    $diproses = Pesanan::where('status', 'Diproses')->count();
 
-        return view('kasir.dashboard', compact(
-            'pesananBaru',
-            'diproses',
-            'selesai',
-            'pesanan'
-        ));
+    $selesai = Pesanan::where('status', 'Selesai')
+        ->whereDate('tanggal_selesai', $hariIni)
+        ->count();
+    $totalPendapatanHariIni = Pesanan::where('status', 'Selesai')
+    ->whereDate('tanggal_selesai', $hariIni)
+    ->sum('total');
+    
+
+    $dataPenjualan = Pesanan::selectRaw(
+        'DATE(tanggal_selesai) as tanggal, SUM(total) as total'
+    )
+        ->where('status', 'Selesai')
+        ->whereNotNull('tanggal_selesai')
+        ->whereBetween(DB::raw('DATE(tanggal_selesai)'), [
+            $awalMinggu,
+            $akhirMinggu
+        ])
+        ->groupBy(DB::raw('DATE(tanggal_selesai)'))
+        ->orderBy('tanggal')
+        ->get();
+
+    $labelGrafik = [];
+    $nilaiGrafik = [];
+
+    for ($i = 0; $i < 7; $i++) {
+        $tanggal = now()->startOfWeek()->addDays($i)->toDateString();
+
+        $labelGrafik[] = date('D', strtotime($tanggal));
+
+        $penjualan = $dataPenjualan->firstWhere('tanggal', $tanggal);
+
+        $nilaiGrafik[] = $penjualan ? (float) $penjualan->total : 0;
     }
+
+    return view('kasir.dashboard', compact(
+        'pesananBaru',
+        'diproses',
+        'selesai',
+        'totalPendapatanHariIni',
+        'labelGrafik',
+        'nilaiGrafik'
+    ));
+}
         public function pesananMasuk()
     {
         // Mengambil jumlah pesanan yang masih menunggu
@@ -137,16 +170,19 @@ class KasirController extends Controller
     return view('kasir.proses', compact('pesanan'));
     }
 
-    public function selesaiPesanan($id)
-    {
+    
+public function selesaiPesanan($id)
+{
     $pesanan = Pesanan::findOrFail($id);
 
     $pesanan->status = 'Selesai';
+    $pesanan->tanggal_selesai = now();
 
     $pesanan->save();
 
-   return redirect('/kasir/transaksi');
-    }
+    return redirect('/kasir/transaksi');
+}
+
    public function riwayat()
    {
     $pesanan = Pesanan::with('pelanggan')

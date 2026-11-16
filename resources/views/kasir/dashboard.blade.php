@@ -262,222 +262,18 @@
                 </div>
 
             </div>
-
-
-            <!-- CARD PESANAN -->
-            <div class="card">
-
-                <!-- HEADER CARD -->
+            <!-- CARD GRAFIK PENJUALAN -->
+             <div class="card">
                 <div class="card-header">
-
-                    <div class="card-title-wrapper">
-
-                        <div class="card-title-icon">
-                            ▤
-                        </div>
-
-                        <div class="card-title">
-                            Pesanan Masuk
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <!-- TABLE -->
-                <div class="table-wrapper">
-
-                    <table
-                        class="table"
-                        id="tablePesanan"
-                    >
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    No. Pesanan
-                                </th>
-
-                                <th>
-                                    Nama Pelanggan
-                                </th>
-
-                                <th>
-                                    Meja
-                                </th>
-
-                                <th>
-                                    Waktu
-                                </th>
-
-                                <th>
-                                    Total
-                                </th>
-
-                                <th>
-                                    Status
-                                </th>
-
-                                <th>
-                                    Aksi
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-
-                        <tbody>
-
-                            @forelse ($pesanan as $order)
-                                <tr>
-                                    <td>
-                                        <strong class="order-number">
-                                            {{ $order->nomor_pesanan }}
-                                        </strong>
-
-                                    </td>
-
-                                    <td>
-                                        {{ $order->pelanggan->nama ?? '-' }}
-                                    </td>
-
-                                    <td>
-                                        {{ $order->pelanggan->nomor_meja ?? '-' }}
-                                    </td>
-
-                                    <td>
-
-                                        {{ \Carbon\Carbon::parse(
-                                            $order->tanggal_pesanan
-                                        )->format('H:i') }}
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="order-total">
-
-                                            Rp{{ number_format(
-                                                $order->total,
-                                                0,
-                                                ',',
-                                                '.'
-                                            ) }}
-
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        @if ($order->status === 'Menunggu')
-
-                                            <span class="status status-menunggu">
-                                                Menunggu
-                                            </span>
-
-                                        @elseif ($order->status === 'Diproses')
-
-                                            <span class="status status-diproses">
-                                                Diproses
-                                            </span>
-
-                                        @elseif ($order->status === 'Selesai')
-
-                                            <span class="status status-selesai">
-                                                Selesai
-                                            </span>
-
-                                        @elseif ($order->status === 'Dibatalkan')
-
-                                            <span class="status status-dibatalkan">
-                                                Dibatalkan
-                                            </span>
-
-                                        @else
-
-                                            <span class="status">
-                                                {{ $order->status }}
-                                            </span>
-
-                                        @endif
-
-                                    </td>
-
-                                    <td>
-
-                                        <a
-                                            href="/kasir/detail/{{ $order->pesanan_id }}"
-                                            class="btn-detail"
-                                        >
-                                            <span>
-                                                👁
-                                            </span>
-
-                                            Detail
-
-                                        </a>
-
-                                    </td>
-
-                                </tr>
-
-                            @empty
-
-                                <tr>
-
-                                    <td
-                                        colspan="7"
-                                        class="empty-data"
-                                    >
-                                        Belum ada pesanan masuk.
-                                    </td>
-                                </tr>
-
-                            @endforelse
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-                <!-- FOOTER -->
-                <div class="card-footer">
-
-                    <div class="showing-text">
-
-                        Menampilkan
-                        {{ $pesanan->count() }}
-                        dari
-                        {{ $pesanan->count() }}
-                        pesanan
-
-                    </div>
-
-                    <div class="pagination">
-
-                        <div class="page-button">
-                            ‹
-                        </div>
-
-                        <div class="page-button active">
-                            1
-                        </div>
-
-                        <div class="page-button">
-                            ›
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="card-title-wrapper">
+            <div class="card-title-icon">▥</div>
+            <div class="card-title">Grafik Penjualan Mingguan</div>
+        </div>
+    </div>
+    <div style="padding: 20px; height: 420px; width: 100%; box-sizing: border-box;">
+    <canvas id="grafikPenjualan" style="width: 100%; height: 100%;"></canvas>
+</div>
+</div>
 
             <!-- QUOTE BAGIAN BAWAH -->
             <div class="bottom-quote">
@@ -510,49 +306,107 @@
 
 <script src="{{ asset('js/kasir.js') }}"></script>
 
-
-<!-- SEARCH -->
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+   const labels = JSON.parse('{!! json_encode($labelGrafik) !!}');
+    const values = JSON.parse('{!! json_encode($nilaiGrafik) !!}');
+    const totalPendapatanHariIni = Number('{{ $totalPendapatanHariIni }}');
 
-document.addEventListener("DOMContentLoaded", function () {
+    const canvas = document.getElementById('grafikPenjualan');
 
-    const searchInput =
-        document.getElementById("searchPesanan");
+    if (!canvas) return;
 
-    const tableRows =
-        document.querySelectorAll("#tablePesanan tbody tr");
+    const ctx = canvas.getContext('2d');
+
+    function gambarGrafik() {
+        const lebar = canvas.clientWidth;
+
+        if (lebar <= 0) return;
+
+        const tinggi = 380;
+        const rasio = window.devicePixelRatio || 1;
+
+        canvas.width = lebar * rasio;
+        canvas.height = tinggi * rasio;
+
+        ctx.setTransform(rasio, 0, 0, rasio, 0, 0);
+        ctx.clearRect(0, 0, lebar, tinggi);
+
+        const kiri = 65;
+        const kanan = 15;
+        const atas = 20;
+        const bawah = 45;
+
+        const areaLebar = lebar - kiri - kanan;
+        const areaTinggi = tinggi - atas - bawah;
+
+        const nilaiMaks = Math.max(...values, 0);
+        const skalaMaks = nilaiMaks > 0 ? nilaiMaks * 1.2 : 100000;
+
+        ctx.font = '11px Arial';
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#777';
+
+        for (let i = 0; i <= 4; i++) {
+            const y = atas + areaTinggi - (areaTinggi * i / 4);
+            const nilai = skalaMaks * i / 4;
+
+            ctx.strokeStyle = '#eeeeee';
+            ctx.beginPath();
+            ctx.moveTo(kiri, y);
+            ctx.lineTo(lebar - kanan, y);
+            ctx.stroke();
+
+           
+        }
+
+        const jarak = areaLebar / labels.length;
+        const lebarBatang = Math.min(40, jarak * 0.55);
 
 
-    searchInput.addEventListener("keyup", function () {
+values.forEach(function (nilai, i) {
+    const tinggiBatang = (nilai / skalaMaks) * areaTinggi;
+    const x = kiri + jarak * i + (jarak - lebarBatang) / 2;
+    const y = atas + areaTinggi - tinggiBatang;
 
-        const keyword =
-            this.value.toLowerCase();
+    // Menggambar batang grafik
+    ctx.fillStyle = '#8B6B4A';
+    ctx.beginPath();
+    ctx.roundRect(x, y, lebarBatang, tinggiBatang, 5);
+    ctx.fill();
 
+   // Menampilkan total pendapatan di samping kiri batang
+if (nilai > 0) {
+    ctx.fillStyle = '#333';
+    ctx.font = 'bold 12px Arial';
+    ctx.textAlign = 'right';
 
-        tableRows.forEach(function (row) {
+    ctx.fillText(
+        'Rp' + new Intl.NumberFormat('id-ID').format(nilai),
+        x - 8,
+        y + 15
+    );
 
-            const text =
-                row.textContent.toLowerCase();
+}
 
-
-            if (text.includes(keyword)) {
-
-                row.style.display = "";
-
-            } else {
-
-                row.style.display = "none";
-
-            }
-
-        });
-
-    });
-
+    // Menampilkan nama hari
+    ctx.fillStyle = '#555';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(
+        labels[i],
+        x + lebarBatang / 2,
+        tinggi - 15
+    );
 });
 
+
+    }
+
+    gambarGrafik();
+    window.addEventListener('resize', gambarGrafik);
+});
 </script>
 
 </body>
-
 </html>
