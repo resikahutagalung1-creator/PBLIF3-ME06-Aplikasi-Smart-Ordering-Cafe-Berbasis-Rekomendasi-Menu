@@ -206,6 +206,21 @@
 
                 </div>
 
+                 </div>
+
+                <!-- PENCARIAN PESANAN -->
+                <div class="search-pesanan">
+    <div class="search-input-wrapper">
+        <i data-lucide="search" class="search-icon"></i>
+        <input
+            type="text"
+            id="searchPesananMasuk"
+            placeholder="Cari pesanan..."
+        >
+    </div>
+</div>
+                       
+
 
                 <!-- TABLE -->
                 <div class="table-wrapper">
@@ -391,7 +406,52 @@
     </main>
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const input = document.getElementById("searchPesananMasuk");
+    const tbody = document.querySelector(".table tbody");
+
+    const rows = Array.from(tbody.querySelectorAll("tr"))
+        .filter(row => !row.querySelector(".empty-data"));
+
+    const noResult = document.createElement("tr");
+
+    noResult.innerHTML = `
+        <td colspan="7" class="empty-data">
+            Pesanan yang dicari tidak ditemukan.
+        </td>
+    `;
+
+    input.addEventListener("input", function () {
+
+        const keyword = input.value.toLowerCase().trim();
+        let jumlahTampil = 0;
+
+        rows.forEach(function (row) {
+            const cocok = row.textContent.toLowerCase().includes(keyword);
+
+            row.style.display = cocok ? "" : "none";
+
+            if (cocok) {
+                jumlahTampil++;
+            }
+        });
+
+        if (jumlahTampil === 0 && rows.length > 0) {
+            tbody.appendChild(noResult);
+        } else {
+            noResult.remove();
+        }
+
+    });
+
+});
+</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
 </body>
 
 </html>

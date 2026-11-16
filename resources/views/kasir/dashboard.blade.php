@@ -282,20 +282,6 @@
 
                     </div>
 
-                    <!-- SEARCH -->
-                    <div class="search-box">
-
-                        <span class="search-icon">
-                            ⌕
-                        </span>
-
-                        <input
-                            type="text"
-                            id="searchPesanan"
-                            placeholder="Cari nomor pesanan..."
-                        >
-
-                    </div>
 
                 </div>
 
