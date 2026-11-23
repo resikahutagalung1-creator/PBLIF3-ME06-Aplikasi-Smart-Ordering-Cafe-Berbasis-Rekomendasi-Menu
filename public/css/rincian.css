@@ -286,3 +286,1227 @@ body {
         font-size: 15px;
     }
 }
+
+/* =====================================
+   TIMELINE PROGRESS PESANAN PELANGGAN
+===================================== */
+
+.order-progress {
+    margin-bottom: 20px;
+}
+
+.order-progress .progress-description {
+    color: #89796c;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.customer-timeline {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 30px;
+    padding-left: 5px;
+}
+
+.customer-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 75px;
+    position: relative;
+}
+
+.customer-circle {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    background: #e8ddd3;
+    color: #70472b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
+
+.customer-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 38px;
+    background: #e8ddd3;
+    left: 17px;
+    top: 56px;
+    z-index: 1;
+}
+
+.customer-step.completed .customer-circle,
+.customer-step.active .customer-circle {
+    background: #70472b;
+    color: #fff;
+}
+
+.customer-step.completed:not(:last-child)::after {
+    background: #70472b;
+}
+
+.customer-step.active .customer-circle {
+    box-shadow: 0 0 0 5px #f3e2d0;
+}
+
+.customer-step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.customer-step-text strong {
+    color: #56351f;
+    font-size: 14px;
+}
+
+.customer-step-text span {
+    color: #89796c;
+    font-size: 12px;
+}
+
+.finished-message,
+.cancelled-message {
+    padding: 13px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.finished-message {
+    background: #edf5e9;
+    color: #416b35;
+}
+
+.cancelled-message {
+    background: #fbeaea;
+    color: #b83232;
+}
+
+@media (max-width: 600px) {
+    .customer-step {
+        min-height: 75px;
+    }
+
+    .customer-step-text strong {
+        font-size: 13px;
+    }
+
+    .customer-step-text span {
+        font-size: 11px;
+    }
+}
+
+/* =====================================
+   ANIMASI DAPUR SMART CAFE
+===================================== */
+
+.cooking-scene {
+    background: linear-gradient(135deg, #fff8ef, #f3e2d0);
+    border-radius: 15px;
+    padding: 25px 15px;
+    margin: 20px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.cooking-scene-title {
+    color: #70452b;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.kitchen-animation {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.chef-character {
+    font-size: 75px;
+    animation: chefMove 1.8s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+.cooking-area {
+    position: relative;
+    width: 115px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cooking-pot {
+    font-size: 70px;
+    position: absolute;
+    bottom: 5px;
+    animation: potMove 1.5s ease-in-out infinite;
+}
+
+.cooking-spoon {
+    font-size: 35px;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    transform-origin: bottom center;
+    animation: spoonMove 1s ease-in-out infinite;
+}
+
+.steam {
+    position: absolute;
+    top: 0;
+    color: #b99477;
+    font-size: 30px;
+    opacity: 0;
+    animation: steamMove 2s ease-in-out infinite;
+}
+
+.steam-one {
+    left: 35px;
+}
+
+.steam-two {
+    left: 65px;
+    animation-delay: 0.8s;
+}
+
+.cooking-caption {
+    color: #89796c;
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+@keyframes chefMove {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(-5deg) translateY(-7px); }
+}
+
+@keyframes potMove {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(3deg); }
+}
+
+@keyframes spoonMove {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(25deg); }
+}
+
+@keyframes steamMove {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chef-character,
+    .cooking-pot,
+    .cooking-spoon,
+    .steam {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .chef-character {
+        font-size: 60px;
+    }
+
+    .cooking-pot {
+        font-size: 58px;
+    }
+
+    .kitchen-animation {
+        gap: 15px;
+    }
+}
+
+/* =====================================
+   ANIMASI DAPUR SMART CAFE
+===================================== */
+
+.cooking-scene {
+    background: linear-gradient(135deg, #fff8ef, #f3e2d0);
+    border-radius: 15px;
+    padding: 25px 15px;
+    margin: 20px 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.cooking-scene-title {
+    color: #70452b;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.kitchen-animation {
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.chef-character {
+    font-size: 75px;
+    animation: chefMove 1.8s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+.cooking-area {
+    position: relative;
+    width: 115px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cooking-pot {
+    font-size: 70px;
+    position: absolute;
+    bottom: 5px;
+    animation: potMove 1.5s ease-in-out infinite;
+}
+
+.cooking-spoon {
+    font-size: 35px;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    transform-origin: bottom center;
+    animation: spoonMove 1s ease-in-out infinite;
+}
+
+.steam {
+    position: absolute;
+    top: 0;
+    color: #b99477;
+    font-size: 30px;
+    opacity: 0;
+    animation: steamMove 2s ease-in-out infinite;
+}
+
+.steam-one {
+    left: 35px;
+}
+
+.steam-two {
+    left: 65px;
+    animation-delay: 0.8s;
+}
+
+.cooking-caption {
+    color: #89796c;
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+@keyframes chefMove {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(-5deg) translateY(-7px); }
+}
+
+@keyframes potMove {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(3deg); }
+}
+
+@keyframes spoonMove {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(25deg); }
+}
+
+@keyframes steamMove {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chef-character,
+    .cooking-pot,
+    .cooking-spoon,
+    .steam {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .chef-character {
+        font-size: 60px;
+    }
+
+    .cooking-pot {
+        font-size: 58px;
+    }
+
+    .kitchen-animation {
+        gap: 15px;
+    }
+}
+
+/* =========================================
+   ILUSTRASI DAPUR SMART CAFE
+========================================= */
+
+.cooking-scene {
+    background: linear-gradient(180deg, #fff8ed, #f1dfca);
+    border-radius: 18px;
+    padding: 25px 15px 20px;
+    margin: 22px 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.cooking-scene-title {
+    color: #70452b;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.kitchen-stage {
+    position: relative;
+    height: 245px;
+    max-width: 520px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* RAK DAPUR */
+
+.kitchen-shelf {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    width: 115px;
+    height: 7px;
+    border-radius: 5px;
+    background: #a87953;
+}
+
+.kitchen-shelf span {
+    position: absolute;
+    bottom: 7px;
+    width: 18px;
+    height: 30px;
+    background: #c68e5e;
+    border-radius: 5px 5px 2px 2px;
+}
+
+.kitchen-shelf span:nth-child(1) {
+    left: 10px;
+}
+
+.kitchen-shelf span:nth-child(2) {
+    left: 45px;
+    height: 23px;
+    background: #d5a36e;
+}
+
+.kitchen-shelf span:nth-child(3) {
+    right: 10px;
+}
+
+/* KARAKTER KOKI */
+
+.chef-illustration {
+    position: absolute;
+    left: 85px;
+    bottom: 35px;
+    width: 115px;
+    height: 175px;
+    z-index: 3;
+    animation: chefBodyMove 2s ease-in-out infinite;
+}
+
+.chef-hat {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 55px;
+    height: 28px;
+    background: #fff;
+    border: 3px solid #d7c4ae;
+    border-radius: 20px 20px 5px 5px;
+    z-index: 3;
+}
+
+.chef-hat::before {
+    content: "";
+    position: absolute;
+    width: 23px;
+    height: 17px;
+    top: -12px;
+    left: 13px;
+    background: #fff;
+    border: 3px solid #d7c4ae;
+    border-radius: 50%;
+}
+
+.chef-head {
+    position: absolute;
+    top: 25px;
+    left: 35px;
+    width: 48px;
+    height: 49px;
+    background: #f0bd83;
+    border-radius: 45% 45% 48% 48%;
+    z-index: 2;
+}
+
+.chef-eyes {
+    position: absolute;
+    top: 18px;
+    left: 12px;
+    width: 5px;
+    height: 6px;
+    background: #49301f;
+    border-radius: 50%;
+    box-shadow: 18px 0 #49301f;
+}
+
+.chef-smile {
+    position: absolute;
+    left: 17px;
+    top: 30px;
+    width: 14px;
+    height: 7px;
+    border-bottom: 2px solid #8d4937;
+    border-radius: 50%;
+}
+
+.chef-body {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    width: 80px;
+    height: 92px;
+    background: #fffaf2;
+    border: 3px solid #d7c4ae;
+    border-radius: 25px 25px 8px 8px;
+}
+
+.chef-apron {
+    position: absolute;
+    left: 17px;
+    top: 15px;
+    width: 40px;
+    height: 55px;
+    background: #a86f48;
+    border-radius: 10px 10px 5px 5px;
+}
+
+.chef-arm {
+    position: absolute;
+    right: -4px;
+    top: 82px;
+    width: 48px;
+    height: 14px;
+    border-radius: 15px;
+    background: #f0bd83;
+    transform: rotate(-25deg);
+    transform-origin: left center;
+    animation: chefArmMove 1s ease-in-out infinite;
+    z-index: 4;
+}
+
+/* AREA KOMPOR */
+
+.stove-area {
+    position: absolute;
+    right: 75px;
+    bottom: 35px;
+    width: 160px;
+    height: 145px;
+    z-index: 2;
+}
+
+.cooking-pot {
+    position: absolute;
+    left: 30px;
+    bottom: 32px;
+    width: 100px;
+    height: 70px;
+    z-index: 3;
+    animation: potCooking 2s ease-in-out infinite;
+}
+
+.pot-body {
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height: 58px;
+    background: linear-gradient(135deg, #986044, #6f422e);
+    border: 4px solid #603a29;
+    border-radius: 10px 10px 24px 24px;
+}
+
+.pot-body::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 17px;
+    width: 58px;
+    height: 7px;
+    background: #dca66c;
+    border-radius: 50%;
+}
+
+.pot-lid {
+    position: absolute;
+    top: 0;
+    left: 9px;
+    width: 82px;
+    height: 12px;
+    background: #d4a477;
+    border: 3px solid #70452b;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.pot-lid::before {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 32px;
+    width: 12px;
+    height: 7px;
+    background: #70452b;
+    border-radius: 5px;
+}
+
+.pot-handle {
+    position: absolute;
+    left: -13px;
+    top: 20px;
+    width: 17px;
+    height: 22px;
+    border: 5px solid #70452b;
+    border-radius: 8px;
+}
+
+.pot-handle.right {
+    left: auto;
+    right: -13px;
+}
+
+.stove {
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    width: 130px;
+    height: 22px;
+    background: #49352a;
+    border-radius: 7px;
+}
+
+.stove div {
+    position: absolute;
+    top: 5px;
+    width: 24px;
+    height: 8px;
+    background: #d69b5d;
+    border-radius: 50%;
+}
+
+.stove div:first-child {
+    left: 25px;
+}
+
+.stove div:last-child {
+    right: 25px;
+}
+
+/* UAP MASAKAN */
+
+.steam-cloud {
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 70px;
+    height: 65px;
+    z-index: 4;
+}
+
+.steam-cloud i {
+    position: absolute;
+    bottom: 0;
+    width: 13px;
+    height: 35px;
+    border-left: 4px solid #c4a58a;
+    border-radius: 50%;
+    opacity: 0;
+    animation: steamRise 2s ease-in-out infinite;
+}
+
+.steam-cloud i:nth-child(1) {
+    left: 5px;
+}
+
+.steam-cloud i:nth-child(2) {
+    left: 28px;
+    animation-delay: .6s;
+}
+
+.steam-cloud i:nth-child(3) {
+    left: 50px;
+    animation-delay: 1.2s;
+}
+
+/* MEJA DAPUR */
+
+.kitchen-counter {
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    background: #a87953;
+    border-radius: 8px;
+    box-shadow: 0 10px 0 #d0a77e;
+    z-index: 5;
+}
+
+/* ANIMASI */
+
+@keyframes chefBodyMove {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes chefArmMove {
+    0%, 100% {
+        transform: rotate(-25deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+}
+
+@keyframes potCooking {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes steamRise {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    50% {
+        opacity: .8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+}
+
+@media (max-width: 600px) {
+    .kitchen-stage {
+        transform: scale(.85);
+        transform-origin: center center;
+        margin: -10px auto;
+    }
+
+    .chef-illustration {
+        left: 30px;
+    }
+
+    .stove-area {
+        right: 20px;
+    }
+}
+
+/* =====================================
+   KOKI MANUSIA SEDANG MEMASAK
+===================================== */
+
+.human-kitchen {
+    height: 300px;
+    max-width: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.chef-scene {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Tangan mengaduk masakan */
+.stirring-arm {
+    transform-box: view-box;
+    transform-origin: 190px 158px;
+    animation: stirringMotion 1.3s ease-in-out infinite;
+}
+
+.stirring-spoon {
+    transform-box: fill-box;
+    transform-origin: 0% 50%;
+    animation: spoonMotion 1.3s ease-in-out infinite;
+}
+
+/* Panci sedikit bergerak */
+.pot-cooking {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    animation: potMotion 2s ease-in-out infinite;
+}
+
+/* Uap naik dari panci */
+.pot-steam {
+    animation: steamMotion 2.2s ease-in-out infinite;
+}
+
+@keyframes stirringMotion {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes spoonMotion {
+    0%, 100% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(12deg);
+    }
+}
+
+@keyframes potMotion {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes steamMotion {
+    0%, 100% {
+        opacity: .35;
+        transform: translateY(5px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-8px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stirring-arm,
+    .stirring-spoon,
+    .pot-cooking,
+    .pot-steam {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .human-kitchen {
+        height: 230px;
+    }
+}
+
+/* =================================
+   DESAIN PERJALANAN PESANAN
+================================= */
+
+.order-progress-design {
+    background: #fff;
+    padding: 28px 25px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(60, 35, 18, 0.045);
+    overflow: hidden;
+}
+
+.order-progress-design h3 {
+    color: #56351f;
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.progress-description {
+    color: #927b68;
+    font-size: 13px;
+    margin-bottom: 28px;
+}
+
+/* TIMELINE */
+
+.order-timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin: 0 8px 30px;
+}
+
+.order-timeline::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 9%;
+    right: 9%;
+    height: 3px;
+    background: #ead6c5;
+    z-index: 0;
+}
+
+.timeline-item {
+    width: 20%;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 9px;
+}
+
+.timeline-circle {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: #ead6c5;
+    color: #906747;
+    border: 3px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: .3s ease;
+}
+
+.timeline-item strong {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #8d7766;
+    font-weight: 600;
+}
+
+.timeline-item.completed .timeline-circle {
+    background: #70452b;
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.timeline-item.active .timeline-circle {
+    background: #c58a5c;
+    color: white;
+    box-shadow: 0 0 0 5px #f5e5d7;
+    animation: pulseStep 1.5s infinite;
+}
+
+.timeline-item.completed strong,
+.timeline-item.active strong {
+    color: #70452b;
+    font-weight: 700;
+}
+
+@keyframes pulseStep {
+    0%, 100% {
+        box-shadow: 0 0 0 4px #f5e5d7;
+    }
+    50% {
+        box-shadow: 0 0 0 8px #f5e5d7;
+    }
+}
+
+/* ANIMASI GAMBAR */
+
+.order-animation {
+    width: 100%;
+    max-width: 620px;
+    aspect-ratio: 1.5 / 1;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #fff1e5;
+}
+
+.order-animation img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: translateY(-25.6%);
+}
+
+.order-animation-caption {
+    text-align: center;
+    margin-top: 18px;
+    color: #927b68;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* STATUS KHUSUS */
+
+.cancelled-message {
+    margin-top: 18px;
+    padding: 15px;
+    text-align: center;
+    background: #fff0ed;
+    color: #b33d2e;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.finished-message {
+    margin-top: 18px;
+    padding: 15px;
+    text-align: center;
+    background: #edf5e9;
+    color: #416b35;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 500px) {
+    .order-progress-design {
+        padding: 20px 12px;
+    }
+
+    .timeline-circle {
+        width: 31px;
+        height: 31px;
+        font-size: 12px;
+    }
+
+    .timeline-item strong {
+        font-size: 10px;
+    }
+
+    .order-timeline::before {
+        top: 15px;
+    }
+
+    .order-animation-caption {
+        font-size: 12px;
+    }
+}
+
+
+
+
+/* TIMELINE SELALU DI ATAS */
+.customer-timeline {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 28px;
+}
+
+/* KOTAK ILUSTRASI */
+.order-animation {
+    position: relative !important;
+    display: block !important;
+    width: 100%;
+    max-width: 650px;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 25px auto 12px !important;
+    padding: 12px;
+    background: #fff1e5;
+    border-radius: 18px;
+    overflow: hidden;
+    clear: both;
+    z-index: 1;
+}
+
+/* GAMBAR GIF */
+
+
+/* KOTAK PEMBUNGKUS GIF */
+
+.order-animation {
+    display: block !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 8px !important;
+    margin: 25px auto 10px !important;
+    background: #fff1e5;
+    border-radius: 18px;
+    overflow: visible !important;
+}
+
+.order-animation img {
+    display: block !important;
+    width: 480px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    margin: 0 auto !important;
+}
+
+/* TULISAN DI BAWAH GIF */
+.order-animation-caption {
+    text-align: center;
+    margin: 12px auto 25px;
+    color: #89796c;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .order-animation {
+        width: 100% !important;
+    }
+
+    .order-animation img {
+        width: 100% !important;
+    }
+}
+
+
+/* Mengecilkan kolom pembungkus GIF */
+.cooking-scene {
+    width: 90% !important;
+    max-width: 700px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 25px auto 12px !important;
+    padding: 12px !important;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Mempertahankan ukuran GIF */
+.cooking-scene img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Beri ruang khusus untuk timeline */
+.order-timeline {
+    position: relative !important;
+    z-index: 5 !important;
+    min-height: 125px !important;
+    margin-bottom: 35px !important;
+}
+
+/* Pastikan setiap tahap timeline terlihat */
+.timeline-item {
+    position: relative !important;
+    z-index: 6 !important;
+}
+
+/* Turunkan posisi GIF agar tidak menutupi timeline */
+.order-animation {
+    position: relative !important;
+    z-index: 1 !important;
+    clear: both !important;
+    margin-top: 25px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Pertahankan ukuran gambar */
+.order-animation img {
+    display: block !important;
+    position: static !important;
+    width: 480px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+}
+
+/* PEMBUNGKUS GIF */
+.order-animation {
+    display: block !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+
+    width: 500px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 25px auto 10px !important;
+    padding: 8px !important;
+
+    background: #fff1e5 !important;
+    border-radius: 18px;
+    overflow: hidden !important;
+}
+
+/* GIF DI DALAM PEMBUNGKUS */
+.order-animation img {
+    display: block !important;
+    position: static !important;
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+
+    margin: 0 auto !important;
+    object-fit: contain !important;
+    transform: none !important;
+}
+
+@media (max-width: 600px) {
+    .order-animation {
+        width: 100% !important;
+    }
+}

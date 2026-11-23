@@ -153,7 +153,15 @@ Route::post('/pesanan/konfirmasi', [PesananController::class, 'konfirmasi'])
 Route::get('/rincian-pesanan/{id}', [PesananController::class, 'rincian'])
     ->name('pesanan.rincian');
 
+    Route::get('/pesanan/{id}/cek-status', [PesananController::class, 'cekStatusPembayaran'])
+    ->name('pesanan.cekStatus');
 
+    // Mengecek status pesanan pelanggan
+Route::get('/pesanan/{id}/status', [PesananController::class, 'statusPesanan'])
+    ->name('pesanan.status');
+
+    Route::get('/status-pesanan/{id}', [PesananController::class, 'halamanStatusPesanan'])
+    ->name('pesanan.halamanStatus');
 /*
 |--------------------------------------------------------------------------
 | UPDATE KERANJANG
@@ -224,6 +232,9 @@ Route::middleware('kasir')->group(function () {
 
     Route::get('/kasir/proses', [KasirController::class, 'proses']);
 
+    Route::post('/kasir/pesanan/{id}/tahap', [KasirController::class, 'updateTahapPesanan'])
+    ->name('kasir.updateTahap');
+
     Route::get('/kasir/transaksi', [KasirController::class, 'transaksi']);
 
     Route::post('/kasir/pembayaran/konfirmasi/{id}', [KasirController::class, 'konfirmasiPembayaran']);
@@ -231,3 +242,7 @@ Route::middleware('kasir')->group(function () {
     Route::get('/kasir/riwayat', [KasirController::class, 'riwayat']);
 
 });
+
+
+Route::post('/midtrans/notification', [PesananController::class, 'midtransNotification'])
+    ->name('midtrans.notification');

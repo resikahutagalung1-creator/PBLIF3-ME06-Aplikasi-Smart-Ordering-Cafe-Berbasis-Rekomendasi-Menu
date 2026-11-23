@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Foundation\Application;
@@ -14,6 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'kasir' => \App\Http\Middleware\KasirMiddleware::class,
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
+
+        // Pengecualian CSRF khusus notifikasi Midtrans
+        $middleware->validateCsrfTokens(except: [
+            'midtrans/notification',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

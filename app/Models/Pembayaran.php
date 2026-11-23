@@ -19,6 +19,16 @@ class Pembayaran extends Model
         'kembalian',
         'status',
         'tanggal_bayar',
+        'midtrans_order_id',
+        'midtrans_transaction_id',
+        'qris_url',
+        'qris_string',
+        'expired_at',
+    ];
+
+    protected $casts = [
+        'tanggal_bayar' => 'datetime',
+        'expired_at' => 'datetime',
     ];
 
     public function pesanan()

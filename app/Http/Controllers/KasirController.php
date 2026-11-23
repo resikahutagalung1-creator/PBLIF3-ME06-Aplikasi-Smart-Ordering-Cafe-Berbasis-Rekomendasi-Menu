@@ -158,17 +158,18 @@ class KasirController extends Controller
     return redirect('/kasir/pesanan-masuk');
     }
     public function proses()
-    {
-    $pesanan = Pesanan::with([
-        'pelanggan',
-        'detailPesanan.menu'
-    ])
-    ->where('status', 'Diproses')
-    ->orderBy('tanggal_pesanan', 'desc')
-    ->get();
+{
+    $pesanan = Pesanan::with(['pelanggan', 'detailPesanan.menu'])
+        ->whereIn('status', [
+            'Diproses',
+            'Hampir Siap',
+            'Siap Disajikan'
+        ])
+        ->orderBy('tanggal_pesanan', 'desc')
+        ->get();
 
     return view('kasir.proses', compact('pesanan'));
-    }
+}
 
     
 public function selesaiPesanan($id)
@@ -208,5 +209,23 @@ public function selesaiPesanan($id)
 
     return redirect('/kasir/riwayat');
     }
+    public function updateTahapPesanan(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|in:Diproses,Hampir Siap,Siap Disajikan,Selesai',
+    ]);
+
+    $pesanan = Pesanan::findOrFail($id);
+    $pesanan->status = $request->status;
+    $pesanan->save();
+
+    if ($request->status === 'Selesai') {
+        return redirect('/kasir/transaksi')
+            ->with('success', 'Pesanan berhasil diselesaikan.');
+    }
+
+    return redirect('/kasir/proses')
+        ->with('success', 'Tahapan pesanan berhasil diperbarui.');
+}
 }
 

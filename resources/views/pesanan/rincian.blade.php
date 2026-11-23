@@ -25,24 +25,40 @@
     <section class="success-card">
         <div class="success-icon">✓</div>
         <h2>Pesanan Berhasil Dibuat!</h2>
-        <p>
-            Terima kasih telah memesan di Smart Cafe.
-            Silakan menunggu konfirmasi dari kasir.
+
+        <p id="orderStatusMessage">
+            @if ($pesanan->status == 'Menunggu')
+                Pesanan sedang menunggu konfirmasi kasir.
+            @elseif ($pesanan->status == 'Diproses')
+                Pesanan telah diterima dan sedang diproses oleh kasir.
+            @elseif ($pesanan->status == 'Selesai')
+                Pesanan selesai. Silakan menikmati pesanan Anda.
+            @elseif ($pesanan->status == 'Dibatalkan')
+                Pesanan telah dibatalkan.
+            @else
+                Status pesanan: {{ $pesanan->status }}
+            @endif
         </p>
     </section>
 
     <!-- INFORMASI PESANAN -->
-    <section class="card">
+    <section class="card"
+        id="orderTracking"
+        data-pesanan-id="{{ $pesanan->pesanan_id }}">
+
         <div class="section-heading">
             <h3>Informasi Pesanan</h3>
-            <span class="order-status">
+
+            <span class="order-status" id="orderStatus">
                 {{ $pesanan->status }}
             </span>
         </div>
 
         <div class="info-list">
+
             <div class="info-row">
                 <span>Nomor Pesanan</span>
+
                 <div class="order-number">
                     <strong id="orderNumber">
                         {{ $pesanan->nomor_pesanan }}
@@ -70,6 +86,7 @@
                     {{ \Carbon\Carbon::parse($pesanan->tanggal_pesanan)->format('d/m/Y H:i') }}
                 </strong>
             </div>
+
         </div>
 
         <p id="copyMessage" class="copy-message"></p>
@@ -136,6 +153,7 @@
         <h3>Informasi Pembayaran</h3>
 
         <div class="info-list">
+
             <div class="info-row">
                 <span>Metode Pembayaran</span>
                 <strong>
@@ -149,10 +167,12 @@
                     {{ $pesanan->pembayaran->status ?? 'Menunggu' }}
                 </strong>
             </div>
+
         </div>
 
         <p class="payment-note">
-            Pembayaran Anda sedang menunggu konfirmasi kasir.
+            Status pembayaran:
+            {{ $pesanan->pembayaran->status ?? 'Menunggu' }}
         </p>
     </section>
 
@@ -161,6 +181,7 @@
         Kembali ke Menu
     </a>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <p>Terima kasih telah berkunjung ke Smart Cafe.</p>
         <span>Good Food, Good Mood</span>

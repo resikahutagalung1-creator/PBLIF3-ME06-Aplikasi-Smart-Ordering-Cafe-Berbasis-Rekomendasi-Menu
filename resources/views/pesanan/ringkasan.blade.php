@@ -122,7 +122,7 @@
                 </h1>
 
                 <span>
-                    Smart Ordering Café
+                    Smart Ordering Cafe
                 </span>
 
             </div>
