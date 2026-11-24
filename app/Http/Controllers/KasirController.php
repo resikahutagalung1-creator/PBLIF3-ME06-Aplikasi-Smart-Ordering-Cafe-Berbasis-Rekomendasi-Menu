@@ -148,15 +148,15 @@ class KasirController extends Controller
 }
 
 
-    public function batalkanPesanan($id)
-    {
+   public function batalkanPesanan($id)
+{
     $pesanan = Pesanan::findOrFail($id);
 
     $pesanan->status = 'Dibatalkan';
     $pesanan->save();
 
     return redirect('/kasir/pesanan-masuk');
-    }
+}
     public function proses()
 {
     $pesanan = Pesanan::with(['pelanggan', 'detailPesanan.menu'])
@@ -209,7 +209,7 @@ public function selesaiPesanan($id)
 
     return redirect('/kasir/riwayat');
     }
-    public function updateTahapPesanan(Request $request, $id)
+  public function updateTahapPesanan(Request $request, $id)
 {
     $request->validate([
         'status' => 'required|in:Diproses,Hampir Siap,Siap Disajikan,Selesai',
@@ -217,6 +217,11 @@ public function selesaiPesanan($id)
 
     $pesanan = Pesanan::findOrFail($id);
     $pesanan->status = $request->status;
+
+    if ($request->status === 'Selesai') {
+        $pesanan->tanggal_selesai = now();
+    }
+
     $pesanan->save();
 
     if ($request->status === 'Selesai') {

@@ -88,6 +88,23 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
 
+ Route::get('/admin/menu', [AdminController::class, 'kelolaMenu'])
+        ->name('admin.menu');
+ Route::get('/admin/menu/tambah', [AdminController::class, 'tambahMenu'])
+    ->name('admin.menu.tambah');
+ Route::post('/admin/menu/simpan', [AdminController::class, 'simpanMenu'])
+    ->name('admin.menu.store');
+ Route::get('/admin/menu/{id}/edit', [AdminController::class, 'editMenu'])
+    ->name('admin.menu.edit');
+ Route::put('/admin/menu/{id}/update', [AdminController::class, 'updateMenu'])
+    ->name('admin.menu.update');
+ Route::post('/admin/menu/{id}/nonaktif', [AdminController::class, 'nonaktifMenu'])
+    ->name('admin.menu.nonaktif');
+Route::post('/admin/menu/{id}/aktif', [AdminController::class, 'aktifMenu'])
+    ->name('admin.menu.aktif');
+Route::get('/admin/menu/nonaktif', [AdminController::class, 'kelolaMenuNonaktif'])
+    ->name('admin.menu.nonaktif.list');
+
         // KELOLA MEJA
 Route::get('/admin/meja', [AdminController::class, 'kelolaMeja'])
     ->name('admin.meja');

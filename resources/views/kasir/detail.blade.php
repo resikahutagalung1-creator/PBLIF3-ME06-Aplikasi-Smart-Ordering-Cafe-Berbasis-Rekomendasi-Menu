@@ -319,7 +319,7 @@
                             @if (!empty($detail->menu->gambar))
 
                                 <img
-                                    src="{{ asset('images/' . $detail->menu->gambar) }}"
+                                    src="{{ asset('images/menu/' . $detail->menu->gambar) }}"
                                     alt="{{ $detail->menu->nama_menu }}"
                                     class="menu-image"
                                 >

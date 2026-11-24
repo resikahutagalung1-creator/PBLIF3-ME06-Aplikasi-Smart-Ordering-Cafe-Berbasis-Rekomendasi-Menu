@@ -50,10 +50,10 @@
 
             <!-- KELOLA MENU -->
             <li>
-                <a href="#">
-                    <span class="menu-icon">▤</span>
-                    <span class="menu-text">Kelola Menu</span>
-                </a>
+                <a href="{{ route('admin.menu') }}">
+        <span class="menu-icon">▤</span>
+        <span class="menu-text">Kelola Menu</span>
+        </a>
             </li>
 
             <!-- KELOLA DATA PENGGUNA -->
@@ -245,9 +245,9 @@
 
                     <!-- KELOLA MENU -->
                     <a
-                        href="#"
+                        href="{{ route('admin.menu') }}"
                         class="admin-menu-card"
-                    >
+                        >
 
                         <div class="admin-menu-icon">
                             ☕
