@@ -49,13 +49,13 @@
             </li>
 
             <!-- KELOLA MENU -->
-            <li>
-                <a href="{{ route('admin.menu') }}">
+            <!-- KELOLA MENU -->
+<li>
+    <a href="{{ route('admin.menu') }}">
         <span class="menu-icon">▤</span>
         <span class="menu-text">Kelola Menu</span>
-        </a>
-            </li>
-
+    </a>
+</li>
             <!-- KELOLA DATA PENGGUNA -->
             <li>
                 <a href="#">

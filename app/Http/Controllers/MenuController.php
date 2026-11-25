@@ -93,4 +93,108 @@ class MenuController extends Controller
             compact('menu', 'rekomendasi')
         );
     }
+
+    // Menampilkan daftar menu khusus Admin
+public function adminIndex()
+{
+    $menus = Menu::with('kategori')
+        ->whereIn('status', ['tersedia', 'habis'])
+        ->orderBy('menu_id', 'desc')
+        ->get();
+
+    return view('admin.menu.index', compact('menus'));
+}
+
+    // Menampilkan form tambah menu
+    public function create()
+    {
+        $kategoris = Kategori::where('status', 'aktif')
+            ->orderBy('kategori_id')
+            ->get();
+
+        return view('admin.menu.create', compact('kategoris'));
+    }
+
+    // Menyimpan menu baru
+    public function store(Request $request)
+    {
+        $request->validate([
+            'kategori_id' => 'required|exists:kategori,kategori_id',
+            'nama_menu' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'status' => 'required|in:tersedia,habis,nonaktif',
+        ]);
+
+        $data = $request->except('gambar');
+
+        if ($request->hasFile('gambar')) {
+            $data['gambar'] = $request->file('gambar')
+                ->store('menu', 'public');
+        }
+
+        $data['terjual'] = 0;
+
+        Menu::create($data);
+
+        return redirect()
+            ->route('admin.menu')
+            ->with('success', 'Menu berhasil ditambahkan.');
+    }
+
+    // Menampilkan form edit menu
+    public function edit($id)
+    {
+        $menu = Menu::findOrFail($id);
+
+        $kategoris = Kategori::where('status', 'aktif')
+            ->orderBy('kategori_id')
+            ->get();
+
+        return view('admin.menu.edit', compact('menu', 'kategoris'));
+    }
+
+    // Memperbarui menu
+    public function update(Request $request, $id)
+    {
+        $menu = Menu::findOrFail($id);
+
+        $request->validate([
+            'kategori_id' => 'required|exists:kategori,kategori_id',
+            'nama_menu' => 'required|string|max:255',
+            'deskripsi' => 'nullable|string',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|integer|min:0',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'status' => 'required|in:tersedia,habis,nonaktif',
+        ]);
+
+        $data = $request->except('gambar');
+
+        if ($request->hasFile('gambar')) {
+            $data['gambar'] = $request->file('gambar')
+                ->store('menu', 'public');
+        }
+
+        $menu->update($data);
+
+        return redirect()
+            ->route('admin.menu')
+            ->with('success', 'Menu berhasil diperbarui.');
+    }
+
+    // Menghapus menu
+    public function destroy($id)
+    {
+        $menu = Menu::findOrFail($id);
+
+        $menu->delete();
+
+        return redirect()
+            ->route('admin.menu')
+            ->with('success', 'Menu berhasil dihapus.');
+    }
+
 }
