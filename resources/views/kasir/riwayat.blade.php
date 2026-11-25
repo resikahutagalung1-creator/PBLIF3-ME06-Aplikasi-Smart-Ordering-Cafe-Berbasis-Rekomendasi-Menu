@@ -139,27 +139,32 @@
     <main class="main">
 
         <!-- TOP BAR -->
-        <div class="top-bar">
-
+         <div class="top-bar">
             <div class="staff">
 
-                <div class="staff-icon">
-                    👤
-                </div>
-
-                <span>
-                    Kasir
-                </span>
-
-                <span class="staff-arrow">
-                    ⌄
-                </span>
-
-            </div>
-
+        <div class="staff-icon">
+            👤
         </div>
 
+        <span>
+            Kasir
+        </span>
 
+        <a
+            href="/kasir/logout"
+            style="
+                margin-left: 15px;
+                color: #df4040;
+                text-decoration: none;
+                font-weight: 600;
+            "
+        >
+            Logout
+        </a>
+
+    </div>
+
+</div>
         <!-- CONTENT -->
         <div class="content">
 

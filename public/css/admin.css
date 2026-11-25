@@ -597,55 +597,15 @@ body {
    RESPONSIVE
 ===================================================== */
 
-@media (max-width: 1100px) {
-
-    .sidebar {
-        width: 230px;
-    }
-
-    .main {
-        margin-left: 230px;
-
-        width: calc(100% - 230px);
-    }
-
-    .content {
-        padding: 28px;
-    }
-
-    .top-bar {
-        padding: 0 28px;
-    }
-
-    .stats {
-        gap: 15px;
-    }
-}
-
-
-@media (max-width: 850px) {
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .admin-menu-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
 @media (max-width: 650px) {
 
     .sidebar {
         width: 70px;
-
         padding: 20px 8px;
     }
 
     .logo {
         justify-content: center;
-
         padding-left: 0;
         padding-right: 0;
     }
@@ -658,19 +618,16 @@ body {
 
     .sidebar-menu a {
         justify-content: center;
-
         padding: 14px 5px;
     }
 
     .main {
         margin-left: 70px;
-
         width: calc(100% - 70px);
     }
 
     .top-bar {
         height: 75px;
-
         padding: 0 20px;
     }
 
@@ -685,4 +642,25 @@ body {
     .card {
         padding: 18px;
     }
+
+} /* Penutup media query */
+
+
+/* TOMBOL STATUS PENGGUNA */
+.btn-nonaktifkan,
+.btn-aktifkan {
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-nonaktifkan {
+    background: #dc2626;
+}
+
+.btn-aktifkan {
+    background: #15803d;
 }

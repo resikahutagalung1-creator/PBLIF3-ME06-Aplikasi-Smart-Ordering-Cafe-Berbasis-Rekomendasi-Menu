@@ -25,9 +25,7 @@
 <div class="kasir-container">
 
 
-    <!-- =========================================
-         SIDEBAR
-    ========================================== -->
+    <!-- SIDEBAR -->
 
     <aside class="sidebar">
 
@@ -186,43 +184,41 @@
 
 
 
-    <!-- =========================================
-         MAIN
-    ========================================== -->
+    <!-- MAIN -->
 
     <main class="main">
 
 
         <!-- TOP BAR -->
-
-        <div class="top-bar">
-
+         <div class="top-bar">
             <div class="staff">
 
-                <div class="staff-icon">
-                    👤
-                </div>
-
-                <span>
-                    Kasir
-                </span>
-
-                <span class="staff-arrow">
-                    ⌄
-                </span>
-
-            </div>
-
+        <div class="staff-icon">
+            👤
         </div>
 
+        <span>
+            Kasir
+        </span>
 
+        <a
+            href="/kasir/logout"
+            style="
+                margin-left: 15px;
+                color: #df4040;
+                text-decoration: none;
+                font-weight: 600;
+            "
+        >
+            Logout
+        </a>
 
-        <!-- =========================================
-             CONTENT
-        ========================================== -->
+    </div>
+
+</div>
+        <!-- CONTENT -->
 
         <div class="content">
-
 
             <!-- JUDUL -->
 
@@ -240,11 +236,7 @@
 
             </div>
 
-
-
-            <!-- =========================================
-                 DATA TRANSAKSI
-            ========================================== -->
+            <!--  DATA TRANSAKSI -->
 
             <div class="card">
 
@@ -362,20 +354,14 @@
 
                                     </td>
 
-
-
                                     <!-- MEJA -->
-
                                     <td>
 
                                         {{ $item->pesanan->pelanggan->nomor_meja ?? '-' }}
 
                                     </td>
 
-
-
                                     <!-- TOTAL PESANAN -->
-
                                     <td>
 
                                         <span class="order-total">
@@ -391,10 +377,7 @@
 
                                     </td>
 
-
-
                                     <!-- METODE -->
-
                                     <td>
 
                                         @if ($item->metode === 'QRIS')
@@ -413,10 +396,7 @@
 
                                     </td>
 
-
-
                                     <!-- JUMLAH BAYAR -->
-
                                     <td>
 
                                         Rp{{ number_format(
@@ -428,10 +408,7 @@
 
                                     </td>
 
-
-
                                     <!-- KEMBALIAN -->
-
                                     <td>
 
                                         Rp{{ number_format(
@@ -443,10 +420,7 @@
 
                                     </td>
 
-
-
                                     <!-- STATUS -->
-
                                     <td>
 
                                         @if ($item->status === 'Berhasil')
@@ -471,19 +445,13 @@
 
                                     </td>
 
-
-
                                     <!-- AKSI -->
-
                                     <td>
-
                                         @if ($item->status === 'Menunggu')
-
                                             <form
                                                 action="/kasir/pembayaran/konfirmasi/{{ $item->pembayaran_id }}"
                                                 method="POST"
                                             >
-
                                                 @csrf
 
                                                 <button
@@ -510,14 +478,9 @@
                                         @endif
 
                                     </td>
-
-
                                 </tr>
 
-
                             @empty
-
-
                                 <!-- TIDAK ADA DATA -->
 
                                 <tr>
@@ -526,25 +489,15 @@
                                         colspan="9"
                                         class="empty-data"
                                     >
-
                                         Belum ada transaksi pembayaran.
 
                                     </td>
 
                                 </tr>
-
-
                             @endforelse
-
-
                         </tbody>
-
-
                     </table>
-
                 </div>
-
-
 
                 <!-- FOOTER -->
 
@@ -560,15 +513,9 @@
 
                 </div>
 
-
             </div>
 
-
-
-            <!-- =========================================
-                 KETERANGAN
-            ========================================== -->
-
+            <!-- KETERANGAN -->
             <div class="bottom-quote">
 
                 <div class="bottom-quote-icon">
@@ -589,15 +536,11 @@
 
             </div>
 
-
         </div>
-
 
     </main>
 
-
 </div>
-
 
 </body>
 

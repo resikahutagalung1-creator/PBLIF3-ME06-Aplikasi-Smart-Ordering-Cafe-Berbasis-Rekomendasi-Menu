@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -36,14 +35,14 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ route('admin.menu') }}">
                     <span class="menu-icon">▤</span>
                     <span class="menu-text">Kelola Menu</span>
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ route('admin.pengguna') }}">
                     <span class="menu-icon">♙</span>
                     <span class="menu-text">Kelola Data Pengguna</span>
                 </a>
@@ -97,19 +96,59 @@
             <div class="card">
 
                 <div class="card-header">
+
                     <div class="card-title-wrapper">
                         <div class="card-title-icon">▦</div>
                         <div class="card-title">Daftar Meja</div>
                     </div>
+
                 </div>
 
                 <div style="padding:20px;">
 
-                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;">
+                    <!-- KOLOM PENCARIAN MEJA -->
+                    <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
 
-                        @foreach($mejas as $meja)
+                        <div style="position:relative;width:360px;max-width:100%;">
 
-                            <div style="border:1px solid #ddd2c9;border-radius:12px;padding:18px;background:#fff;">
+                            <!-- IKON KACA PEMBESAR -->
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#8b735f"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                style="position:absolute;left:15px;top:50%;transform:translateY(-50%);pointer-events:none;"
+                            >
+                                <circle cx="11" cy="11" r="7"></circle>
+                                <path d="m20 20-4-4"></path>
+                            </svg>
+
+                            <!-- INPUT PENCARIAN -->
+                            <input
+                                type="text"
+                                id="searchMeja"
+                                placeholder="Cari nomor meja..."
+                                autocomplete="off"
+                                style="width:100%;height:52px;padding:0 15px 0 46px;border:1px solid #dcc7b5;border-radius:10px;font-size:15px;outline:none;box-sizing:border-box;background:white;color:#70452B;"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <!-- KOTAK DAFTAR MEJA -->
+                    <div id="mejaGrid"
+                         style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;">
+
+                        @forelse($mejas as $meja)
+
+                            <div class="meja-card"
+                                 data-meja-name="Meja {{ $meja->nomor_meja }}"
+                                 style="border:1px solid #ddd2c9;border-radius:12px;padding:18px;background:#fff;">
 
                                 <h3 style="margin:0 0 12px;color:#70452B;">
                                     Meja {{ $meja->nomor_meja }}
@@ -148,7 +187,19 @@
 
                             </div>
 
-                        @endforeach
+                        @empty
+
+                            <div style="grid-column:1/-1;text-align:center;padding:30px;color:#777;">
+                                Belum ada data meja.
+                            </div>
+
+                        @endforelse
+
+                        <!-- PESAN JIKA MEJA TIDAK DITEMUKAN -->
+                        <div id="mejaNotFound"
+                             style="display:none;grid-column:1/-1;text-align:center;padding:30px;color:#777;">
+                            Meja tidak ditemukan.
+                        </div>
 
                     </div>
 
@@ -161,6 +212,45 @@
     </main>
 
 </div>
+
+<!-- JAVASCRIPT PENCARIAN MEJA -->
+<script>
+
+    const searchMeja = document.getElementById('searchMeja');
+    const mejaCards = document.querySelectorAll('.meja-card');
+    const mejaNotFound = document.getElementById('mejaNotFound');
+
+    searchMeja.addEventListener('input', function () {
+
+        const keyword = this.value.toLowerCase().trim();
+
+        let jumlahDitemukan = 0;
+
+        mejaCards.forEach(function (card) {
+
+            const nomorMeja = card.dataset.mejaName.toLowerCase();
+
+            if (nomorMeja.includes(keyword)) {
+
+                card.style.display = '';
+                jumlahDitemukan++;
+
+            } else {
+
+                card.style.display = 'none';
+
+            }
+
+        });
+
+        mejaNotFound.style.display =
+            mejaCards.length > 0 && jumlahDitemukan === 0
+                ? 'block'
+                : 'none';
+
+    });
+
+</script>
 
 </body>
 </html>

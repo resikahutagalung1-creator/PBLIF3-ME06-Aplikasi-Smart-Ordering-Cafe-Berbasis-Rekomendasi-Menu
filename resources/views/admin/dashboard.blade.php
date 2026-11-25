@@ -58,10 +58,10 @@
 </li>
             <!-- KELOLA DATA PENGGUNA -->
             <li>
-                <a href="#">
+                <a href="{{ route('admin.pengguna') }}">
                     <span class="menu-icon">♙</span>
-                    <span class="menu-text">Kelola Data Pengguna</span>
-                </a>
+                     <span class="menu-text">Kelola Data Pengguna</span>
+                    </a>
             </li>
 
             <!-- KELOLA MEJA -->
@@ -245,7 +245,7 @@
 
                     <!-- KELOLA MENU -->
                     <a
-                        href="{{ route('admin.menu') }}"
+                        href="{{ route('admin.pengguna') }}"
                         class="admin-menu-card"
                         >
 

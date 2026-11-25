@@ -206,4 +206,165 @@ public function aktifMenu($id)
             ->route('admin.meja')
             ->with('success', 'Meja ' . $meja->nomor_meja . ' berhasil tersedia kembali.');
     }
+
+   
+    // Menampilkan daftar pengguna
+    public function kelolaPengguna()
+    {
+        $penggunas = User::orderBy('user_id', 'desc')->get();
+
+        return view('admin.pengguna', compact('penggunas'));
+    }
+
+    // Menampilkan form tambah pengguna
+    public function tambahPengguna()
+    {
+        return view('admin.pengguna-tambah');
+    }
+
+    // Menyimpan pengguna baru
+    public function simpanPengguna(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'username' => 'required|string|max:50|unique:users,username',
+            'password' => 'required|string|min:6',
+            'role' => 'required|in:admin,kasir',
+            'status' => 'required|in:aktif,nonaktif',
+        ]);
+
+        User::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'password' => $request->password,
+            'role' => $request->role,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.pengguna')
+            ->with('success', 'Data pengguna berhasil ditambahkan.');
+    }
+
+    // Menampilkan form edit pengguna
+    public function editPengguna($id)
+    {
+        $pengguna = User::findOrFail($id);
+
+        // Admin Utama tidak boleh diedit
+        if ($pengguna->username === 'adminsmart') {
+            return redirect()->route('admin.pengguna')
+                ->with('error', 'Akun Admin Utama tidak boleh diedit.');
+        }
+
+        return view('admin.pengguna-edit', compact('pengguna'));
+    }
+
+    // Menyimpan perubahan pengguna
+    public function updatePengguna(Request $request, $id)
+    {
+        $pengguna = User::findOrFail($id);
+
+        // Lindungi Admin Utama
+        if ($pengguna->username === 'adminsmart') {
+            return redirect()->route('admin.pengguna')
+                ->with('error', 'Akun Admin Utama tidak boleh diedit.');
+        }
+
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'username' => 'required|string|max:50|unique:users,username,' . $id . ',user_id',
+            'password' => 'nullable|string|min:6',
+            'role' => 'required|in:admin,kasir',
+            'status' => 'required|in:aktif,nonaktif',
+        ]);
+
+        $pengguna->nama = $request->nama;
+        $pengguna->username = $request->username;
+        $pengguna->role = $request->role;
+        $pengguna->status = $request->status;
+
+        if ($request->filled('password')) {
+            $pengguna->password = $request->password;
+        }
+
+        $pengguna->save();
+
+        return redirect()->route('admin.pengguna')
+            ->with('success', 'Data pengguna berhasil diperbarui.');
+    }
+
+    // Mengaktifkan dan menonaktifkan pengguna
+    public function ubahStatusPengguna($id)
+    {
+        $pengguna = User::findOrFail($id);
+
+        // Admin Utama tidak boleh dinonaktifkan
+        if ($pengguna->username === 'adminsmart') {
+            return redirect()->route('admin.pengguna')
+                ->with('error', 'Akun Admin Utama tidak boleh dinonaktifkan.');
+        }
+
+        // Tidak boleh menonaktifkan akun sendiri
+        if ((int) $pengguna->user_id === (int) session('admin_id')) {
+            return redirect()->route('admin.pengguna')
+                ->with('error', 'Kamu tidak bisa menonaktifkan akun sendiri.');
+        }
+
+        // Mencegah tidak adanya Admin aktif
+        if ($pengguna->role === 'admin' && $pengguna->status === 'aktif') {
+            $jumlahAdminAktif = User::where('role', 'admin')
+                ->where('status', 'aktif')
+                ->count();
+
+            if ($jumlahAdminAktif <= 1) {
+                return redirect()->route('admin.pengguna')
+                    ->with('error', 'Minimal harus ada satu Admin aktif.');
+            }
+        }
+
+        $pengguna->status = $pengguna->status === 'aktif'
+            ? 'nonaktif'
+            : 'aktif';
+
+        $pengguna->save();
+
+        return redirect()->route('admin.pengguna')
+            ->with('success', 'Status pengguna berhasil diperbarui.');
+    }
+
+    // Menghapus pengguna
+    public function hapusPengguna($id)
+    {
+        $pengguna = User::findOrFail($id);
+
+        // Admin Utama tidak boleh dihapus
+        if ($pengguna->username === 'adminsmart') {
+            return redirect()->route('admin.pengguna')
+                ->with('error', 'Akun Admin Utama tidak boleh dihapus.');
+        }
+
+        // Tidak boleh menghapus akun sendiri
+        if ((int) $pengguna->user_id === (int) session('admin_id')) {
+            return redirect()->route('admin.pengguna')
+                ->with('error', ' tidak bisa menghapus akun sendiri.');
+        }
+
+        // Mencegah tidak adanya Admin aktif
+        if ($pengguna->role === 'admin' && $pengguna->status === 'aktif') {
+            $jumlahAdminAktif = User::where('role', 'admin')
+                ->where('status', 'aktif')
+                ->count();
+
+            if ($jumlahAdminAktif <= 1) {
+                return redirect()->route('admin.pengguna')
+                    ->with('error', 'Admin aktif terakhir tidak boleh dihapus.');
+            }
+        }
+
+        $pengguna->delete();
+
+        return redirect()->route('admin.pengguna')
+            ->with('success', 'Data pengguna berhasil dihapus.');
+    }
+
 }

@@ -102,8 +102,19 @@ public function adminIndex()
         ->orderBy('menu_id', 'desc')
         ->get();
 
-    return view('admin.menu.index', compact('menus'));
+    return view('admin.menu', compact('menus'));
 }
+    
+    // Menampilkan daftar menu nonaktif
+    public function nonaktif()
+    {
+        $menus = Menu::with('kategori')
+            ->where('status', 'nonaktif')
+            ->orderBy('menu_id', 'desc')
+            ->get();
+
+        return view('admin.menu-nonaktif', compact('menus'));
+    }
 
     // Menampilkan form tambah menu
     public function create()
@@ -185,16 +196,31 @@ public function adminIndex()
             ->with('success', 'Menu berhasil diperbarui.');
     }
 
-    // Menghapus menu
-    public function destroy($id)
-    {
-        $menu = Menu::findOrFail($id);
+    // Menonaktifkan menu
+public function destroy($id)
+{
+    $menu = Menu::findOrFail($id);
 
-        $menu->delete();
+    $menu->update([
+        'status' => 'nonaktif'
+    ]);
 
-        return redirect()
-            ->route('admin.menu')
-            ->with('success', 'Menu berhasil dihapus.');
-    }
+    return redirect()
+        ->route('admin.menu')
+        ->with('success', 'Menu berhasil dinonaktifkan.');
+}
 
+// Mengaktifkan kembali menu
+public function aktif($id)
+{
+    $menu = Menu::findOrFail($id);
+
+    $menu->update([
+        'status' => 'tersedia'
+    ]);
+
+    return redirect()
+        ->route('admin.menu.nonaktif.list')
+        ->with('success', 'Menu berhasil diaktifkan kembali.');
+}
 }
